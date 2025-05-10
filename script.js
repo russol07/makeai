@@ -126,6 +126,7 @@ function setupFAQ() {
 }
 
 // Quick Order Button & Modal
+let quickOrderModal;
 function createQuickOrderButton() {
     const btn = document.createElement('button');
     btn.className = 'quick-order-btn';
@@ -133,18 +134,18 @@ function createQuickOrderButton() {
     document.body.appendChild(btn);
 
     // Modal
-    const modal = document.createElement('div');
-    modal.style.display = 'none';
-    modal.style.position = 'fixed';
-    modal.style.top = '0';
-    modal.style.left = '0';
-    modal.style.width = '100vw';
-    modal.style.height = '100vh';
-    modal.style.background = 'rgba(36, 16, 61, 0.25)';
-    modal.style.zIndex = '3000';
-    modal.style.justifyContent = 'center';
-    modal.style.alignItems = 'center';
-    modal.innerHTML = `
+    quickOrderModal = document.createElement('div');
+    quickOrderModal.style.display = 'none';
+    quickOrderModal.style.position = 'fixed';
+    quickOrderModal.style.top = '0';
+    quickOrderModal.style.left = '0';
+    quickOrderModal.style.width = '100vw';
+    quickOrderModal.style.height = '100vh';
+    quickOrderModal.style.background = 'rgba(36, 16, 61, 0.25)';
+    quickOrderModal.style.zIndex = '3000';
+    quickOrderModal.style.justifyContent = 'center';
+    quickOrderModal.style.alignItems = 'center';
+    quickOrderModal.innerHTML = `
       <div style="background:#fff; border-radius:1.2rem; padding:2.5rem 2rem; min-width:320px; max-width:90vw; box-shadow:0 8px 32px rgba(124,58,237,0.16); position:relative;">
         <button id="closeQuickOrder" style="position:absolute;top:1rem;right:1rem;font-size:1.5rem;background:none;border:none;cursor:pointer;color:#7c3aed;">&times;</button>
         <h3 style="margin-bottom:1rem;">Quick Order</h3>
@@ -156,22 +157,31 @@ function createQuickOrderButton() {
         </form>
       </div>
     `;
-    document.body.appendChild(modal);
+    document.body.appendChild(quickOrderModal);
 
     btn.addEventListener('click', () => {
-        modal.style.display = 'flex';
+        quickOrderModal.style.display = 'flex';
     });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
+    quickOrderModal.addEventListener('click', (e) => {
+        if (e.target === quickOrderModal) quickOrderModal.style.display = 'none';
     });
-    modal.querySelector('#closeQuickOrder').onclick = () => {
-        modal.style.display = 'none';
+    quickOrderModal.querySelector('#closeQuickOrder').onclick = () => {
+        quickOrderModal.style.display = 'none';
     };
-    modal.querySelector('#quickOrderForm').onsubmit = (e) => {
+    quickOrderModal.querySelector('#quickOrderForm').onsubmit = (e) => {
         e.preventDefault();
         alert('Thank you! We will contact you soon.');
-        modal.style.display = 'none';
+        quickOrderModal.style.display = 'none';
     };
+
+    // Customization button logic
+    setTimeout(() => {
+        document.querySelectorAll('.order-customization-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                quickOrderModal.style.display = 'flex';
+            });
+        });
+    }, 500);
 }
 
 // Initialize the page
