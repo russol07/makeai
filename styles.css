@@ -334,27 +334,102 @@ body {
 
 /* Modern Hero Section */
 .modern-hero {
-    min-height: 60vh;
+    min-height: 65vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
     position: relative;
+    background: linear-gradient(120deg, #4f378b 0%, #7c3aed 100%);
+    overflow: hidden;
+    padding-top: 100px;
+    padding-bottom: 80px;
+}
+.modern-hero .hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(120deg, rgba(36,16,61,0.85) 0%, rgba(124,58,237,0.7) 100%);
+    z-index: 1;
+}
+.modern-hero .container {
+    position: relative;
+    z-index: 2;
+}
+.modern-hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 4px 32px rgba(36,16,61,0.25), 0 1px 0 #0002;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    animation: fadeIn 1.2s;
+}
+.modern-hero .subheading {
+    font-size: 1.35rem;
+    color: #e0e7ff;
+    text-shadow: 0 2px 8px rgba(36,16,61,0.18);
+    margin-bottom: 2.5rem;
+    animation: fadeIn 1.5s;
 }
 .modern-hero .cta-buttons {
-    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+.modern-hero .primary-button, .modern-hero .secondary-button {
+    font-size: 1.15rem;
+    padding: 1.1rem 2.2rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 24px rgba(124,58,237,0.18);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.modern-hero .primary-button {
+    background: linear-gradient(90deg, #a78bfa 0%, #7c3aed 100%);
+    color: #fff;
+    border: none;
+}
+.modern-hero .primary-button:hover {
+    background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+    box-shadow: 0 8px 32px rgba(124,58,237,0.25);
+}
+.modern-hero .secondary-button {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 2px solid #a78bfa;
+}
+.modern-hero .secondary-button:hover {
+    background: #a78bfa;
+    color: #fff;
+    border-color: #7c3aed;
 }
 .modern-hero .dynamic-examples {
-    margin: 2rem auto 0;
-    background: rgba(255,255,255,0.08);
-    border-radius: 1rem;
-    padding: 1.2rem 2rem;
+    margin: 2.5rem auto 0;
+    background: rgba(255,255,255,0.10);
+    border-radius: 1.2rem;
+    padding: 1.3rem 2.2rem;
     color: #fff;
-    font-weight: 500;
-    font-size: 1.2rem;
+    font-weight: 600;
+    font-size: 1.18rem;
     display: inline-block;
-    box-shadow: 0 2px 16px rgba(124,58,237,0.08);
+    box-shadow: 0 2px 16px rgba(124,58,237,0.10);
+    backdrop-filter: blur(2px);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    animation: fadeIn 2s;
+}
+@media (max-width: 700px) {
+    .modern-hero h1 {
+        font-size: 2.1rem;
+    }
+    .modern-hero .subheading {
+        font-size: 1.05rem;
+    }
+    .modern-hero .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
 
 /* Modern Catalog */
@@ -611,4 +686,40 @@ body {
         flex-direction: column;
         align-items: center;
     }
+}
+
+.hero-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+    line-height: 0;
+}
+.modern-hero {
+    position: relative;
+    overflow: visible;
+}
+
+.catalog-group-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 2.5rem 0 1rem 0;
+    letter-spacing: 0.01em;
+}
+.catalog-divider {
+    border: none;
+    border-top: 2px dashed #e5e7eb;
+    margin: 2.5rem 0 1.5rem 0;
+}
+.automation-grid {
+    row-gap: 1.5rem;
+}
+.automation-card h4 {
+    font-size: 1.08rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
 } 
