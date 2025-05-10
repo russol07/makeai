@@ -18,8 +18,8 @@
                 <li><a href="#catalog">Catalog</a></li>
                 <li><a href="#benefits">Benefits</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
                 <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact" class="cta-button">Contact Us</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -30,7 +30,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero modern-hero">
         <div class="container">
             <h1>Automate Your Business — Save Time and Money</h1>
             <p class="subheading">Ready-made automations for Shopify, Etsy, Make.com, and more</p>
@@ -38,18 +38,18 @@
                 <a href="#catalog" class="primary-button">Start Automating</a>
                 <a href="#learn-more" class="secondary-button">Learn More</a>
             </div>
-            <div class="hero-image">
-                <img src="images/automation-illustration.svg" alt="Automation Illustration">
+            <div class="dynamic-examples">
+                <i class="fas fa-sync-alt"></i> Dynamic Automation Examples
             </div>
         </div>
     </section>
 
     <!-- Automation Catalog -->
-    <section id="catalog" class="catalog">
+    <section id="catalog" class="catalog modern-catalog">
         <div class="container">
             <h2>Automation Catalog</h2>
             <div class="platform-filters">
-                <button class="filter-btn active" data-platform="all">All Platforms</button>
+                <button class="filter-btn active" data-platform="all">All</button>
                 <button class="filter-btn" data-platform="shopify">Shopify</button>
                 <button class="filter-btn" data-platform="etsy">Etsy</button>
                 <button class="filter-btn" data-platform="make">Make.com</button>
@@ -63,81 +63,163 @@
     </section>
 
     <!-- Benefits Section -->
-    <section id="benefits" class="benefits">
+    <section id="benefits" class="benefits modern-benefits">
         <div class="container">
-            <h2>Why Choose Our Automations?</h2>
+            <h2>Automation Benefits</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <i class="fas fa-bolt"></i>
                     <h3>Quick Setup</h3>
-                    <p>Get started in minutes with our pre-built solutions</p>
+                    <p>Get started in minutes with our pre-configured automation templates</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Reduced Costs</h3>
+                    <p>Save on operational expenses by automating repetitive tasks</p>
                 </div>
                 <div class="benefit-card">
                     <i class="fas fa-chart-line"></i>
-                    <h3>Cost Effective</h3>
-                    <p>Reduce operational costs and increase efficiency</p>
+                    <h3>Increased Efficiency</h3>
+                    <p>Focus on growth while automation handles routine processes</p>
                 </div>
                 <div class="benefit-card">
-                    <i class="fas fa-headset"></i>
+                    <i class="fas fa-tools"></i>
                     <h3>Full Support</h3>
-                    <p>24/7 technical assistance and guidance</p>
+                    <p>Complete technical assistance and ongoing maintenance included</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- About Us Section -->
+    <section id="about" class="about modern-about">
         <div class="container">
             <h2>About Us</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Our Story</h3>
-                    <p>We're a team of automation experts dedicated to helping businesses streamline their operations.</p>
-                    <h3>Our Mission</h3>
-                    <p>To make automation accessible and affordable for businesses of all sizes.</p>
+            <p class="about-desc">We're a team of automation experts passionate about helping businesses streamline their operations. Our mission is to make advanced automation accessible to everyone.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo">👩‍💻</div>
+                    <div class="team-info">
+                        <h4>John Smith</h4>
+                        <p>CEO & Automation Expert<br>15+ years in business automation and process optimization</p>
+                    </div>
                 </div>
-                <div class="team-grid">
-                    <!-- Team member cards will be added here -->
+                <div class="team-card">
+                    <div class="team-photo">👩‍💻</div>
+                    <div class="team-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Technical Lead<br>Specialist in e-commerce integrations and API development</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">👨‍💻</div>
+                    <div class="team-info">
+                        <h4>Mike Davis</h4>
+                        <p>Customer Success Manager<br>Dedicated to ensuring client satisfaction and success</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact modern-contact">
         <div class="container">
-            <h2>Get in Touch</h2>
-            <div class="contact-grid">
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <select required>
-                            <option value="">Select Platform</option>
-                            <option value="shopify">Shopify</option>
-                            <option value="etsy">Etsy</option>
-                            <option value="make">Make.com</option>
-                            <option value="monday">Monday.com</option>
-                            <option value="telegram">Telegram</option>
-                        </select>
-                        <textarea placeholder="Tell us about your automation needs" required></textarea>
-                        <button type="submit" class="primary-button">Request Consultation</button>
-                    </form>
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <label>Your Name</label>
+                <input type="text" placeholder="Your Name" required>
+                <label>Email Address</label>
+                <input type="email" placeholder="Email Address" required>
+                <label>Platform</label>
+                <select required>
+                    <option value="">Select Platform</option>
+                    <option value="shopify">Shopify</option>
+                    <option value="etsy">Etsy</option>
+                    <option value="make">Make.com</option>
+                    <option value="monday">Monday.com</option>
+                    <option value="telegram">Telegram</option>
+                </select>
+                <label>Message</label>
+                <textarea placeholder="Tell us about your automation needs" required></textarea>
+                <button type="submit" class="primary-button">Request Consultation</button>
+            </form>
+            <div class="contact-info">
+                <div class="info-item"><i class="fas fa-envelope"></i> contact@automationhub.com</div>
+                <div class="info-item"><i class="fab fa-telegram"></i> @AutomationHub</div>
+                <div class="info-item"><i class="fas fa-phone"></i> +1 (555) 123-4567</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog modern-blog">
+        <div class="container">
+            <h2>Latest Articles</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img"></div>
+                    <h4>Top 5 Automation Trends in 2025</h4>
+                    <p>Discover the latest developments in business automation and how they can benefit your company...</p>
+                    <a href="#" class="primary-button">Read More</a>
                 </div>
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>contact@automationhub.com</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fab fa-telegram"></i>
-                        <p>@AutomationHub</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+1 (555) 123-4567</p>
-                    </div>
+                <div class="blog-card">
+                    <div class="blog-img"></div>
+                    <h4>Case Study: How XYZ Company Saved 40% on Operations</h4>
+                    <p>Learn how our client achieved significant cost savings through strategic automation implementation...</p>
+                    <a href="#" class="primary-button">Read More</a>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img"></div>
+                    <h4>Beginner's Guide to E-commerce Automation</h4>
+                    <p>Everything you need to know about automating your online store operations from A to Z....</p>
+                    <a href="#" class="primary-button">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials modern-testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"Automation Hub saved us 20+ hours per week on order processing. The ROI was immediate!"</p>
+                    <span>- Irina K., E-commerce Owner</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Their Telegram integration system keeps our entire team updated in real-time. Game changer!"</p>
+                    <span>- Michael P., Retail Manager</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"We went from manual data entry nightmare to fully automated workflows in just one week."</p>
+                    <span>- Lisa D., Office Head</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq modern-faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">How long does setup take? <span>+</span></div>
+                    <div class="faq-answer">Most automations can be set up within 24-48 hours. Complex custom solutions may take 1-2 weeks.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer custom automations? <span>+</span></div>
+                    <div class="faq-answer">Yes! In addition to our pre-built solutions, we create custom automations tailored to your specific business needs.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What platforms do you support? <span>+</span></div>
+                    <div class="faq-answer">We support Shopify, Etsy, Make.com, Monday.com, Telegram, and many more. Contact us for specific platform requests.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is there ongoing support? <span>+</span></div>
+                    <div class="faq-answer">Absolutely! All packages include technical support, maintenance, and updates to ensure your automations run smoothly.</div>
                 </div>
             </div>
         </div>
