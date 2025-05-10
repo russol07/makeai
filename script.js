@@ -12,35 +12,69 @@ const automationGrid = document.querySelector('.automation-grid');
 
 // Sample automation data
 const automations = [
+    // Shopify Automations
     {
         platform: 'shopify',
-        title: 'Shopify Order Automation',
-        description: 'Automate order processing and inventory management',
-        price: '$49/month'
+        title: 'Shopify Listing Creation',
+        description: 'Automatically create product listings on Shopify from photos.',
+        price: '$69.99'
+    },
+    {
+        platform: 'shopify etsy',
+        title: 'Shopify to Etsy Sync',
+        description: 'Create listings on Shopify with automatic updates to Etsy. (Requires a paid tunnel for product export from Shopify.)',
+        price: '$99.99'
+    },
+    {
+        platform: 'shopify',
+        title: 'Shopify Bulk Update',
+        description: 'Update titles, descriptions, and tags for all Shopify products.',
+        price: '$69.99'
+    },
+    // Etsy Automations
+    {
+        platform: 'etsy',
+        title: 'Etsy Listing Creation',
+        description: 'Automatically create product listings on Etsy from photos.',
+        price: '$69.99'
     },
     {
         platform: 'etsy',
-        title: 'Etsy Listing Manager',
-        description: 'Automate product listings and inventory sync',
-        price: '$39/month'
+        title: 'Etsy Tag Update from Google Sheets',
+        description: 'Bulk tag updates for Etsy listings from Google Sheets.',
+        price: '$69.99'
     },
     {
-        platform: 'make',
-        title: 'Make.com Integration',
-        description: 'Connect your apps and automate workflows',
-        price: '$59/month'
+        platform: 'etsy',
+        title: 'Etsy Bulk Listing Update',
+        description: 'Update titles, descriptions, and tags for multiple Etsy listings.',
+        price: '$69.99'
+    },
+    // Integrations and Custom Workflows
+    {
+        platform: 'etsy shopify',
+        title: 'Etsy to Shopify Sync',
+        description: 'Automatically create Shopify listings with real-time updates from Etsy.',
+        price: '$99.99'
     },
     {
-        platform: 'monday',
-        title: 'Monday.com Task Automation',
-        description: 'Automate task assignments and project management',
-        price: '$29/month'
+        platform: 'custom',
+        title: 'Custom Automation Setup',
+        description: 'Fully custom automation scripts tailored to your business needs.',
+        price: 'Starting at $399.99'
+    },
+    // Additional Services
+    {
+        platform: 'custom',
+        title: 'Prompt Engineering',
+        description: 'Custom prompt development for AI automation tasks.',
+        price: '$69.99/hour'
     },
     {
-        platform: 'telegram',
-        title: 'Telegram Notification Bot',
-        description: 'Get instant notifications for important events',
-        price: '$19/month'
+        platform: 'custom',
+        title: 'Remote Scenario Setup and Consultation',
+        description: 'Personalized remote setup and consultation for automation scripts.',
+        price: '$69.99/hour'
     }
 ];
 
