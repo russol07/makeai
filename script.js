@@ -184,6 +184,19 @@ function createQuickOrderButton() {
     }, 500);
 }
 
+// Show Quick Order modal on 'Get Started' button click
+function setupGetStartedButtons() {
+    document.querySelectorAll('.primary-button').forEach(btn => {
+        if (btn.textContent.trim().toLowerCase() === 'get started') {
+            btn.addEventListener('click', function(e) {
+                if (typeof quickOrderModal !== 'undefined') {
+                    quickOrderModal.style.display = 'flex';
+                }
+            });
+        }
+    });
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     initializeAutomationGrid();
@@ -201,4 +214,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     setupFAQ();
     createQuickOrderButton();
+    setupGetStartedButtons();
 }); 
