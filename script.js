@@ -31,6 +31,12 @@ const automations = [
         description: 'Update titles, descriptions, and tags for all Shopify products.',
         price: '$69.99'
     },
+    {
+        platform: 'shopify',
+        title: 'Personalized Automation & Prompt Engineering',
+        description: 'Custom automation setup and prompt engineering for your business. Tailored solutions for your unique workflows and AI needs.',
+        price: '$69.99/hour'
+    },
     // Etsy Automations
     {
         platform: 'etsy',
@@ -50,6 +56,12 @@ const automations = [
         description: 'Update titles, descriptions, and tags for multiple Etsy listings.',
         price: '$69.99'
     },
+    {
+        platform: 'etsy',
+        title: 'Personalized Automation & Prompt Engineering',
+        description: 'Custom automation setup and prompt engineering for your business. Tailored solutions for your unique workflows and AI needs.',
+        price: '$69.99/hour'
+    },
     // Integrations and Custom Workflows
     {
         platform: 'etsy shopify',
@@ -63,6 +75,12 @@ const automations = [
         description: 'Fully custom automation scripts tailored to your business needs.',
         price: 'Starting at $399.99'
     },
+    {
+        platform: 'custom',
+        title: 'Personalized Automation & Prompt Engineering',
+        description: 'Custom automation setup and prompt engineering for your business. Tailored solutions for your unique workflows and AI needs.',
+        price: '$69.99/hour'
+    },
     // Additional Services
     {
         platform: 'custom',
@@ -75,17 +93,25 @@ const automations = [
         title: 'Remote Scenario Setup and Consultation',
         description: 'Personalized remote setup and consultation for automation scripts.',
         price: '$69.99/hour'
+    },
+    {
+        platform: 'custom',
+        title: 'Personalized Automation & Prompt Engineering',
+        description: 'Custom automation setup and prompt engineering for your business. Tailored solutions for your unique workflows and AI needs.',
+        price: '$69.99/hour'
     }
 ];
 
 // Function to create automation cards
 function createAutomationCard(automation) {
     return `
-        <div class="automation-card" data-platform="${automation.platform}">
-            <h3>${automation.title}</h3>
-            <p>${automation.description}</p>
-            <div class="automation-price">${automation.price}</div>
-            <button class="primary-button">Get Started</button>
+        <div class="automation-card" data-platform="${automation.platform}" style="display:flex;flex-direction:column;height:100%;">
+            <div style="flex-grow:1;">
+                <h3>${automation.title}</h3>
+                <p>${automation.description}</p>
+                <div class="automation-price">${automation.price}</div>
+            </div>
+            <button class="primary-button" style="margin-top:auto;">Get Started</button>
         </div>
     `;
 }
