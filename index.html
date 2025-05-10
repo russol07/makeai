@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Hub - Business Process Automation Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Automation Hub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#catalog">Catalog</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact" class="cta-button">Contact Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Automate Your Business — Save Time and Money</h1>
+            <p class="subheading">Ready-made automations for Shopify, Etsy, Make.com, and more</p>
+            <div class="cta-buttons">
+                <a href="#catalog" class="primary-button">Start Automating</a>
+                <a href="#learn-more" class="secondary-button">Learn More</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/automation-illustration.svg" alt="Automation Illustration">
+            </div>
+        </div>
+    </section>
+
+    <!-- Automation Catalog -->
+    <section id="catalog" class="catalog">
+        <div class="container">
+            <h2>Automation Catalog</h2>
+            <div class="platform-filters">
+                <button class="filter-btn active" data-platform="all">All Platforms</button>
+                <button class="filter-btn" data-platform="shopify">Shopify</button>
+                <button class="filter-btn" data-platform="etsy">Etsy</button>
+                <button class="filter-btn" data-platform="make">Make.com</button>
+                <button class="filter-btn" data-platform="monday">Monday.com</button>
+                <button class="filter-btn" data-platform="telegram">Telegram</button>
+            </div>
+            <div class="automation-grid">
+                <!-- Automation cards will be dynamically populated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2>Why Choose Our Automations?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Quick Setup</h3>
+                    <p>Get started in minutes with our pre-built solutions</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Cost Effective</h3>
+                    <p>Reduce operational costs and increase efficiency</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Full Support</h3>
+                    <p>24/7 technical assistance and guidance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>We're a team of automation experts dedicated to helping businesses streamline their operations.</p>
+                    <h3>Our Mission</h3>
+                    <p>To make automation accessible and affordable for businesses of all sizes.</p>
+                </div>
+                <div class="team-grid">
+                    <!-- Team member cards will be added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <select required>
+                            <option value="">Select Platform</option>
+                            <option value="shopify">Shopify</option>
+                            <option value="etsy">Etsy</option>
+                            <option value="make">Make.com</option>
+                            <option value="monday">Monday.com</option>
+                            <option value="telegram">Telegram</option>
+                        </select>
+                        <textarea placeholder="Tell us about your automation needs" required></textarea>
+                        <button type="submit" class="primary-button">Request Consultation</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>contact@automationhub.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-telegram"></i>
+                        <p>@AutomationHub</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Automation Hub</h3>
+                    <p>Making automation simple and accessible</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#catalog">Catalog</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Automation Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
