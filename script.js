@@ -118,7 +118,22 @@ function createAutomationCard(automation) {
 
 // Initialize automation grid
 function initializeAutomationGrid() {
-    automationGrid.innerHTML = automations.map(createAutomationCard).join('');
+    let platform = document.querySelector('.filter-btn.active')?.dataset.platform || 'all';
+    let filtered = automations;
+    if (platform !== 'all') {
+        filtered = automations.filter(a => a.platform.split(' ').includes(platform));
+    } else {
+        // Only unique titles for 'all'
+        const seen = new Set();
+        filtered = automations.filter(a => {
+            if (seen.has(a.title)) return false;
+            seen.add(a.title);
+            return true;
+        });
+    }
+    automationGrid.innerHTML = filtered.map(createAutomationCard).join('');
+    enableCardDragAndDrop();
+    setupGetStartedButtons();
 }
 
 // Filter automations
