@@ -246,12 +246,24 @@ function createQuickOrderButton() {
 
 // Show Quick Order modal on 'Get Started' button click
 function setupGetStartedButtons() {
+    const paymentLinks = {
+        'Shopify Listing Creation': 'https://square.link/u/I2sDBKHX',
+        'Shopify to Etsy Sync': 'https://square.link/u/rMauHFWy',
+        'Shopify Bulk Update': 'https://square.link/u/7SkXwrd4',
+        'Personalized Automation & Prompt Engineering': 'https://square.link/u/3ZdIjK0S',
+        'Etsy Listing Creation': 'https://square.link/u/IRjPM1ja',
+        'Etsy Tag Update from Google Sheets': 'https://square.link/u/CdFprB0a',
+        'Etsy Bulk Listing Update': 'https://square.link/u/9N0bUnMx',
+        'Etsy to Shopify Sync': 'https://square.link/u/qmsuRM6g',
+        'Prompt Engineering': 'https://square.link/u/qvmcrfnV',
+        'Remote Scenario Setup and Consultation': 'https://square.link/u/naguJ8k0',
+    };
     document.querySelectorAll('.primary-button').forEach(btn => {
         btn.addEventListener('click', function(e) {
             const card = btn.closest('.automation-card');
             const title = card ? card.querySelector('h3, h4')?.textContent?.trim() : '';
-            if (title === 'Etsy Listing Creation') {
-                window.open('https://square.link/u/IRjPM1ja', '_blank');
+            if (paymentLinks[title]) {
+                window.open(paymentLinks[title], '_blank');
                 return;
             }
             if (typeof quickOrderModal !== 'undefined') {
@@ -259,6 +271,70 @@ function setupGetStartedButtons() {
             }
         });
     });
+}
+
+// DRAG & DROP for automation cards
+function enableCardDragAndDrop() {
+    const cards = document.querySelectorAll('.automation-card');
+    let dragged = null;
+    let ghost = null;
+
+    cards.forEach(card => {
+        card.setAttribute('draggable', 'true');
+        card.addEventListener('dragstart', (e) => {
+            dragged = card;
+            card.classList.add('dragging');
+            // create ghost
+            ghost = card.cloneNode(true);
+            ghost.style.opacity = '0';
+            document.body.appendChild(ghost);
+            e.dataTransfer.setDragImage(ghost, 0, 0);
+        });
+        card.addEventListener('dragend', () => {
+            card.classList.remove('dragging');
+            if (ghost) ghost.remove();
+            ghost = null;
+            dragged = null;
+            document.querySelectorAll('.automation-card.over').forEach(c => c.classList.remove('over'));
+            document.querySelectorAll('.hero.drag-over').forEach(h => h.classList.remove('drag-over'));
+        });
+        card.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+        card.addEventListener('dragenter', (e) => {
+            if (card !== dragged) card.classList.add('over');
+        });
+        card.addEventListener('dragleave', (e) => {
+            card.classList.remove('over');
+        });
+        card.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (card !== dragged) {
+                card.parentNode.insertBefore(dragged, card.nextSibling);
+            }
+            card.classList.remove('over');
+        });
+    });
+    // Hero as dropzone
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            hero.classList.add('drag-over');
+        });
+        hero.addEventListener('dragleave', (e) => {
+            hero.classList.remove('drag-over');
+        });
+        hero.addEventListener('drop', (e) => {
+            e.preventDefault();
+            hero.classList.remove('drag-over');
+            if (dragged) {
+                hero.appendChild(dragged);
+                dragged.style.margin = '2rem auto';
+                dragged.style.maxWidth = '400px';
+            }
+        });
+    }
 }
 
 // Initialize the page
@@ -279,4 +355,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFAQ();
     createQuickOrderButton();
     setupGetStartedButtons();
+    enableCardDragAndDrop();
 }); 
