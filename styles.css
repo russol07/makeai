@@ -438,20 +438,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    align-items: stretch;
 }
 .automation-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     background: #fff;
     border-radius: 1.2rem;
     box-shadow: 0 4px 24px rgba(124,58,237,0.08);
     padding: 2rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     transition: transform 0.2s;
+    cursor: grab;
+    user-select: none;
+    z-index: 1;
+    transition: box-shadow 0.2s, transform 0.25s cubic-bezier(.4,2,.6,1), top 0.25s, left 0.25s;
+    position: relative;
 }
 .automation-card:hover {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 0 8px 32px rgba(124,58,237,0.16);
+}
+.automation-card.dragging {
+    opacity: 0.7;
+    box-shadow: 0 8px 32px rgba(124,58,237,0.18);
+    z-index: 10;
+    transform: scale(1.05);
+}
+.automation-card.over {
+    border: 2px dashed var(--primary-color);
 }
 .automation-card h3 {
     font-size: 1.2rem;
@@ -800,4 +815,8 @@ body {
     font-size: 1.08rem;
     font-weight: 700;
     margin-bottom: 0.4rem;
+}
+
+.hero.drag-over {
+    box-shadow: 0 0 0 4px #a78bfa44 inset;
 } 
