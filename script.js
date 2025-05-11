@@ -247,13 +247,17 @@ function createQuickOrderButton() {
 // Show Quick Order modal on 'Get Started' button click
 function setupGetStartedButtons() {
     document.querySelectorAll('.primary-button').forEach(btn => {
-        if (btn.textContent.trim().toLowerCase() === 'get started') {
-            btn.addEventListener('click', function(e) {
-                if (typeof quickOrderModal !== 'undefined') {
-                    quickOrderModal.style.display = 'flex';
-                }
-            });
-        }
+        btn.addEventListener('click', function(e) {
+            const card = btn.closest('.automation-card');
+            const title = card ? card.querySelector('h3, h4')?.textContent?.trim() : '';
+            if (title === 'Etsy Listing Creation') {
+                window.open('https://square.link/u/IRjPM1ja', '_blank');
+                return;
+            }
+            if (typeof quickOrderModal !== 'undefined') {
+                quickOrderModal.style.display = 'flex';
+            }
+        });
     });
 }
 
