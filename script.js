@@ -17,19 +17,19 @@ const automations = [
         platform: 'shopify',
         title: 'Shopify Listing Creation',
         description: 'Automatically create product listings on Shopify from photos.',
-        price: '$69.99'
+        price: '$99'
     },
     {
         platform: 'shopify etsy',
         title: 'Shopify to Etsy Sync',
         description: 'Create listings on Shopify with automatic updates to Etsy. (Requires a paid tunnel for product export from Shopify.)',
-        price: '$99.99'
+        price: '$99'
     },
     {
         platform: 'shopify',
         title: 'Shopify Bulk Update',
         description: 'Update titles, descriptions, and tags for all Shopify products.',
-        price: '$69.99'
+        price: '$99'
     },
     {
         platform: 'shopify',
@@ -42,19 +42,19 @@ const automations = [
         platform: 'etsy',
         title: 'Etsy Listing Creation',
         description: 'Automatically create product listings on Etsy from photos.',
-        price: '$69.99'
+        price: '$99'
     },
     {
         platform: 'etsy',
         title: 'Etsy Tag Update from Google Sheets',
         description: 'Bulk tag updates for Etsy listings from Google Sheets.',
-        price: '$69.99'
+        price: '$99'
     },
     {
         platform: 'etsy',
         title: 'Etsy Bulk Listing Update',
         description: 'Update titles, descriptions, and tags for multiple Etsy listings.',
-        price: '$69.99'
+        price: '$99'
     },
     {
         platform: 'etsy',
@@ -67,13 +67,13 @@ const automations = [
         platform: 'etsy shopify',
         title: 'Etsy to Shopify Sync',
         description: 'Automatically create Shopify listings with real-time updates from Etsy.',
-        price: '$99.99'
+        price: '$99'
     },
     {
         platform: 'custom',
         title: 'Custom Automation Setup',
         description: 'Fully custom automation scripts tailored to your business needs.',
-        price: 'Starting at $399.99'
+        price: '$99'
     },
     {
         platform: 'custom',
