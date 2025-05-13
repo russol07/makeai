@@ -132,24 +132,55 @@ body {
 
 .platform-filters {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
     flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.platform-filters::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-btn {
     padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    background: white;
+    border: 1px solid var(--primary-color);
+    border-radius: 2rem;
+    background: transparent;
+    color: var(--primary-color);
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    background: var(--primary-color);
+    color: white;
 }
 
 .filter-btn.active {
     background: var(--primary-color);
-    color: #fff;
-    border-color: var(--primary-color);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .platform-filters {
+        justify-content: flex-start;
+        padding-bottom: 0.5rem;
+        margin: 0 -1rem 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .filter-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
 }
 
 /* Benefits Section */
