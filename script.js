@@ -11,7 +11,74 @@ const filterButtons = document.querySelectorAll('.filter-btn');
 const automationGrid = document.querySelector('.automation-grid');
 
 // Sample automation data
-const automations = [];
+const automations = [
+    {
+        platform: 'etsy',
+        title: 'Etsy Automation Toolkit',
+        description: 'Streamline your Etsy business. Automatically create and update listings, transfer orders to CRM or Google Sheets, update tags from spreadsheets, sync product data, and more.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'shopify',
+        title: 'Shopify Flow Builder',
+        description: 'Automate every step of your store. Full automation for Shopify: product listings, orders, reports, tag updates, pricing sync, and integration with Etsy or external databases.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'accounting',
+        title: 'QuickBooks Automations',
+        description: 'Invoices, orders & reports — fully automated. Auto-generate invoices, manage orders, build custom reports, and connect QuickBooks to platforms like Etsy, Shopify, and Google Sheets.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'custom',
+        title: 'Custom Website Chatbots',
+        description: 'Smart bots that talk like humans. AI-powered chatbots for your website that handle customer inquiries, collect leads, book Zoom calls, and connect with your CRM or backend.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'social',
+        title: 'Social Media Auto-Posting',
+        description: 'Create once — publish everywhere. Automatically post content to all your social platforms using files from Google Drive, generate captions from YouTube videos, and schedule content using AI.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'custom',
+        title: 'Custom Business Automations',
+        description: 'Don\'t see what you need? Let\'s build it. Have a unique workflow or business process? Tell us about it and we\'ll design a custom automation tailored to your goals.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'scheduling',
+        title: 'AI Appointment Manager',
+        description: 'Clients book — you stay focused. Smart form or chatbot for appointment booking with Google Calendar sync, reminders, and auto-confirmation emails.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'email',
+        title: 'Smart Email Auto-Responder',
+        description: 'Instant replies that feel human. AI replies to client inquiries based on context, past orders, or integrated FAQ knowledge base. Works with Gmail, Outlook, etc.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'hr',
+        title: 'AI Hiring Assistant',
+        description: 'Sort applicants. Schedule interviews. Automatically. Automatically collect applications, screen resumes, send pre-interview forms, and book Zoom calls with top candidates.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'management',
+        title: 'Task & Employee Tracker',
+        description: 'Know what gets done — and when. Auto-assign tasks, track completions in Google Sheets or ClickUp, and send performance summaries via Telegram or Slack.',
+        price: 'Contact for pricing'
+    },
+    {
+        platform: 'hr',
+        title: 'AI Onboarding & Training Bot',
+        description: 'Give every new hire their own coach. Personalized instructions, documents, videos, and check-ins — automatically delivered to each new employee daily.',
+        price: 'Contact for pricing'
+    }
+];
 
 // Function to create automation cards
 function createAutomationCard(automation) {
