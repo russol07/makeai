@@ -132,17 +132,9 @@ filterButtons.forEach(button => {
         // Update active button
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-
-        const platform = button.dataset.platform;
-        const cards = document.querySelectorAll('.automation-card');
-
-        cards.forEach(card => {
-            if (platform === 'all' || card.dataset.platform === platform) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+        
+        // Reinitialize grid with new filter
+        initializeAutomationGrid();
     });
 });
 
