@@ -17,7 +17,7 @@ const automations = [
         title: 'Etsy Automation Toolkit',
         description: 'Streamline your Etsy business. Automatically create and update listings, transfer orders to CRM or Google Sheets, update tags from spreadsheets, sync product data, and more.',
         price: 'Contact for pricing',
-        image: 'images/photomake.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'shopify',
