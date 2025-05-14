@@ -24,70 +24,70 @@ const automations = [
         title: 'Shopify Flow Builder',
         description: 'Automate every step of your store. Full automation for Shopify: product listings, orders, reports, tag updates, pricing sync, and integration with Etsy or external databases.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'accounting',
         title: 'QuickBooks Automations',
         description: 'Invoices, orders & reports — fully automated. Auto-generate invoices, manage orders, build custom reports, and connect QuickBooks to platforms like Etsy, Shopify, and Google Sheets.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'custom',
         title: 'Custom Website Chatbots',
         description: 'Smart bots that talk like humans. AI-powered chatbots for your website that handle customer inquiries, collect leads, book Zoom calls, and connect with your CRM or backend.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'social',
         title: 'Social Media Auto-Posting',
         description: 'Create once — publish everywhere. Automatically post content to all your social platforms using files from Google Drive, generate captions from YouTube videos, and schedule content using AI.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'custom',
         title: 'Custom Business Automations',
         description: 'Don\'t see what you need? Let\'s build it. Have a unique workflow or business process? Tell us about it and we\'ll design a custom automation tailored to your goals.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'scheduling',
         title: 'AI Appointment Manager',
         description: 'Clients book — you stay focused. Smart form or chatbot for appointment booking with Google Calendar sync, reminders, and auto-confirmation emails.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'email',
         title: 'Smart Email Auto-Responder',
         description: 'Instant replies that feel human. AI replies to client inquiries based on context, past orders, or integrated FAQ knowledge base. Works with Gmail, Outlook, etc.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'hr',
         title: 'AI Hiring Assistant',
         description: 'Sort applicants. Schedule interviews. Automatically. Automatically collect applications, screen resumes, send pre-interview forms, and book Zoom calls with top candidates.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'management',
         title: 'Task & Employee Tracker',
         description: 'Know what gets done — and when. Auto-assign tasks, track completions in Google Sheets or ClickUp, and send performance summaries via Telegram or Slack.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     },
     {
         platform: 'hr',
         title: 'AI Onboarding & Training Bot',
         description: 'Give every new hire their own coach. Personalized instructions, documents, videos, and check-ins — automatically delivered to each new employee daily.',
         price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/20250513_1931_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%20Etsy_simple_compose_01jv5zssnjfpnbj1b85k179jy5.png'
+        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
     }
 ];
 
