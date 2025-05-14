@@ -94,7 +94,7 @@ const automations = [
 // Function to create automation cards
 function createAutomationCard(automation) {
     return `
-        <div class="automation-card" data-platform="${automation.platform}" style="display:flex;flex-direction:column;height:100%;">
+        <div class="automation-card" data-platform="${automation.platform}" style="display:flex;flex-direction:column;height:100%;cursor:pointer;">
             <div style="flex-grow:1;">
                 <h3>${automation.title}</h3>
                 <p>${automation.description}</p>
@@ -103,6 +103,80 @@ function createAutomationCard(automation) {
             <button class="primary-button" style="margin-top:auto;">Get Started</button>
         </div>
     `;
+}
+
+// Modal for automation details
+let automationModal;
+function createAutomationModal() {
+    automationModal = document.createElement('div');
+    automationModal.className = 'automation-modal';
+    automationModal.style.display = 'none';
+    automationModal.style.position = 'fixed';
+    automationModal.style.top = '0';
+    automationModal.style.left = '0';
+    automationModal.style.width = '100vw';
+    automationModal.style.height = '100vh';
+    automationModal.style.background = 'rgba(36, 16, 61, 0.25)';
+    automationModal.style.zIndex = '4000';
+    automationModal.style.justifyContent = 'center';
+    automationModal.style.alignItems = 'center';
+    automationModal.innerHTML = `
+      <div class="automation-modal-content" style="background:#fff; border-radius:1.2rem; padding:2.5rem 2rem; min-width:320px; max-width:90vw; box-shadow:0 8px 32px rgba(124,58,237,0.16); position:relative; display:flex; flex-direction:column; align-items:center;">
+        <button id="closeAutomationModal" style="position:absolute;top:1rem;right:1rem;font-size:1.5rem;background:none;border:none;cursor:pointer;color:#7c3aed;">&times;</button>
+        <img id="automationModalImg" src="" alt="Automation Image" style="max-width:320px;max-height:220px;border-radius:1rem;margin-bottom:1.2rem;object-fit:cover;">
+        <h3 id="automationModalTitle" style="margin-bottom:0.5rem;"></h3>
+        <div id="automationModalDesc" style="margin-bottom:1rem;text-align:center;"></div>
+        <button id="automationModalStart" class="primary-button" style="width:100%;max-width:220px;">Start Project</button>
+      </div>
+    `;
+    document.body.appendChild(automationModal);
+    automationModal.querySelector('#closeAutomationModal').onclick = () => {
+        automationModal.style.display = 'none';
+    };
+    automationModal.addEventListener('click', (e) => {
+        if (e.target === automationModal) automationModal.style.display = 'none';
+    });
+}
+
+function setupAutomationCardModal() {
+    // Ensure modal exists
+    if (!automationModal) createAutomationModal();
+    // Add click listeners to cards
+    document.querySelectorAll('.automation-card').forEach((card, idx) => {
+        card.addEventListener('click', function(e) {
+            // Prevent button click from triggering modal
+            if (e.target.classList.contains('primary-button')) return;
+            const automation = getAutomationByIndex(idx);
+            if (!automation) return;
+            document.getElementById('automationModalImg').src = automation.image;
+            document.getElementById('automationModalTitle').textContent = automation.title;
+            document.getElementById('automationModalDesc').textContent = automation.description;
+            automationModal.style.display = 'flex';
+            // Start Project button (можна додати дію за потреби)
+            document.getElementById('automationModalStart').onclick = () => {
+                automationModal.style.display = 'none';
+                // Тут можна додати дію для старту проекту
+            };
+        });
+    });
+}
+
+function getAutomationByIndex(idx) {
+    // Враховуємо фільтрацію (щоб індекси збігалися)
+    let platform = document.querySelector('.filter-btn.active')?.dataset.platform || 'all';
+    let filtered = automations;
+    if (platform !== 'all') {
+        filtered = automations.filter(a => a.platform.split(' ').includes(platform));
+    } else {
+        // Only unique titles for 'all'
+        const seen = new Set();
+        filtered = automations.filter(a => {
+            if (seen.has(a.title)) return false;
+            seen.add(a.title);
+            return true;
+        });
+    }
+    return filtered[idx];
 }
 
 // Initialize automation grid
@@ -123,6 +197,7 @@ function initializeAutomationGrid() {
     automationGrid.innerHTML = filtered.map(createAutomationCard).join('');
     enableCardDragAndDrop();
     setupGetStartedButtons();
+    setupAutomationCardModal();
 }
 
 // Filter automations
