@@ -390,6 +390,88 @@ function enableCardDragAndDrop() {
     }
 }
 
+// --- Make Simulation: Connectable Dots ---
+const makeDots = [];
+const makeLines = [];
+let draggingDot = null;
+let dragStartIdx = null;
+let connectedPairs = [];
+
+function setupMakeSimulation() {
+  const dots = Array.from(document.querySelectorAll('.make-dot'));
+  const svg = document.querySelector('.make-lines');
+  if (!dots.length || !svg) return;
+  makeDots.length = 0; makeDots.push(...dots);
+  makeLines.length = 0;
+  connectedPairs = [];
+
+  dots.forEach((dot, idx) => {
+    dot.draggable = true;
+    dot.addEventListener('dragstart', e => {
+      draggingDot = dot;
+      dragStartIdx = idx;
+      dot.classList.add('dragging');
+    });
+    dot.addEventListener('dragend', e => {
+      draggingDot = null;
+      dragStartIdx = null;
+      dot.classList.remove('dragging');
+    });
+    dot.addEventListener('dragover', e => {
+      e.preventDefault();
+    });
+    dot.addEventListener('dragenter', e => {
+      if (draggingDot && dot !== draggingDot) {
+        dot.classList.add('connected');
+      }
+    });
+    dot.addEventListener('dragleave', e => {
+      dot.classList.remove('connected');
+    });
+    dot.addEventListener('drop', e => {
+      e.preventDefault();
+      dot.classList.remove('connected');
+      if (draggingDot && dot !== draggingDot) {
+        const fromIdx = dragStartIdx;
+        const toIdx = idx;
+        // Avoid duplicate connections
+        if (!connectedPairs.some(([a, b]) => (a === fromIdx && b === toIdx) || (a === toIdx && b === fromIdx))) {
+          connectedPairs.push([fromIdx, toIdx]);
+          drawMakeLines(svg, dots, connectedPairs);
+        }
+      }
+    });
+  });
+  // Reset on double click anywhere in the make-dots-container
+  svg.parentElement.addEventListener('dblclick', () => {
+    connectedPairs = [];
+    drawMakeLines(svg, dots, connectedPairs);
+  });
+}
+
+function drawMakeLines(svg, dots, pairs) {
+  svg.innerHTML = '';
+  pairs.forEach(([fromIdx, toIdx]) => {
+    const from = dots[fromIdx].getBoundingClientRect();
+    const to = dots[toIdx].getBoundingClientRect();
+    const parent = svg.parentElement.getBoundingClientRect();
+    // Центр кожної крапки відносно контейнера
+    const x1 = from.left - parent.left + from.width/2;
+    const y1 = from.top - parent.top + from.height/2;
+    const x2 = to.left - parent.left + to.width/2;
+    const y2 = to.top - parent.top + to.height/2;
+    // Малюємо криву (як у Make)
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    const dx = Math.abs(x2-x1)*0.5;
+    path.setAttribute('d', `M${x1},${y1} C${x1+dx},${y1} ${x2-dx},${y2} ${x2},${y2}`);
+    path.setAttribute('stroke', '#7c3aed');
+    path.setAttribute('stroke-width', '3');
+    path.setAttribute('fill', 'none');
+    path.setAttribute('opacity', '0.85');
+    svg.appendChild(path);
+  });
+}
+
 // Initialize everything when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     initializeAutomationGrid();
@@ -397,4 +479,5 @@ document.addEventListener('DOMContentLoaded', () => {
     createQuickOrderButton();
     setupGetStartedButtons();
     enableCardDragAndDrop();
+    setupMakeSimulation();
 }); 
