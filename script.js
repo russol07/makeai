@@ -390,84 +390,145 @@ function enableCardDragAndDrop() {
     }
 }
 
-// --- Make Simulation: Connectable Dots ---
-const makeDots = [];
-const makeLines = [];
-let draggingDot = null;
-let dragStartIdx = null;
-let connectedPairs = [];
+// --- Automation Canvas: Advanced Make-style Node Editor ---
+let canvasNodes = [];
+let canvasLines = [];
+let nodeDrag = null;
+let nodeOffset = {x:0, y:0};
+let portDrag = null;
+let portLine = null;
+let portFrom = null;
 
-function setupMakeSimulation() {
-  const dots = Array.from(document.querySelectorAll('.make-dot'));
-  const svg = document.querySelector('.make-lines');
-  if (!dots.length || !svg) return;
-  makeDots.length = 0; makeDots.push(...dots);
-  makeLines.length = 0;
-  connectedPairs = [];
+function setupAutomationCanvas() {
+  const nodes = Array.from(document.querySelectorAll('.automation-node'));
+  const ports = Array.from(document.querySelectorAll('.automation-node-port'));
+  const svg = document.querySelector('.automation-canvas-lines');
+  const canvas = document.querySelector('.automation-canvas-bg');
+  if (!nodes.length || !svg || !canvas) return;
+  canvasNodes = nodes;
+  canvasLines = [];
 
-  dots.forEach((dot, idx) => {
-    dot.draggable = true;
-    dot.addEventListener('dragstart', e => {
-      draggingDot = dot;
-      dragStartIdx = idx;
-      dot.classList.add('dragging');
-    });
-    dot.addEventListener('dragend', e => {
-      draggingDot = null;
-      dragStartIdx = null;
-      dot.classList.remove('dragging');
-    });
-    dot.addEventListener('dragover', e => {
-      e.preventDefault();
-    });
-    dot.addEventListener('dragenter', e => {
-      if (draggingDot && dot !== draggingDot) {
-        dot.classList.add('connected');
+  // Drag nodes
+  nodes.forEach(node => {
+    node.onmousedown = e => {
+      if (e.target.classList.contains('automation-node-port')) return;
+      nodeDrag = node;
+      node.classList.add('dragging');
+      const rect = node.getBoundingClientRect();
+      const parentRect = canvas.getBoundingClientRect();
+      nodeOffset.x = e.clientX - rect.left;
+      nodeOffset.y = e.clientY - rect.top;
+      document.body.style.userSelect = 'none';
+    };
+  });
+  document.onmousemove = e => {
+    if (nodeDrag) {
+      const parentRect = canvas.getBoundingClientRect();
+      let x = e.clientX - parentRect.left - nodeOffset.x;
+      let y = e.clientY - parentRect.top - nodeOffset.y;
+      // Обмеження в межах canvas
+      x = Math.max(0, Math.min(parentRect.width-90, x));
+      y = Math.max(0, Math.min(parentRect.height-70, y));
+      nodeDrag.style.left = x + 'px';
+      nodeDrag.style.top = y + 'px';
+      drawAutomationCanvasLines();
+    }
+    if (portDrag && portLine) {
+      const parentRect = canvas.getBoundingClientRect();
+      const x2 = e.clientX - parentRect.left;
+      const y2 = e.clientY - parentRect.top;
+      portLine.setAttribute('x2', x2);
+      portLine.setAttribute('y2', y2);
+    }
+  };
+  document.onmouseup = e => {
+    if (nodeDrag) {
+      nodeDrag.classList.remove('dragging');
+      nodeDrag = null;
+      document.body.style.userSelect = '';
+    }
+    if (portDrag) {
+      portDrag.classList.remove('active');
+      portDrag = null;
+      if (portLine) {
+        portLine.remove();
+        portLine = null;
       }
-    });
-    dot.addEventListener('dragleave', e => {
-      dot.classList.remove('connected');
-    });
-    dot.addEventListener('drop', e => {
-      e.preventDefault();
-      dot.classList.remove('connected');
-      if (draggingDot && dot !== draggingDot) {
-        const fromIdx = dragStartIdx;
-        const toIdx = idx;
-        // Avoid duplicate connections
-        if (!connectedPairs.some(([a, b]) => (a === fromIdx && b === toIdx) || (a === toIdx && b === fromIdx))) {
-          connectedPairs.push([fromIdx, toIdx]);
-          drawMakeLines(svg, dots, connectedPairs);
+    }
+  };
+
+  // Drag-to-connect ports
+  ports.forEach(port => {
+    port.onmousedown = e => {
+      e.stopPropagation();
+      portDrag = port;
+      portFrom = getPortCenter(port, canvas);
+      port.classList.add('active');
+      portLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+      portLine.setAttribute('x1', portFrom.x);
+      portLine.setAttribute('y1', portFrom.y);
+      portLine.setAttribute('x2', portFrom.x);
+      portLine.setAttribute('y2', portFrom.y);
+      portLine.setAttribute('stroke', '#7c3aed');
+      portLine.setAttribute('stroke-width', '4');
+      portLine.setAttribute('opacity', '0.85');
+      portLine.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(portLine);
+    };
+    port.onmouseup = e => {
+      if (portDrag && portDrag !== port) {
+        // Додаємо з'єднання
+        canvasLines.push({from: portDrag, to: port});
+        drawAutomationCanvasLines();
+      }
+      if (portDrag) {
+        portDrag.classList.remove('active');
+        portDrag = null;
+        if (portLine) {
+          portLine.remove();
+          portLine = null;
         }
       }
-    });
+    };
   });
-  // Reset on double click anywhere in the make-dots-container
-  svg.parentElement.addEventListener('dblclick', () => {
-    connectedPairs = [];
-    drawMakeLines(svg, dots, connectedPairs);
-  });
+  // Видалення лінії по кліку
+  svg.onclick = e => {
+    if (e.target.tagName === 'path') {
+      const idx = Array.from(svg.children).indexOf(e.target);
+      if (idx >= 0) {
+        canvasLines.splice(idx, 1);
+        drawAutomationCanvasLines();
+      }
+    }
+  };
 }
 
-function drawMakeLines(svg, dots, pairs) {
+function getPortCenter(port, canvas) {
+  const rect = port.getBoundingClientRect();
+  const parent = canvas.getBoundingClientRect();
+  return {
+    x: rect.left - parent.left + rect.width/2,
+    y: rect.top - parent.top + rect.height/2
+  };
+}
+
+function drawAutomationCanvasLines() {
+  const svg = document.querySelector('.automation-canvas-lines');
+  const canvas = document.querySelector('.automation-canvas-bg');
   svg.innerHTML = '';
-  pairs.forEach(([fromIdx, toIdx]) => {
-    const from = dots[fromIdx].getBoundingClientRect();
-    const to = dots[toIdx].getBoundingClientRect();
-    const parent = svg.parentElement.getBoundingClientRect();
-    // Центр кожної крапки відносно контейнера
-    const x1 = from.left - parent.left + from.width/2;
-    const y1 = from.top - parent.top + from.height/2;
-    const x2 = to.left - parent.left + to.width/2;
-    const y2 = to.top - parent.top + to.height/2;
-    // Малюємо криву (як у Make)
+  canvasLines.forEach(({from, to}) => {
+    const p1 = getPortCenter(from, canvas);
+    const p2 = getPortCenter(to, canvas);
+    // Красива крива (Bezier)
+    const dx = Math.abs(p2.x-p1.x)*0.5;
     const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-    const dx = Math.abs(x2-x1)*0.5;
-    path.setAttribute('d', `M${x1},${y1} C${x1+dx},${y1} ${x2-dx},${y2} ${x2},${y2}`);
+    path.setAttribute('d', `M${p1.x},${p1.y} C${p1.x+dx},${p1.y} ${p2.x-dx},${p2.y} ${p2.x},${p2.y}`);
     path.setAttribute('stroke', '#7c3aed');
-    path.setAttribute('stroke-width', '3');
+    path.setAttribute('stroke-width', '4');
     path.setAttribute('fill', 'none');
     path.setAttribute('opacity', '0.85');
+    path.setAttribute('stroke-linecap', 'round');
+    path.style.cursor = 'pointer';
     svg.appendChild(path);
   });
 }
@@ -479,5 +540,5 @@ document.addEventListener('DOMContentLoaded', () => {
     createQuickOrderButton();
     setupGetStartedButtons();
     enableCardDragAndDrop();
-    setupMakeSimulation();
+    setupAutomationCanvas();
 }); 
