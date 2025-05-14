@@ -111,4 +111,24 @@
   width: 100%; height: 400px;
   pointer-events: none;
   z-index: 1;
+}
+
+.holo-sphere-container {
+  pointer-events: none;
+  user-select: none;
+}
+.holo-sphere-svg {
+  filter: drop-shadow(0 0 32px #a78bfa88) drop-shadow(0 0 12px #fff8);
+  animation: holo-rotate 7s linear infinite;
+}
+.holo-sphere-main {
+  animation: holo-pulse 2.8s ease-in-out infinite;
+}
+@keyframes holo-pulse {
+  0%,100% { filter: blur(0.5px) brightness(1.08); }
+  50% { filter: blur(2.5px) brightness(1.18); }
+}
+@keyframes holo-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 } 

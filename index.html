@@ -48,6 +48,70 @@
         </div>
     </section>
 
+    <!-- Automation Canvas Section (advanced Make imitation) -->
+    <section class="automation-canvas-section" style="margin-bottom:2.5rem;position:relative;">
+        <div class="holo-sphere-container" style="position:absolute;left:50%;top:-90px;transform:translateX(-50%);z-index:10;width:180px;height:180px;pointer-events:none;">
+            <svg viewBox="0 0 180 180" width="180" height="180" class="holo-sphere-svg">
+                <defs>
+                    <radialGradient id="holoGradient" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#fff" stop-opacity="0.95"/>
+                        <stop offset="60%" stop-color="#a78bfa" stop-opacity="0.45"/>
+                        <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.18"/>
+                    </radialGradient>
+                    <filter id="holoGlow" x="-40%" y="-40%" width="180%" height="180%">
+                        <feGaussianBlur stdDeviation="12" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <circle cx="90" cy="90" r="70" fill="url(#holoGradient)" filter="url(#holoGlow)" class="holo-sphere-main"/>
+                <ellipse cx="90" cy="110" rx="45" ry="12" fill="#fff" fill-opacity="0.18"/>
+                <ellipse cx="90" cy="70" rx="30" ry="7" fill="#fff" fill-opacity="0.32">
+                    <animate attributeName="cy" values="70;60;70" dur="2.2s" repeatCount="indefinite"/>
+                </ellipse>
+            </svg>
+        </div>
+        <h2 style="text-align:center;margin-bottom:1.2rem;">Конструктор сценаріїв (Make-style Canvas)</h2>
+        <div style="text-align:center;margin-bottom:0.7rem;color:#7c3aed;font-weight:500;">Перетягуйте блоки, з'єднуйте порти — будуйте власний ланцюжок!</div>
+        <div class="automation-canvas-bg">
+            <svg class="automation-canvas-lines" width="100%" height="400"></svg>
+            <div class="automation-canvas-nodes">
+                <div class="automation-node" data-id="1" style="left:60px;top:60px;">
+                    <div class="automation-node-icon">🛒</div>
+                    <div class="automation-node-title">Shopify</div>
+                    <div class="automation-node-port" data-port="1"></div>
+                </div>
+                <div class="automation-node" data-id="2" style="left:320px;top:80px;">
+                    <div class="automation-node-icon">🧵</div>
+                    <div class="automation-node-title">Etsy</div>
+                    <div class="automation-node-port" data-port="2"></div>
+                </div>
+                <div class="automation-node" data-id="3" style="left:180px;top:220px;">
+                    <div class="automation-node-icon">✉️</div>
+                    <div class="automation-node-title">Email</div>
+                    <div class="automation-node-port" data-port="3"></div>
+                </div>
+                <div class="automation-node" data-id="4" style="left:480px;top:180px;">
+                    <div class="automation-node-icon">⚙️</div>
+                    <div class="automation-node-title">Custom</div>
+                    <div class="automation-node-port" data-port="4"></div>
+                </div>
+                <div class="automation-node" data-id="5" style="left:600px;top:60px;">
+                    <div class="automation-node-icon">📦</div>
+                    <div class="automation-node-title">CRM</div>
+                    <div class="automation-node-port" data-port="5"></div>
+                </div>
+                <div class="automation-node" data-id="6" style="left:700px;top:260px;">
+                    <div class="automation-node-icon">🤖</div>
+                    <div class="automation-node-title">AI</div>
+                    <div class="automation-node-port" data-port="6"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Automation Catalog -->
     <section id="catalog" class="catalog modern-catalog">
         <div class="container">
