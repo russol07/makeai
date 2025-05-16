@@ -247,10 +247,41 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Initialize on page load
+// FAQ functionality
+function setupFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        // Hide all answers by default
+        answer.style.display = 'none';
+        
+        question.addEventListener('click', () => {
+            const isOpen = answer.style.display === 'block';
+            
+            // Toggle this answer's visibility
+            answer.style.display = isOpen ? 'none' : 'block';
+            
+            // Toggle plus/minus sign
+            const span = question.querySelector('span');
+            span.textContent = isOpen ? '+' : '-';
+            
+            // Toggle active class for styling
+            item.classList.toggle('active', !isOpen);
+        });
+    });
+}
+
+// Initialize everything when the page loads
 document.addEventListener('DOMContentLoaded', () => {
+    // Setup existing functionality
     initializeAllGalleries();
     setupAccordions();
     setupTemplateButtons();
     setupCardHoverEffects();
+    
+    // Setup FAQ functionality
+    setupFAQ();
 }); 
