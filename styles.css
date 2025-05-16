@@ -552,25 +552,35 @@ body {
     background: #fff;
     border-radius: 1rem;
     box-shadow: 0 2px 16px rgba(124,58,237,0.08);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    width: 280px;
+    padding: 2rem 2rem;
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 .team-photo {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    align-self: center;
+}
+.team-info {
+    width: 100%;
 }
 .team-info h4 {
-    margin-bottom: 0.3rem;
-    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
     font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
 }
 .team-info p {
-    color: var(--light-text);
-    font-size: 0.98rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: left;
 }
 
 /* Modern Contact */
