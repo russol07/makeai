@@ -145,13 +145,13 @@ const questFrame = document.getElementById('questionnaire-frame');
 
 // Map of category to form URLs
 const formUrls = {
-    'etsy': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
-    'shopify': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
-    'chatbots': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
-    'email': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
-    'quickbooks': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
-    'social': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
-    'template': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true'
+    'etsy': 'https://docs.google.com/forms/d/e/1FAIpQLSfFJ8eX7Wln13MILIXsdSGmD3FQ5M9mip0j-5j7zTqbZyf61w/viewform?embedded=true',
+    'shopify': 'https://docs.google.com/forms/d/e/1FAIpQLSfFJ8eX7Wln13MILIXsdSGmD3FQ5M9mip0j-5j7zTqbZyf61w/viewform?embedded=true',
+    'chatbots': 'https://docs.google.com/forms/d/e/1FAIpQLSfFJ8eX7Wln13MILIXsdSGmD3FQ5M9mip0j-5j7zTqbZyf61w/viewform?embedded=true',
+    'email': 'https://docs.google.com/forms/d/e/1FAIpQLSfFJ8eX7Wln13MILIXsdSGmD3FQ5M9mip0j-5j7zTqbZyf61w/viewform?embedded=true',
+    'quickbooks': 'https://docs.google.com/forms/d/e/1FAIpQLSfFJ8eX7Wln13MILIXsdSGmD3FQ5M9mip0j-5j7zTqbZyf61w/viewform?embedded=true',
+    'social': 'https://docs.google.com/forms/d/e/1FAIpQLSfFJ8eX7Wln13MILIXsdSGmD3FQ5M9mip0j-5j7zTqbZyf61w/viewform?embedded=true',
+    'template': 'https://docs.google.com/forms/d/e/1FAIpQLSfFJ8eX7Wln13MILIXsdSGmD3FQ5M9mip0j-5j7zTqbZyf61w/viewform?embedded=true'
 };
 
 questionnaireBtns.forEach(btn => {
