@@ -697,27 +697,25 @@
         </div>
     </section>
 
-
-
     <!-- FAQ Section -->
     <section class="faq modern-faq">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-list">
                 <div class="faq-item">
-                    <div class="faq-question">How long does setup take? <span>+</span></div>
+                    <div class="faq-question" onclick="toggleFAQ(this)">How long does setup take? <span>+</span></div>
                     <div class="faq-answer">Setup typically takes 2–5 business days, depending on the complexity of your workflow and the responsiveness of your team. For larger or highly customized projects, we'll provide an estimated timeline before starting.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Do you offer custom automations? <span>+</span></div>
+                    <div class="faq-question" onclick="toggleFAQ(this)">Do you offer custom automations? <span>+</span></div>
                     <div class="faq-answer">Yes! We specialize in tailored automation solutions for your unique business needs. Whether you need advanced integrations or custom AI agents, we'll design and implement a workflow that fits your goals.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">What platforms do you support? <span>+</span></div>
+                    <div class="faq-question" onclick="toggleFAQ(this)">What platforms do you support? <span>+</span></div>
                     <div class="faq-answer">We support a wide range of platforms, including Shopify, Etsy, Google Sheets, Telegram, Monday.com, QuickBooks, Notion, Slack, HubSpot, and many more. If you use a specific tool, just ask—we can likely integrate it.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Is there ongoing support? <span>+</span></div>
+                    <div class="faq-question" onclick="toggleFAQ(this)">Is there ongoing support? <span>+</span></div>
                     <div class="faq-answer">Absolutely. We offer ongoing support and regular updates to ensure your automations run smoothly. Our support packages include technical assistance, troubleshooting, and free updates if there are changes to APIs or connected platforms.</div>
                 </div>
             </div>
@@ -760,5 +758,33 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Inline script to ensure FAQ functionality
+        function toggleFAQ(element) {
+            const faqItem = element.parentNode;
+            const faqAnswer = element.nextElementSibling;
+            const span = element.querySelector('span');
+            
+            // Toggle active class
+            faqItem.classList.toggle('active');
+            
+            // Toggle answer visibility
+            if (faqItem.classList.contains('active')) {
+                faqAnswer.style.display = 'block';
+                span.textContent = '-';
+            } else {
+                faqAnswer.style.display = 'none';
+                span.textContent = '+';
+            }
+        }
+        
+        // Initialize all FAQ items to be collapsed
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqAnswers = document.querySelectorAll('.faq-answer');
+            faqAnswers.forEach(answer => {
+                answer.style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html> 

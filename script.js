@@ -249,28 +249,36 @@ window.addEventListener('click', (e) => {
 
 // FAQ functionality
 function setupFAQ() {
+    console.log("Setting up FAQ functionality");
     const faqItems = document.querySelectorAll('.faq-item');
+    console.log("Found FAQ items:", faqItems.length);
     
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         const answer = item.querySelector('.faq-answer');
+        const span = question.querySelector('span');
         
-        // Hide all answers by default
-        answer.style.display = 'none';
-        
-        question.addEventListener('click', () => {
-            const isOpen = answer.style.display === 'block';
+        // Ensure initial state
+        if (answer) {
+            // Force display none initially
+            answer.style.display = 'none';
             
-            // Toggle this answer's visibility
-            answer.style.display = isOpen ? 'none' : 'block';
-            
-            // Toggle plus/minus sign
-            const span = question.querySelector('span');
-            span.textContent = isOpen ? '+' : '-';
-            
-            // Toggle active class for styling
-            item.classList.toggle('active', !isOpen);
-        });
+            question.addEventListener('click', () => {
+                console.log("FAQ question clicked");
+                const isOpen = answer.style.display === 'block';
+                
+                // Toggle this answer's visibility
+                answer.style.display = isOpen ? 'none' : 'block';
+                
+                // Toggle plus/minus sign
+                if (span) {
+                    span.textContent = isOpen ? '+' : '-';
+                }
+                
+                // Toggle active class for styling
+                item.classList.toggle('active', !isOpen);
+            });
+        }
     });
 }
 
@@ -283,5 +291,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCardHoverEffects();
     
     // Setup FAQ functionality
+    setupFAQ();
+});
+
+// Also call setupFAQ on window load as a fallback
+window.addEventListener('load', () => {
     setupFAQ();
 }); 
