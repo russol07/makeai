@@ -6,212 +6,6 @@ hamburger.addEventListener('click', () => {
     navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
 });
 
-// Platform Filters
-const filterButtons = document.querySelectorAll('.filter-btn');
-const automationGrid = document.querySelector('.automation-grid');
-
-// Sample automation data
-const automations = [
-    {
-        platform: 'etsy',
-        title: 'Etsy Automation Toolkit',
-        description: 'Streamline your Etsy business. Automatically create and update listings, transfer orders to CRM or Google Sheets, update tags from spreadsheets, sync product data, and more.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'shopify',
-        title: 'Shopify Flow Builder',
-        description: 'Automate every step of your store. Full automation for Shopify: product listings, orders, reports, tag updates, pricing sync, and integration with Etsy or external databases.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'accounting',
-        title: 'QuickBooks Automations',
-        description: 'Invoices, orders & reports — fully automated. Auto-generate invoices, manage orders, build custom reports, and connect QuickBooks to platforms like Etsy, Shopify, and Google Sheets.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'custom',
-        title: 'Custom Website Chatbots',
-        description: 'Smart bots that talk like humans. AI-powered chatbots for your website that handle customer inquiries, collect leads, book Zoom calls, and connect with your CRM or backend.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'social',
-        title: 'Social Media Auto-Posting',
-        description: 'Create once — publish everywhere. Automatically post content to all your social platforms using files from Google Drive, generate captions from YouTube videos, and schedule content using AI.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'custom',
-        title: 'Custom Business Automations',
-        description: 'Don\'t see what you need? Let\'s build it. Have a unique workflow or business process? Tell us about it and we\'ll design a custom automation tailored to your goals.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'scheduling',
-        title: 'AI Appointment Manager',
-        description: 'Clients book — you stay focused. Smart form or chatbot for appointment booking with Google Calendar sync, reminders, and auto-confirmation emails.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'email',
-        title: 'Smart Email Auto-Responder',
-        description: 'Instant replies that feel human. AI replies to client inquiries based on context, past orders, or integrated FAQ knowledge base. Works with Gmail, Outlook, etc.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'hr',
-        title: 'AI Hiring Assistant',
-        description: 'Sort applicants. Schedule interviews. Automatically. Automatically collect applications, screen resumes, send pre-interview forms, and book Zoom calls with top candidates.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'management',
-        title: 'Task & Employee Tracker',
-        description: 'Know what gets done — and when. Auto-assign tasks, track completions in Google Sheets or ClickUp, and send performance summaries via Telegram or Slack.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    },
-    {
-        platform: 'hr',
-        title: 'AI Onboarding & Training Bot',
-        description: 'Give every new hire their own coach. Personalized instructions, documents, videos, and check-ins — automatically delivered to each new employee daily.',
-        price: 'Contact for pricing',
-        image: 'https://github.com/russol07/makeai/raw/main/images/photomake.png'
-    }
-];
-
-// Function to create automation cards
-function createAutomationCard(automation) {
-    return `
-        <div class="automation-card" data-platform="${automation.platform}" style="display:flex;flex-direction:column;height:100%;cursor:pointer;">
-            <div style="flex-grow:1;">
-                <h3>${automation.title}</h3>
-                <p>${automation.description}</p>
-                <div class="automation-price">${automation.price}</div>
-            </div>
-            <button class="primary-button" style="margin-top:auto;">Get Started</button>
-        </div>
-    `;
-}
-
-// Modal for automation details
-let automationModal;
-function createAutomationModal() {
-    automationModal = document.createElement('div');
-    automationModal.className = 'automation-modal';
-    automationModal.style.display = 'none';
-    automationModal.style.position = 'fixed';
-    automationModal.style.top = '0';
-    automationModal.style.left = '0';
-    automationModal.style.width = '100vw';
-    automationModal.style.height = '100vh';
-    automationModal.style.background = 'rgba(36, 16, 61, 0.25)';
-    automationModal.style.zIndex = '4000';
-    automationModal.style.justifyContent = 'center';
-    automationModal.style.alignItems = 'center';
-    automationModal.innerHTML = `
-      <div class="automation-modal-content" style="background:#fff; border-radius:1.2rem; padding:2.5rem 2rem; min-width:320px; max-width:90vw; box-shadow:0 8px 32px rgba(124,58,237,0.16); position:relative; display:flex; flex-direction:column; align-items:center;">
-        <button id="closeAutomationModal" style="position:absolute;top:1rem;right:1rem;font-size:1.5rem;background:none;border:none;cursor:pointer;color:#7c3aed;">&times;</button>
-        <img id="automationModalImg" src="" alt="Automation Image" style="max-width:320px;max-height:220px;border-radius:1rem;margin-bottom:1.2rem;object-fit:cover;">
-        <h3 id="automationModalTitle" style="margin-bottom:0.5rem;"></h3>
-        <div id="automationModalDesc" style="margin-bottom:1rem;text-align:center;"></div>
-        <button id="automationModalStart" class="primary-button" style="width:100%;max-width:220px;">Start Project</button>
-      </div>
-    `;
-    document.body.appendChild(automationModal);
-    automationModal.querySelector('#closeAutomationModal').onclick = () => {
-        automationModal.style.display = 'none';
-    };
-    automationModal.addEventListener('click', (e) => {
-        if (e.target === automationModal) automationModal.style.display = 'none';
-    });
-}
-
-function setupAutomationCardModal() {
-    // Ensure modal exists
-    if (!automationModal) createAutomationModal();
-    // Add click listeners to cards
-    document.querySelectorAll('.automation-card').forEach((card, idx) => {
-        card.addEventListener('click', function(e) {
-            // Prevent button click from triggering modal
-            if (e.target.classList.contains('primary-button')) return;
-            const automation = getAutomationByIndex(idx);
-            if (!automation) return;
-            document.getElementById('automationModalImg').src = automation.image;
-            document.getElementById('automationModalTitle').textContent = automation.title;
-            document.getElementById('automationModalDesc').textContent = automation.description;
-            automationModal.style.display = 'flex';
-            // Start Project button (можна додати дію за потреби)
-            document.getElementById('automationModalStart').onclick = () => {
-                automationModal.style.display = 'none';
-                // Тут можна додати дію для старту проекту
-            };
-        });
-    });
-}
-
-function getAutomationByIndex(idx) {
-    // Враховуємо фільтрацію (щоб індекси збігалися)
-    let platform = document.querySelector('.filter-btn.active')?.dataset.platform || 'all';
-    let filtered = automations;
-    if (platform !== 'all') {
-        filtered = automations.filter(a => a.platform.split(' ').includes(platform));
-    } else {
-        // Only unique titles for 'all'
-        const seen = new Set();
-        filtered = automations.filter(a => {
-            if (seen.has(a.title)) return false;
-            seen.add(a.title);
-            return true;
-        });
-    }
-    return filtered[idx];
-}
-
-// Initialize automation grid
-function initializeAutomationGrid() {
-    let platform = document.querySelector('.filter-btn.active')?.dataset.platform || 'all';
-    let filtered = automations;
-    if (platform !== 'all') {
-        filtered = automations.filter(a => a.platform.split(' ').includes(platform));
-    } else {
-        // Only unique titles for 'all'
-        const seen = new Set();
-        filtered = automations.filter(a => {
-            if (seen.has(a.title)) return false;
-            seen.add(a.title);
-            return true;
-        });
-    }
-    automationGrid.innerHTML = filtered.map(createAutomationCard).join('');
-    enableCardDragAndDrop();
-    setupGetStartedButtons();
-    setupAutomationCardModal();
-}
-
-// Filter automations
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        // Reinitialize grid with new filter
-        initializeAutomationGrid();
-    });
-});
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -226,319 +20,237 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Form submission handling
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-        
-        // Here you would typically send the data to your server
-        console.log('Form submitted:', data);
-        
-        // Show success message
-        alert('Thank you for your message! We will get back to you soon.');
-        contactForm.reset();
-    });
-}
-
-// FAQ Accordion
-function setupFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    });
-}
-
-// Quick Order Button & Modal
-let quickOrderModal;
-function createQuickOrderButton() {
-    const btn = document.createElement('button');
-    btn.className = 'quick-order-btn';
-    btn.innerHTML = 'Quick Order 🚀';
-    document.body.appendChild(btn);
-
-    // Modal
-    quickOrderModal = document.createElement('div');
-    quickOrderModal.style.display = 'none';
-    quickOrderModal.style.position = 'fixed';
-    quickOrderModal.style.top = '0';
-    quickOrderModal.style.left = '0';
-    quickOrderModal.style.width = '100vw';
-    quickOrderModal.style.height = '100vh';
-    quickOrderModal.style.background = 'rgba(36, 16, 61, 0.25)';
-    quickOrderModal.style.zIndex = '3000';
-    quickOrderModal.style.justifyContent = 'center';
-    quickOrderModal.style.alignItems = 'center';
-    quickOrderModal.innerHTML = `
-      <div style="background:#fff; border-radius:1.2rem; padding:2.5rem 2rem; min-width:320px; max-width:90vw; box-shadow:0 8px 32px rgba(124,58,237,0.16); position:relative;">
-        <button id="closeQuickOrder" style="position:absolute;top:1rem;right:1rem;font-size:1.5rem;background:none;border:none;cursor:pointer;color:#7c3aed;">&times;</button>
-        <h3 style="margin-bottom:1rem;">Quick Order</h3>
-        <form id="quickOrderForm" style="display:flex;flex-direction:column;gap:1rem;">
-          <input type="text" placeholder="Your Name" required style="padding:0.8rem;border-radius:0.5rem;border:1px solid #e5e7eb;">
-          <input type="email" placeholder="Email" required style="padding:0.8rem;border-radius:0.5rem;border:1px solid #e5e7eb;">
-          <input type="text" placeholder="What do you want to automate?" required style="padding:0.8rem;border-radius:0.5rem;border:1px solid #e5e7eb;">
-          <button type="submit" class="primary-button" style="width:100%;">Send Order</button>
-        </form>
-      </div>
-    `;
-    document.body.appendChild(quickOrderModal);
-
-    btn.addEventListener('click', () => {
-        quickOrderModal.style.display = 'flex';
-    });
-    quickOrderModal.addEventListener('click', (e) => {
-        if (e.target === quickOrderModal) quickOrderModal.style.display = 'none';
-    });
-    quickOrderModal.querySelector('#closeQuickOrder').onclick = () => {
-        quickOrderModal.style.display = 'none';
-    };
-    quickOrderModal.querySelector('#quickOrderForm').onsubmit = (e) => {
-        e.preventDefault();
-        alert('Thank you! We will contact you soon.');
-        quickOrderModal.style.display = 'none';
-    };
-
-    // Customization button logic
-    setTimeout(() => {
-        document.querySelectorAll('.order-customization-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                quickOrderModal.style.display = 'flex';
-            });
-        });
-    }, 500);
-}
-
-// Show Quick Order modal on 'Get Started' button click
-function setupGetStartedButtons() {
-    document.querySelectorAll('.primary-button').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            if (typeof quickOrderModal !== 'undefined') {
-                quickOrderModal.style.display = 'flex';
-            }
-        });
-    });
-}
-
-// DRAG & DROP for automation cards
-function enableCardDragAndDrop() {
-    const cards = document.querySelectorAll('.automation-card');
-    let dragged = null;
-    let ghost = null;
-
-    cards.forEach(card => {
-        card.setAttribute('draggable', 'true');
-        card.addEventListener('dragstart', (e) => {
-            dragged = card;
-            card.classList.add('dragging');
-            // create ghost
-            ghost = card.cloneNode(true);
-            ghost.style.opacity = '0';
-            document.body.appendChild(ghost);
-            e.dataTransfer.setDragImage(ghost, 0, 0);
-        });
-        card.addEventListener('dragend', () => {
-            card.classList.remove('dragging');
-            if (ghost) ghost.remove();
-            ghost = null;
-            dragged = null;
-            document.querySelectorAll('.automation-card.over').forEach(c => c.classList.remove('over'));
-            document.querySelectorAll('.hero.drag-over').forEach(h => h.classList.remove('drag-over'));
-        });
-        card.addEventListener('dragover', (e) => {
-            e.preventDefault();
-        });
-        card.addEventListener('dragenter', (e) => {
-            if (card !== dragged) card.classList.add('over');
-        });
-        card.addEventListener('dragleave', (e) => {
-            card.classList.remove('over');
-        });
-        card.addEventListener('drop', (e) => {
-            e.preventDefault();
-            if (card !== dragged) {
-                card.parentNode.insertBefore(dragged, card.nextSibling);
-            }
-            card.classList.remove('over');
-        });
-    });
-    // Hero as dropzone
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            hero.classList.add('drag-over');
-        });
-        hero.addEventListener('dragleave', (e) => {
-            hero.classList.remove('drag-over');
-        });
-        hero.addEventListener('drop', (e) => {
-            e.preventDefault();
-            hero.classList.remove('drag-over');
-            if (dragged) {
-                hero.appendChild(dragged);
-                dragged.style.margin = '2rem auto';
-                dragged.style.maxWidth = '400px';
-            }
-        });
-    }
-}
-
-// --- Automation Canvas: Advanced Make-style Node Editor ---
-let canvasNodes = [];
-let canvasLines = [];
-let nodeDrag = null;
-let nodeOffset = {x:0, y:0};
-let portDrag = null;
-let portLine = null;
-let portFrom = null;
-
-function setupAutomationCanvas() {
-  const nodes = Array.from(document.querySelectorAll('.automation-node'));
-  const ports = Array.from(document.querySelectorAll('.automation-node-port'));
-  const svg = document.querySelector('.automation-canvas-lines');
-  const canvas = document.querySelector('.automation-canvas-bg');
-  if (!nodes.length || !svg || !canvas) return;
-  canvasNodes = nodes;
-  canvasLines = [];
-
-  // Drag nodes
-  nodes.forEach(node => {
-    node.onmousedown = e => {
-      if (e.target.classList.contains('automation-node-port')) return;
-      nodeDrag = node;
-      node.classList.add('dragging');
-      const rect = node.getBoundingClientRect();
-      const parentRect = canvas.getBoundingClientRect();
-      nodeOffset.x = e.clientX - rect.left;
-      nodeOffset.y = e.clientY - rect.top;
-      document.body.style.userSelect = 'none';
-    };
-  });
-  document.onmousemove = e => {
-    if (nodeDrag) {
-      const parentRect = canvas.getBoundingClientRect();
-      let x = e.clientX - parentRect.left - nodeOffset.x;
-      let y = e.clientY - parentRect.top - nodeOffset.y;
-      // Обмеження в межах canvas
-      x = Math.max(0, Math.min(parentRect.width-90, x));
-      y = Math.max(0, Math.min(parentRect.height-70, y));
-      nodeDrag.style.left = x + 'px';
-      nodeDrag.style.top = y + 'px';
-      drawAutomationCanvasLines();
-    }
-    if (portDrag && portLine) {
-      const parentRect = canvas.getBoundingClientRect();
-      const x2 = e.clientX - parentRect.left;
-      const y2 = e.clientY - parentRect.top;
-      portLine.setAttribute('x2', x2);
-      portLine.setAttribute('y2', y2);
-    }
-  };
-  document.onmouseup = e => {
-    if (nodeDrag) {
-      nodeDrag.classList.remove('dragging');
-      nodeDrag = null;
-      document.body.style.userSelect = '';
-    }
-    if (portDrag) {
-      portDrag.classList.remove('active');
-      portDrag = null;
-      if (portLine) {
-        portLine.remove();
-        portLine = null;
-      }
-    }
-  };
-
-  // Drag-to-connect ports
-  ports.forEach(port => {
-    port.onmousedown = e => {
-      e.stopPropagation();
-      portDrag = port;
-      portFrom = getPortCenter(port, canvas);
-      port.classList.add('active');
-      portLine = document.createElementNS('http://www.w3.org/2000/svg','line');
-      portLine.setAttribute('x1', portFrom.x);
-      portLine.setAttribute('y1', portFrom.y);
-      portLine.setAttribute('x2', portFrom.x);
-      portLine.setAttribute('y2', portFrom.y);
-      portLine.setAttribute('stroke', '#7c3aed');
-      portLine.setAttribute('stroke-width', '4');
-      portLine.setAttribute('opacity', '0.85');
-      portLine.setAttribute('stroke-linecap', 'round');
-      svg.appendChild(portLine);
-    };
-    port.onmouseup = e => {
-      if (portDrag && portDrag !== port) {
-        // Додаємо з'єднання
-        canvasLines.push({from: portDrag, to: port});
-        drawAutomationCanvasLines();
-      }
-      if (portDrag) {
-        portDrag.classList.remove('active');
-        portDrag = null;
-        if (portLine) {
-          portLine.remove();
-          portLine = null;
+// Accordion functionality
+function setupAccordions() {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    
+    // Set all accordion items as active by default
+    accordionItems.forEach(item => {
+        if (!item.classList.contains('active')) {
+            item.classList.add('active');
         }
-      }
-    };
-  });
-  // Видалення лінії по кліку
-  svg.onclick = e => {
-    if (e.target.tagName === 'path') {
-      const idx = Array.from(svg.children).indexOf(e.target);
-      if (idx >= 0) {
-        canvasLines.splice(idx, 1);
-        drawAutomationCanvasLines();
-      }
+        
+        const header = item.querySelector('.accordion-header');
+        
+        header.addEventListener('click', () => {
+            // Toggle active class on the clicked item
+            const isActive = item.classList.contains('active');
+            
+            // If the item is active, make it inactive
+            if (isActive) {
+                item.classList.remove('active');
+            } else {
+                // Otherwise make it active
+                item.classList.add('active');
+            }
+        });
+    });
+}
+
+// Category Tabs
+const tabButtons = document.querySelectorAll('.tab-btn');
+const categoryContents = document.querySelectorAll('.category-content');
+
+tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        const targetContent = document.getElementById(`${category}-content`);
+        
+        // Deactivate all tabs and content
+        tabButtons.forEach(tab => tab.classList.remove('active'));
+        categoryContents.forEach(content => content.classList.remove('active'));
+        
+        // Activate selected tab and content
+        btn.classList.add('active');
+        targetContent.classList.add('active');
+        
+        // Initialize gallery for this category
+        initializeGallery(targetContent);
+        
+        // Initialize accordions for this category
+        setupAccordions();
+    });
+});
+
+// Gallery Functionality
+function initializeGallery(container) {
+    const gallerySlider = container.querySelector('.gallery-slider');
+    const slides = container.querySelectorAll('.gallery-slider img');
+    const dotsContainer = container.querySelector('.gallery-dots');
+    const prevBtn = container.querySelector('.gallery-prev');
+    const nextBtn = container.querySelector('.gallery-next');
+    
+    if (!gallerySlider || slides.length === 0) return;
+    
+    // Create dots if needed
+    if (dotsContainer && dotsContainer.children.length === 0) {
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('gallery-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.dataset.index = index;
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
     }
-  };
+    
+    let currentSlide = 0;
+    
+    // Go to specific slide
+    function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        
+        currentSlide = index;
+        gallerySlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update active dot
+        const dots = container.querySelectorAll('.gallery-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+    }
+    
+    // Previous slide
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
+    }
+    
+    // Next slide
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+    }
+    
+    // Initialize first slide
+    goToSlide(0);
 }
 
-function getPortCenter(port, canvas) {
-  const rect = port.getBoundingClientRect();
-  const parent = canvas.getBoundingClientRect();
-  return {
-    x: rect.left - parent.left + rect.width/2,
-    y: rect.top - parent.top + rect.height/2
-  };
+// Initialize all galleries on page load
+function initializeAllGalleries() {
+    const activeContent = document.querySelector('.category-content.active');
+    if (activeContent) {
+        initializeGallery(activeContent);
+    }
 }
 
-function drawAutomationCanvasLines() {
-  const svg = document.querySelector('.automation-canvas-lines');
-  const canvas = document.querySelector('.automation-canvas-bg');
-  svg.innerHTML = '';
-  canvasLines.forEach(({from, to}) => {
-    const p1 = getPortCenter(from, canvas);
-    const p2 = getPortCenter(to, canvas);
-    // Красива крива (Bezier)
-    const dx = Math.abs(p2.x-p1.x)*0.5;
-    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d', `M${p1.x},${p1.y} C${p1.x+dx},${p1.y} ${p2.x-dx},${p2.y} ${p2.x},${p2.y}`);
-    path.setAttribute('stroke', '#7c3aed');
-    path.setAttribute('stroke-width', '4');
-    path.setAttribute('fill', 'none');
-    path.setAttribute('opacity', '0.85');
-    path.setAttribute('stroke-linecap', 'round');
-    path.style.cursor = 'pointer';
-    svg.appendChild(path);
-  });
+// Questionnaire Modal
+const modal = document.getElementById('questionnaire-modal');
+const questionnaireBtns = document.querySelectorAll('.questionnaire-btn');
+const closeModal = document.querySelector('.close-modal');
+const questFrame = document.getElementById('questionnaire-frame');
+
+// Map of category to form URLs
+const formUrls = {
+    'etsy': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
+    'shopify': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
+    'chatbots': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
+    'email': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
+    'quickbooks': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
+    'social': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true',
+    'template': 'https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?embedded=true'
+};
+
+questionnaireBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        const formUrl = formUrls[category] || formUrls['etsy']; // Default to etsy form if not found
+        
+        // Set the iframe source
+        questFrame.src = formUrl;
+        
+        // Display modal
+        modal.style.display = 'flex';
+    });
+});
+
+// Template buttons functionality
+function setupTemplateButtons() {
+    const templateButtons = document.querySelectorAll('.template-button');
+    
+    templateButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Get template name from parent card
+            const card = btn.closest('.mini-template-card');
+            const templateName = card.querySelector('h5').textContent;
+            const templatePrice = card.querySelector('.template-price').textContent;
+            const isWithSetup = btn.classList.contains('with-setup');
+            
+            // Open the same modal but with template info
+            if (questFrame) {
+                let queryParams = '&template=' + encodeURIComponent(templateName);
+                
+                // Add setup parameter if the button is for template + setup
+                if (isWithSetup) {
+                    queryParams += '&setup=true';
+                }
+                
+                questFrame.src = formUrls['template'] + queryParams;
+                
+                // Display a small alert with template name and type
+                const setupText = isWithSetup ? " with setup" : "";
+                const price = isWithSetup ? "$129" : "$59";
+                alert(`You're about to order the "${templateName}" template${setupText} for ${price}`);
+                
+                // Display modal
+                modal.style.display = 'flex';
+            }
+        });
+    });
 }
 
-// Initialize everything when the page loads
+// Setup mini-template cards hover effect
+function setupCardHoverEffects() {
+    const miniTemplateCards = document.querySelectorAll('.mini-template-card');
+    
+    miniTemplateCards.forEach(card => {
+        const description = card.querySelector('p');
+        const title = card.querySelector('h5');
+        
+        card.addEventListener('mouseenter', () => {
+            // Make the card grow slightly and show full description
+            card.style.zIndex = '10';
+            description.style.maxHeight = '300px'; // Ensure full description is visible
+            description.style.opacity = '1';
+            
+            // Show full title without line clamp
+            title.style.webkitLineClamp = 'unset';
+            title.style.maxHeight = '100px';
+            title.style.minHeight = 'auto';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            // Return card to normal state
+            card.style.zIndex = '1';
+            
+            // Reset title to default (2 lines)
+            title.style.webkitLineClamp = '2';
+            title.style.minHeight = '3em';
+        });
+    });
+}
+
+// Close modal
+if (closeModal) {
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    initializeAutomationGrid();
-    setupFAQ();
-    createQuickOrderButton();
-    setupGetStartedButtons();
-    enableCardDragAndDrop();
-    setupAutomationCanvas();
+    initializeAllGalleries();
+    setupAccordions();
+    setupTemplateButtons();
+    setupCardHoverEffects();
 }); 
