@@ -573,10 +573,6 @@ function initializePackageSelector() {
 
 // Svoi Mode Functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const promoCodeInput = document.getElementById('promo-code');
-    const applyPromoBtn = document.getElementById('apply-promo');
-    const promoResetBtn = document.getElementById('product-reset-promo-builder');
-    const promoMessage = document.getElementById('promo-message');
     const svoiModeIndicator = document.getElementById('svoi-mode-indicator');
     
     // Product promo elements
@@ -755,150 +751,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function setSvoiMode(active) {
         applyDiscount(active);
         setSvoiModeCookie(active);
-        
-        // Apply promo code discount if needed
-        if (active && typeof applySvoiDiscount === 'function') {
-            applySvoiDiscount();
-        } else if (!active && typeof updateSummary === 'function') {
-            updateSummary();
-        }
     }
     
-    // Function to apply the SVOI discount to the package builder
-    function applySvoiDiscount() {
-        // First get the needed elements
-        const priceItems = document.getElementById('price-items');
-        const finalPriceElement = document.getElementById('final-price');
-        const savingsElement = document.getElementById('savings');
-        const selectedPackages = Array.from(document.querySelectorAll('.package-card.selected')).map(card => parseInt(card.dataset.id));
-        
-        if (!priceItems || !finalPriceElement || !savingsElement || selectedPackages.length === 0) {
-            return;
-        }
-        
-        // Calculate base price
-        let baseTotal = 0;
-        selectedPackages.forEach(id => {
-            const pkg = packages.find(p => p.id === id);
-            if (pkg) baseTotal += pkg.basePrice;
-        });
-        
-        // Calculate package bundle discount
-        const packageCount = selectedPackages.length;
-        const discountInfo = discountTable[packageCount - 1];
-        const baseDiscountAmount = Math.round(baseTotal * discountInfo.baseDiscount / 100);
-        const afterBaseDiscount = baseTotal - baseDiscountAmount;
-        
-        // Apply SVOI promo code discount
-        // If 2+ packages selected, apply 40% discount instead of 30%
-        const promoDiscountPercent = packageCount >= 2 ? 40 : 30;
-        const svoiDiscountAmount = Math.round(afterBaseDiscount * promoDiscountPercent / 100);
-        const finalPrice = afterBaseDiscount - svoiDiscountAmount;
-        
-        // Update the price calculation HTML
-        let priceCalculationHTML = `
-            <div class="price-item">
-                <span>Base price:</span>
-                <span>$${baseTotal}</span>
-            </div>
-        `;
-        
-        if (packageCount > 1) {
-            priceCalculationHTML += `
-                <div class="price-item discount">
-                    <span>Package bundle discount (${discountInfo.baseDiscount}%):</span>
-                    <span>-$${baseDiscountAmount}</span>
-                </div>
-            `;
-        }
-        
-        priceCalculationHTML += `
-            <div class="price-item discount">
-                <span>Promo code discount (${promoDiscountPercent}%):</span>
-                <span>-$${svoiDiscountAmount}</span>
-            </div>
-        `;
-        
-        priceItems.innerHTML = priceCalculationHTML;
-        
-        // Update final price and savings
-        const savings = baseTotal - finalPrice;
-        const discountPercentage = Math.round((savings / baseTotal) * 1000) / 10; // Round to 1 decimal
-        
-        finalPriceElement.textContent = `$${finalPrice}`;
-        savingsElement.textContent = `$${savings} (${discountPercentage}%)`;
-    }
+
     
-    // Apply promo code from package builder section
-    if (applyPromoBtn) {
-        applyPromoBtn.addEventListener('click', function() {
-            const promoCode = promoCodeInput.value.trim().toUpperCase();
-            
-            if (promoCode === validPromoCode || promoCode === 'СВОI' || promoCode === 'УКРАЇНА' || promoCode === 'UKRAINE') {
-                if (promoMessage) {
-                    promoMessage.textContent = 'Promo code applied successfully!';
-                    promoMessage.className = 'promo-message success';
-                }
-                setSvoiMode(true);
-                
-                // Check if we have 2+ packages selected for the toast message
-                const selectedPackages = document.querySelectorAll('.package-card.selected');
-                const discountPercent = selectedPackages.length >= 2 ? 40 : 30;
-                
-                // Show a quick toast-style notification
-                const toast = document.createElement('div');
-                toast.className = 'promo-toast';
-                toast.textContent = `${discountPercent}% discount applied successfully!`;
-                document.body.appendChild(toast);
-                
-                setTimeout(() => {
-                    toast.classList.add('show');
-                }, 100);
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                    setTimeout(() => {
-                        document.body.removeChild(toast);
-                    }, 500);
-                }, 3000);
-            } else if (promoCode === '') {
-                if (promoMessage) {
-                    promoMessage.textContent = 'Please enter a promo code';
-                    promoMessage.className = 'promo-message error';
-                } else {
-                    alert('Please enter a promo code');
-                }
-            } else {
-                if (promoMessage) {
-                    promoMessage.textContent = 'Invalid promo code';
-                    promoMessage.className = 'promo-message error';
-                } else {
-                    alert('Invalid promo code');
-                }
-            }
-        });
-        
-        // Enter key for promo code input
-        if (promoCodeInput) {
-            promoCodeInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    applyPromoBtn.click();
-                }
-            });
-        }
-    }
-    
-    // Reset promo button functionality for package builder
-    if (promoResetBtn) {
-        promoResetBtn.addEventListener('click', function() {
-            setSvoiMode(false);
-            
-            // Ensure price calculation is updated correctly
-            if (typeof updateSummary === 'function') {
-                updateSummary();
-            }
-        });
-    }
+
     
     // Product-level promo code application for all products
     function setupPromoCode(inputId, applyBtnId, resetBtnId) {
