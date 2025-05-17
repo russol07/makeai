@@ -175,11 +175,11 @@
                             <div class="pricing-info">
                                 <div class="price-section">
                                     <div class="price-info-col">
-                                        <div class="price-tag">
-                                            <span class="original-price-display">$2900</span>
-                                            <span class="discounted-price-display" style="display: none;">$2000</span>
-                                            <span>(one-time setup)</span>
-                                        </div>
+                                                                    <div class="price-tag">
+                                <span class="original-price-display">$2900</span>
+                                <span class="discounted-price-display" style="display: none;">$2000</span>
+                                <span class="setup-text" style="display: inline-block; margin-left: 5px;">(one-time setup)</span>
+                            </div>
                                         <div class="subscription">
                                             Ongoing support & updates — 
                                             <span class="original-price-display">$149</span>
@@ -461,7 +461,7 @@
                                 <div class="price-tag">
                                     <span class="original-price-display">$3600</span>
                                     <span class="discounted-price-display" style="display: none;">$2500</span>
-                                    <span>(one-time setup)</span>
+                                    <span style="display: inline-block; margin-left: 5px;">(one-time setup)</span>
                                 </div>
                                 <div class="subscription">
                                     Ongoing support & updates — 
@@ -1547,24 +1547,7 @@
                     <p>Complete technical assistance and ongoing maintenance included</p>
                 </div>
             </div>
-            <svg class="benefits-flow-svg" width="1000" height="60" style="display:block;margin:0 auto;position:relative;z-index:1;">
-                <path id="cable" d="M60,40 Q180,10 300,40 T540,40 T780,40 T940,40" stroke="#8B5CF6" stroke-width="5" fill="none"/>
-                <circle r="9" fill="#38BDF8" opacity="0.85">
-                    <animateMotion repeatCount="indefinite" dur="2s">
-                        <mpath href="#cable"/>
-                    </animateMotion>
-                </circle>
-                <circle r="7" fill="#a5f3fc" opacity="0.7">
-                    <animateMotion repeatCount="indefinite" dur="2s" begin="0.5s">
-                        <mpath href="#cable"/>
-                    </animateMotion>
-                </circle>
-                <circle r="5" fill="#fff" opacity="0.6">
-                    <animateMotion repeatCount="indefinite" dur="2s" begin="1s">
-                        <mpath href="#cable"/>
-                    </animateMotion>
-                </circle>
-            </svg>
+
         </div>
     </section>
 
@@ -1828,11 +1811,22 @@
                 
                 if (active) {
                     originalPriceDisplays.forEach(element => {
-                        element.style.display = 'none';
+                        element.style.display = 'inline';
+                        element.classList.add('original-price-crossed');
                     });
                     
                     discountedPriceDisplays.forEach(element => {
                         element.style.display = 'inline';
+                        element.style.color = '#8B5CF6';
+                        element.style.fontWeight = 'bold';
+                        // Add the one-time setup text to the last discounted price in each price section
+                        const parentDiv = element.closest('.price-tag');
+                        if (parentDiv) {
+                            const oneTimeSetupSpan = parentDiv.querySelector('span:not(.original-price-display):not(.discounted-price-display)');
+                            if (oneTimeSetupSpan && oneTimeSetupSpan.textContent.includes('one-time setup')) {
+                                oneTimeSetupSpan.style.display = 'inline';
+                            }
+                        }
                     });
                     
                     // Show Svoi mode indicator
@@ -1849,8 +1843,9 @@
                 } else {
                     originalPriceDisplays.forEach(element => {
                         element.style.display = 'inline';
-                        element.style.textDecoration = 'none';
-                        element.style.color = 'inherit';
+                        element.classList.remove('original-price-crossed');
+                        element.style.color = '#8B5CF6';
+                        element.style.fontSize = '2rem';
                     });
                     
                     discountedPriceDisplays.forEach(element => {
@@ -2898,6 +2893,22 @@
             color: #8B5CF6;
             font-weight: 700;
             font-size: 2rem;
+        }
+        
+        /* Styling for crossed-out original price when promo is active */
+        .original-price-crossed {
+            text-decoration: line-through;
+            color: #9ca3af;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Setup text styling */
+        .setup-text {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 1rem;
+            color: #6b7280;
         }
     </style>
 </body>
