@@ -3,7 +3,8 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
 hamburger.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
 });
 
 // Smooth scrolling for navigation links
@@ -913,4 +914,388 @@ document.addEventListener('DOMContentLoaded', function() {
             observer.observe(content);
         });
     }
+});
+
+// Gallery slider without animations
+function initializeGallerySliders() {
+    const galleries = document.querySelectorAll('.gallery-slider');
+    
+    galleries.forEach(gallery => {
+        const slides = gallery.querySelectorAll('img');
+        const dotsContainer = gallery.parentElement.querySelector('.gallery-dots');
+        const prevBtn = gallery.parentElement.querySelector('.gallery-prev');
+        const nextBtn = gallery.parentElement.querySelector('.gallery-next');
+        
+        if (!slides.length) return;
+        
+        // Create dots
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('gallery-dot');
+                if (index === 0) dot.classList.add('active');
+                dotsContainer.appendChild(dot);
+            });
+        }
+        
+        // Show first slide
+        slides.forEach((slide, index) => {
+            slide.style.display = index === 0 ? 'block' : 'none';
+        });
+        
+        // Simple non-animated slide change
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+            
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.gallery-dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+        }
+        
+        // Navigation
+        let currentIndex = 0;
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            });
+        }
+        
+        if (dotsContainer) {
+            const dots = dotsContainer.querySelectorAll('.gallery-dot');
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    showSlide(currentIndex);
+                });
+            });
+        }
+    });
+}
+
+// Package Builder without animations
+function initializePackageBuilder() {
+    const packagesGrid = document.getElementById('packages-grid');
+    const selectedPackagesList = document.getElementById('selected-packages-list');
+    const priceItems = document.getElementById('price-items');
+    const finalPriceEl = document.getElementById('final-price');
+    const savingsEl = document.getElementById('savings');
+    const nextDiscountAlertEl = document.getElementById('next-discount-alert');
+    const emptyCart = document.getElementById('empty-cart');
+    const summaryPanel = document.getElementById('summary-panel');
+    
+    // Skip initialization if elements don't exist
+    if (!packagesGrid) return;
+    
+    // Package data (normally this would come from an API or database)
+    const packages = [
+        { id: 1, name: 'Etsy Automation', price: 3300, imgSrc: 'images/image987.png' },
+        { id: 2, name: 'Shopify Automation', price: 5000, imgSrc: 'images/3244fff.png' },
+        { id: 3, name: 'AI Chatbot', price: 5500, imgSrc: 'images/4455qwqw.webp' },
+        { id: 4, name: 'Email Automation', price: 3000, imgSrc: 'images/909011.png' },
+        { id: 5, name: 'QuickBooks Integration', price: 3600, imgSrc: 'images/445555ddfd.webp' },
+        { id: 6, name: 'Social Media Automation', price: 4200, imgSrc: 'images/4343dddss.png' }
+    ];
+    
+    // Discount tiers
+    const discountTiers = [
+        { minPackages: 2, discountPercent: 10 },
+        { minPackages: 3, discountPercent: 15 },
+        { minPackages: 4, discountPercent: 20 },
+        { minPackages: 6, discountPercent: 30 }
+    ];
+    
+    // Selected packages array
+    let selectedPackages = [];
+    
+    // Helper function to format prices
+    function formatPrice(price) {
+        return '$' + price.toLocaleString();
+    }
+    
+    // Render packages grid
+    function renderPackagesGrid() {
+        packagesGrid.innerHTML = '';
+        packages.forEach(pkg => {
+            const isSelected = selectedPackages.some(p => p.id === pkg.id);
+            
+            const packageCard = document.createElement('div');
+            packageCard.className = 'package-card';
+            if (isSelected) packageCard.classList.add('selected');
+            
+            packageCard.innerHTML = `
+                <div class="package-image">
+                    <img src="${pkg.imgSrc}" alt="${pkg.name}">
+                </div>
+                <div class="package-info">
+                    <h3>${pkg.name}</h3>
+                    <div class="package-price">${formatPrice(pkg.price)}</div>
+                </div>
+                <button class="package-toggle-btn">
+                    ${isSelected ? 'Remove' : 'Add to Package'}
+                </button>
+            `;
+            
+            packageCard.querySelector('.package-toggle-btn').addEventListener('click', () => {
+                togglePackage(pkg);
+            });
+            
+            packagesGrid.appendChild(packageCard);
+        });
+    }
+    
+    // Update the summary panel
+    function updateSummary() {
+        if (selectedPackages.length === 0) {
+            summaryPanel.style.display = 'none';
+            emptyCart.style.display = 'block';
+            return;
+        }
+        
+        summaryPanel.style.display = 'block';
+        emptyCart.style.display = 'none';
+        
+        // Update selected packages list
+        selectedPackagesList.innerHTML = '';
+        selectedPackages.forEach(pkg => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <span class="package-name">${pkg.name}</span>
+                <span class="package-price">${formatPrice(pkg.price)}</span>
+                <button class="remove-package" data-id="${pkg.id}">✕</button>
+            `;
+            selectedPackagesList.appendChild(listItem);
+        });
+        
+        // Add click handlers for remove buttons
+        document.querySelectorAll('.remove-package').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const packageId = parseInt(btn.dataset.id);
+                const packageToRemove = packages.find(p => p.id === packageId);
+                togglePackage(packageToRemove);
+            });
+        });
+        
+        // Calculate totals
+        const subtotal = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
+        
+        // Determine discount tier
+        let currentDiscount = 0;
+        let nextDiscount = null;
+        
+        for (const tier of discountTiers) {
+            if (selectedPackages.length >= tier.minPackages) {
+                currentDiscount = tier.discountPercent;
+            }
+        }
+        
+        for (const tier of discountTiers) {
+            if (tier.minPackages > selectedPackages.length) {
+                nextDiscount = tier;
+                break;
+            }
+        }
+        
+        const discountAmount = (subtotal * currentDiscount) / 100;
+        const finalPrice = subtotal - discountAmount;
+        
+        // Update price calculations
+        priceItems.innerHTML = `
+            <div class="price-row">
+                <span>Subtotal:</span>
+                <span>${formatPrice(subtotal)}</span>
+            </div>
+            <div class="price-row ${currentDiscount > 0 ? 'discount-row' : ''}">
+                <span>Discount (${currentDiscount}%):</span>
+                <span>-${formatPrice(discountAmount)}</span>
+            </div>
+        `;
+        
+        // Update final price and savings
+        finalPriceEl.textContent = formatPrice(finalPrice);
+        savingsEl.textContent = `${formatPrice(discountAmount)} (${currentDiscount}%)`;
+        
+        // Show or hide next discount alert
+        if (nextDiscount) {
+            nextDiscountAlertEl.innerHTML = `
+                <div class="next-discount">
+                    <i class="fas fa-tag"></i>
+                    Add ${nextDiscount.minPackages - selectedPackages.length} more 
+                    ${nextDiscount.minPackages - selectedPackages.length === 1 ? 'package' : 'packages'} 
+                    to save ${nextDiscount.discountPercent}%
+                </div>
+            `;
+            nextDiscountAlertEl.style.display = 'block';
+        } else {
+            nextDiscountAlertEl.style.display = 'none';
+        }
+    }
+    
+    // Toggle package selection
+    function togglePackage(pkg) {
+        const index = selectedPackages.findIndex(p => p.id === pkg.id);
+        
+        if (index === -1) {
+            // Add package
+            selectedPackages.push(pkg);
+        } else {
+            // Remove package
+            selectedPackages.splice(index, 1);
+        }
+        
+        renderPackagesGrid();
+        updateSummary();
+    }
+    
+    // Initialize
+    renderPackagesGrid();
+    updateSummary();
+}
+
+// Initialize and render accordion sections (no animations)
+function initializeAccordions() {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
+        const icon = item.querySelector('.accordion-icon');
+        
+        // Skip if elements don't exist
+        if (!header || !content || !icon) return;
+        
+        // Set initial state - if item has 'active' class, show content
+        if (item.classList.contains('active')) {
+            content.style.display = 'block';
+            icon.textContent = '-';
+        } else {
+            content.style.display = 'none';
+            icon.textContent = '+';
+        }
+        
+        header.addEventListener('click', () => {
+            // Toggle active state
+            const isActive = item.classList.contains('active');
+            
+            if (isActive) {
+                item.classList.remove('active');
+                content.style.display = 'none';
+                icon.textContent = '+';
+            } else {
+                item.classList.add('active');
+                content.style.display = 'block';
+                icon.textContent = '-';
+            }
+        });
+    });
+}
+
+// Mobile navigation menu toggle
+function initializeMobileNav() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (!hamburger || !navLinks) return;
+    
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+}
+
+// Mobile collapsible sections
+function initializeMobileCollapsible() {
+    const toggleBtns = document.querySelectorAll('.mobile-toggle');
+    
+    toggleBtns.forEach(btn => {
+        const content = btn.closest('.mobile-collapsible').querySelector('.mobile-collapsible-content');
+        
+        if (!content) return;
+        
+        // Set initial state
+        content.style.display = 'none';
+        
+        btn.addEventListener('click', () => {
+            const isVisible = content.style.display === 'block';
+            content.style.display = isVisible ? 'none' : 'block';
+        });
+    });
+}
+
+// Questionnaire modal functionality
+function initializeQuestionnaire() {
+    const questionnaireBtns = document.querySelectorAll('.questionnaire-btn');
+    const modal = document.getElementById('questionnaire-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const iframe = document.getElementById('questionnaire-frame');
+    
+    if (!modal || !closeModal || !iframe) return;
+    
+    questionnaireBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const category = btn.dataset.category || 'general';
+            const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSfFJ8eX7Wln13MILIXsdSGmD3FQ5M9mip0j-5j7zTqbZyf61w/viewform?embedded=true&entry.1728962477=${category}`;
+            iframe.src = formUrl;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Initialize everything when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeGallerySliders();
+    initializePackageBuilder();
+    initializeAccordions();
+    initializeMobileNav();
+    initializeMobileCollapsible();
+    initializeQuestionnaire();
+    
+    // Initialize category tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const categoryContents = document.querySelectorAll('.category-content');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const category = btn.dataset.category;
+            
+            // Update active tab
+            tabBtns.forEach(tab => tab.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Update content visibility
+            categoryContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `${category}-content`) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
 }); 

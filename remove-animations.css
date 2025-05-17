@@ -1,0 +1,78 @@
+/* Animation Removal CSS */
+
+/* Disable all animations globally */
+* {
+  animation: none !important;
+  transition: none !important;
+  animation-delay: 0s !important;
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+/* Remove specific animations */
+.hero-solar-system, 
+.orbit, 
+.service-icon, 
+.hub-pulse, 
+.makebox-pulse,
+.feature-card:hover,
+.template-button:hover,
+.primary-button:hover,
+.secondary-button:hover,
+.gallery-slider,
+.process-step-linear,
+.integration-branches,
+.branch {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Disable rotations and orbital movements */
+.orbit {
+  transform: none !important;
+}
+
+/* Disable pulse effects */
+.hub-pulse, .makebox-pulse {
+  display: none !important;
+}
+
+/* Remove gallery transitions */
+.gallery-slider {
+  transform: none !important;
+}
+
+/* Disable hover animations */
+.primary-button, .secondary-button, .template-button, .feature-card {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove automation process animation */
+#animation-workflow .active {
+  animation: none !important;
+}
+
+/* Remove holo effects */
+.holo-sphere-svg, .holo-sphere-main {
+  animation: none !important;
+  filter: none !important;
+}
+
+/* Remove UA promo animation */
+.ua-promo-container {
+  animation: none !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Make automation workflow static */
+.process-diagram .active {
+  animation: none !important;
+}
+
+/* Remove toast animations */
+.promo-toast {
+  transition: none !important;
+} 

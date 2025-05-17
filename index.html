@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Automation Hub - Business Process Automation Solutions</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="remove-animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -2137,7 +2138,7 @@
     </script>
 
     <script>
-        // Svoi Mode Functionality
+        // Svoi Mode Functionality (animations removed)
         document.addEventListener('DOMContentLoaded', function() {
             const promoCodeInput = document.getElementById('promo-code');
             const applyPromoBtn = document.getElementById('apply-promo');
@@ -2170,8 +2171,7 @@
                 document.cookie = `svoi_mode=${active}; expires=${expiryDate.toUTCString()}; path=/`;
             }
             
-            // Apply discount to all prices
-            // Функція для видалення знижки з місячної підтримки
+            // Apply discount to all prices - simplified without animations
             function removeDiscountFromSubscription() {
                 const subscriptions = document.querySelectorAll('.subscription');
                 subscriptions.forEach(subscription => {
@@ -2202,7 +2202,6 @@
                         element.style.display = 'inline';
                         element.style.color = '#8B5CF6';
                         element.style.fontWeight = 'bold';
-                        // Add the one-time setup text to the last discounted price in each price section
                         const parentDiv = element.closest('.price-tag');
                         if (parentDiv) {
                             const oneTimeSetupSpan = parentDiv.querySelector('span:not(.original-price-display):not(.discounted-price-display)');
@@ -2212,13 +2211,10 @@
                         }
                     });
                     
-                    // Видаляємо знижку з місячної підтримки
                     removeDiscountFromSubscription();
+                    svoiModeIndicator.style.display = 'flex';
                     
-                    // Show Svoi mode indicator
-                    svoiModeIndicator.classList.add('active');
-                    
-                    // Update all product promo fields
+                    // Update all product promo fields without animations
                     function updatePromoField(inputId, applyBtnId, resetBtnId) {
                         const inputElem = document.getElementById(inputId);
                         const applyBtn = document.getElementById(applyBtnId);
@@ -2230,7 +2226,7 @@
                             applyBtn.textContent = "Applied";
                             applyBtn.disabled = true;
                             applyBtn.style.background = "#4CAF50";
-                            resetBtn.classList.add('visible');
+                            resetBtn.style.display = 'block';
                         }
                     }
                     
@@ -2253,13 +2249,10 @@
                         element.style.display = 'none';
                     });
                     
-                    // Переконаємось, що місячна підтримка показує $149 без знижки
                     removeDiscountFromSubscription();
+                    svoiModeIndicator.style.display = 'none';
                     
-                    // Hide Svoi mode indicator
-                    svoiModeIndicator.classList.remove('active');
-                    
-                    // Function to reset promo fields
+                    // Function to reset promo fields without animations
                     function resetPromoField(inputId, applyBtnId, resetBtnId) {
                         const inputElem = document.getElementById(inputId);
                         const applyBtn = document.getElementById(applyBtnId);
@@ -2271,7 +2264,7 @@
                             applyBtn.textContent = "Apply";
                             applyBtn.disabled = false;
                             applyBtn.style.background = "linear-gradient(to right, #ffd700, #ebc000)";
-                            resetBtn.classList.remove('visible');
+                            resetBtn.style.display = 'none';
                         }
                     }
                     
@@ -2285,12 +2278,11 @@
                 }
             }
             
-            // Toggle Svoi mode
+            // Toggle Svoi mode without animations
             function setSvoiMode(active) {
                 applyDiscount(active);
                 setSvoiModeCookie(active);
                 
-                // If there's a promoCodeInput in the package builder section, update it too
                 if (promoCodeInput) {
                     if (active) {
                         promoCodeInput.value = validPromoCode;
@@ -2321,7 +2313,6 @@
                     }
                 });
                 
-                // Enter key for promo code input
                 promoCodeInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
                         applyPromoBtn.click();
@@ -2329,7 +2320,7 @@
                 });
             }
             
-            // Product-level promo code application for all products
+            // Product-level promo code application without animations
             function setupPromoCode(inputId, applyBtnId, resetBtnId) {
                 const inputElem = document.getElementById(inputId);
                 const applyBtn = document.getElementById(applyBtnId);
@@ -2337,22 +2328,13 @@
                 
                 if (!inputElem || !applyBtn || !resetBtn) return;
                 
-                // Function to update reset button visibility
-                function updateResetButtonVisibility() {
-                    if (inputElem.value.trim() !== '' || checkSvoiModeCookie()) {
-                        resetBtn.classList.add('visible');
-                    } else {
-                        resetBtn.classList.remove('visible');
-                    }
+                // Initial state
+                if (inputElem.value.trim() !== '' || checkSvoiModeCookie()) {
+                    resetBtn.style.display = 'block';
+                } else {
+                    resetBtn.style.display = 'none';
                 }
                 
-                // Check on page load
-                updateResetButtonVisibility();
-                
-                // Update on input change
-                inputElem.addEventListener('input', updateResetButtonVisibility);
-                
-                // Reset promo button functionality
                 resetBtn.addEventListener('click', function() {
                     inputElem.value = '';
                     inputElem.disabled = false;
@@ -2360,32 +2342,35 @@
                     applyBtn.disabled = false;
                     applyBtn.style.background = "linear-gradient(to right, #ffd700, #ebc000)";
                     setSvoiMode(false);
-                    resetBtn.classList.remove('visible');
+                    resetBtn.style.display = 'none';
                 });
                 
-                // Apply promo button functionality
                 applyBtn.addEventListener('click', function() {
                     const promoCode = inputElem.value.trim().toUpperCase();
                     
                     if (promoCode === validPromoCode || promoCode === 'СВОI' || promoCode === 'УКРАЇНА' || promoCode === 'UKRAINE') {
                         setSvoiMode(true);
-                        resetBtn.classList.add('visible');
+                        resetBtn.style.display = 'block';
                         
-                        // Show a quick toast-style notification
-                        const toast = document.createElement('div');
-                        toast.className = 'promo-toast';
-                        toast.textContent = '30% discount applied successfully!';
-                        document.body.appendChild(toast);
+                        // Show notification without animation
+                        const toastMsg = document.createElement('div');
+                        toastMsg.style.position = 'fixed';
+                        toastMsg.style.top = '20px';
+                        toastMsg.style.left = '50%';
+                        toastMsg.style.transform = 'translateX(-50%)';
+                        toastMsg.style.background = '#4CAF50';
+                        toastMsg.style.color = 'white';
+                        toastMsg.style.padding = '12px 20px';
+                        toastMsg.style.borderRadius = '8px';
+                        toastMsg.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+                        toastMsg.style.fontWeight = '500';
+                        toastMsg.style.zIndex = '1100';
+                        toastMsg.style.textAlign = 'center';
+                        toastMsg.textContent = '30% discount applied successfully!';
+                        document.body.appendChild(toastMsg);
                         
                         setTimeout(() => {
-                            toast.classList.add('show');
-                        }, 100);
-                        
-                        setTimeout(() => {
-                            toast.classList.remove('show');
-                            setTimeout(() => {
-                                document.body.removeChild(toast);
-                            }, 500);
+                            document.body.removeChild(toastMsg);
                         }, 3000);
                     } else if (promoCode === '') {
                         alert('Please enter a promo code');
@@ -2394,7 +2379,6 @@
                     }
                 });
                 
-                // Enter key for product promo code input
                 inputElem.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
                         applyBtn.click();
@@ -2416,85 +2400,9 @@
                 setSvoiMode(true);
             }
             
-            // Видаляємо знижки з місячної підтримки при загрузці сторінки
             removeDiscountFromSubscription();
         });
     </script>
-
-
-      
-
-        45% { transform: translate(450px, 100px); opacity: 1; }
-        90% { opacity: 1; }
-        95% { transform: translate(0, 0); opacity: 0; }
-      }
-      
-      @keyframes moveEtsyToQuickbooks {
-        0%, 100% { transform: translate(0, 0); opacity: 0; }
-        5% { opacity: 1; }
-        25% { transform: translate(200px, 100px); opacity: 1; }
-        45% { transform: translate(0, 200px); opacity: 1; }
-        90% { opacity: 1; }
-        95% { transform: translate(0, 0); opacity: 0; }
-      }
-      
-      @keyframes moveEtsyToEmail {
-        0%, 100% { transform: translate(0, 0); opacity: 0; }
-        5% { opacity: 1; }
-        25% { transform: translate(200px, 100px); opacity: 1; }
-        45% { transform: translate(400px, 200px); opacity: 1; }
-        90% { opacity: 1; }
-        95% { transform: translate(0, 0); opacity: 0; }
-      }
-      
-      @keyframes moveEtsyToFacebook {
-        0%, 100% { transform: translate(0, 0); opacity: 0; }
-        5% { opacity: 1; }
-        25% { transform: translate(200px, 100px); opacity: 1; }
-        45% { transform: translate(100px, -50px); opacity: 1; }
-        90% { opacity: 1; }
-        95% { transform: translate(0, 0); opacity: 0; }
-      }
-      
-      @keyframes moveEtsyToTwitter {
-        0%, 100% { transform: translate(0, 0); opacity: 0; }
-        5% { opacity: 1; }
-        25% { transform: translate(200px, 100px); opacity: 1; }
-        45% { transform: translate(300px, -50px); opacity: 1; }
-        90% { opacity: 1; }
-        95% { transform: translate(0, 0); opacity: 0; }
-      }
-      
-      @keyframes moveEtsyToTelegram {
-        0%, 100% { transform: translate(0, 0); opacity: 0; }
-        5% { opacity: 1; }
-        25% { transform: translate(200px, 100px); opacity: 1; }
-        45% { transform: translate(100px, 250px); opacity: 1; }
-        90% { opacity: 1; }
-        95% { transform: translate(0, 0); opacity: 0; }
-      }
-      
-      @keyframes moveEtsyToViber {
-        0%, 100% { transform: translate(0, 0); opacity: 0; }
-        5% { opacity: 1; }
-        25% { transform: translate(200px, 100px); opacity: 1; }
-        45% { transform: translate(300px, 250px); opacity: 1; }
-        90% { opacity: 1; }
-        95% { transform: translate(0, 0); opacity: 0; }
-      }
-      
-      .info-panel {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0,0,0,0.8);
-        color: white;
-        padding: 10px 15px;
-        border-radius: 5px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
     </style>
 
     <script>
@@ -2513,87 +2421,8 @@
     </script>
 
     <!-- Add Hero Solar System Styles -->
-    <style>
-        /* Dual systems container */
-        .dual-systems-container {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            height: 250px;
-            margin: 10px auto 0;
-            z-index: 2;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        /* makebox.ai in the middle */
-        .makebox-container {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            z-index: 20;
-        }
-        
-        .makebox-logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 21;
-            box-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
-        }
-        
-        .makebox-logo span {
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-        }
-        
-        .makebox-pulse {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(255, 107, 107, 0.3);
-            animation: makebox-pulse 3s infinite;
-            z-index: 20;
-        }
-        
-        @keyframes makebox-pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.8;
-            }
-            70% {
-                transform: translate(-50%, -50%) scale(2.5);
-                opacity: 0;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0;
-            }
-        }
-        
-        /* Solar system shared styles */
-        .hero-solar-system {
-            position: relative;
-            width: 300px;
-            height: 220px;
-            z-index: 2;
-            margin: 0 10px;
-        }
+    <!-- Всі стилі перенесено до файлу styles.css -->
+        <!-- Всі стилі перенесено до файлу styles.css -->
         
         /* Make.com system */
         .make-system .make-hub {
@@ -2655,195 +2484,9 @@
             animation: hero-pulse 2s infinite;
         }
         
-        @keyframes hero-pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.8;
-            }
-            70% {
-                transform: translate(-50%, -50%) scale(2);
-                opacity: 0;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0;
-            }
-        }
+        <!-- Всі стилі перенесено до файлу styles.css -->
         
-        .hero-solar-system .orbit {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            border-radius: 50%;
-            border: 1px dashed rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-        }
-        
-        .hero-solar-system .orbit-1 {
-            width: 90px;
-            height: 90px;
-            animation: rotate1 15s linear infinite;
-        }
-        
-        .hero-solar-system .orbit-2 {
-            width: 120px;
-            height: 120px;
-            animation: rotate2 18s linear infinite;
-        }
-        
-        .hero-solar-system .orbit-3 {
-            width: 150px;
-            height: 150px;
-            animation: rotate3 20s linear infinite;
-        }
-        
-        .hero-solar-system .orbit-4 {
-            width: 180px;
-            height: 180px;
-            animation: rotate4 22s linear infinite;
-        }
-        
-        .hero-solar-system .orbit-5 {
-            width: 210px;
-            height: 210px;
-            animation: rotate5 24s linear infinite;
-        }
-        
-        /* Non-synchronized animations for each orbit */
-        @keyframes rotate1 {
-            from { transform: translate(-50%, -50%) rotate(45deg); }
-            to { transform: translate(-50%, -50%) rotate(405deg); }
-        }
-        
-        @keyframes rotate2 {
-            from { transform: translate(-50%, -50%) rotate(180deg); }
-            to { transform: translate(-50%, -50%) rotate(-180deg); }
-        }
-        
-        @keyframes rotate3 {
-            from { transform: translate(-50%, -50%) rotate(90deg); }
-            to { transform: translate(-50%, -50%) rotate(450deg); }
-        }
-        
-        @keyframes rotate4 {
-            from { transform: translate(-50%, -50%) rotate(270deg); }
-            to { transform: translate(-50%, -50%) rotate(-90deg); }
-        }
-        
-        @keyframes rotate5 {
-            from { transform: translate(-50%, -50%) rotate(120deg); }
-            to { transform: translate(-50%, -50%) rotate(480deg); }
-        }
-        
-        .hero-solar-system .service-icon {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 5;
-            transition: all 0.3s ease;
-        }
-        
-        .hero-solar-system .service-icon:hover {
-            transform: translate(-50%, -50%) scale(1.2);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .hero-solar-system .service-icon i {
-            font-size: 16px;
-        }
-        
-        .hero-solar-system .service-icon img {
-            width: 16px;
-            height: 16px;
-            object-fit: contain;
-        }
-        
-        .hero-solar-system .instagram i { color: #C13584; }
-        .hero-solar-system .facebook i { color: #3B5998; }
-        .hero-solar-system .twitter i { color: #1DA1F2; }
-        .hero-solar-system .shopify i { color: #7AB55C; }
-        .hero-solar-system .gmail i { color: #D44638; }
-        .hero-solar-system .telegram i { color: #0088CC; }
-        .hero-solar-system .whatsapp i { color: #25D366; }
-        .hero-solar-system .sheets i { color: #0F9D58; }
-        .hero-solar-system .trello i { color: #0079BF; }
-        
-        /* Media queries for responsiveness */
-        @media (max-width: 768px) {
-            .dual-systems-container {
-                flex-direction: column;
-                height: auto;
-                padding: 20px 0;
-            }
-            
-            .makebox-container {
-                margin: 20px 0;
-            }
-            
-            .hero-solar-system {
-                height: 180px;
-                margin: 10px 0;
-            }
-            
-            .hero-solar-system .make-hub,
-            .hero-solar-system .n8n-hub {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .makebox-logo {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .makebox-pulse {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .hero-solar-system .orbit-5 {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .hero-solar-system .orbit-4 {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .hero-solar-system .orbit-3 {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .hero-solar-system .orbit-2 {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .hero-solar-system .orbit-1 {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .hero-solar-system .service-icon {
-                width: 24px;
-                height: 24px;
-            }
-            
-            .hero-solar-system .service-icon i {
-                font-size: 14px;
-            }
-        }
+        <!-- Всі стилі перенесено до файлу styles.css -->
     </style>
     
     <!-- Promo Code and Discount Styles -->
@@ -3180,162 +2823,9 @@
         }
     </style>
 
-    <!-- Price styling for catalog section -->
-    <style>
-        /* Price styling for catalog section */
-        .catalog .price-tag {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #8B5CF6;
-            margin-bottom: 8px;
-        }
-        
-        /* Price styling for package builder */
-        .package-builder .price-tag {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #8B5CF6;
-            margin-bottom: 8px;
-        }
-        
-        /* Discounted price display */
-        .discounted-price-display {
-            color: #8B5CF6;
-            font-weight: 700;
-            font-size: 2rem;
-        }
-        
-        /* Styling for crossed-out original price when promo is active */
-        .original-price-crossed {
-            text-decoration: line-through !important;
-            color: #9ca3af !important;
-            margin-right: 10px !important;
-            /* Font size set inline */
-        }
-        
-        /* Setup text styling */
-        .setup-text {
-            display: inline-block;
-            margin-left: 5px;
-            font-size: 2rem;
-            color: #6b7280;
-        }
-    </style>
+    <!-- Всі стилі перенесено до файлу styles.css -->
 
-    <!-- New styles for process branching animation -->
-    <style>
-      /* Integration branches styling */
-      .integration-branches {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: space-between;
-        width: 400px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.5s ease, visibility 0.5s;
-      }
-      
-      .integration-branches.active {
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      .branch {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 80px;
-      }
-      
-      .branch-connector {
-        width: 2px;
-        height: 0;
-        background: #ddd;
-        margin-bottom: 10px;
-        transition: height 1s ease;
-      }
-      
-      .branch.active .branch-connector {
-        height: 50px;
-      }
-      
-      .integration-icon {
-        width: 40px;
-        height: 40px;
-        background: white;
-        border-radius: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transform: scale(0);
-        transition: transform 0.5s ease;
-        cursor: pointer;
-      }
-      
-      .branch.active .integration-icon {
-        transform: scale(1);
-      }
-      
-      .integration-icon i {
-        font-size: 1.2rem;
-      }
-      
-      .integration-icon span {
-        font-size: 0.7rem;
-        margin-top: 2px;
-        white-space: nowrap;
-        position: absolute;
-        top: 100%;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      
-      .integration-icon:hover span {
-        opacity: 1;
-      }
-      
-      /* Step animation styles */
-      .step-connector {
-        position: relative;
-      }
-      
-      .step-connector.active {
-        background: #ddd;
-      }
-      
-      .step-connector.active:after {
-        content: '';
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: #8B5CF6;
-        border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        animation: movePoint 2s linear forwards;
-      }
-      
-      .step-icon {
-        opacity: 0.5;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-      }
-      
-      .process-step-linear.active .step-icon {
-        opacity: 1;
-        transform: scale(1.1);
-      }
-      
-      .process-icon.active i {
-        animation: rotate-gear 3s linear infinite;
-      }
-      
-      @media (max-width: 768px) {
+    <!-- Всі стилі перенесено до файлу styles.css -->
         .integration-branches {
           width: 300px;
         }
@@ -3346,261 +2836,31 @@
       }
     </style>
 
-    <!-- Automation workflow animation script -->
+    <!-- Automation workflow script (animations disabled) -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const startButton = document.getElementById('start-automation');
-        const triggerStep = document.getElementById('trigger-step');
-        const processStep = document.getElementById('process-step');
-        const actionStep = document.getElementById('action-step');
-        const notificationStep = document.getElementById('notification-step');
-        const databaseStep = document.getElementById('database-step');
-        const connector1 = document.getElementById('connector-1');
-        const connector2 = document.getElementById('connector-2');
-        const connector3 = document.getElementById('connector-3');
-        const connector4 = document.getElementById('connector-4');
-        const integrationBranches = document.getElementById('integration-branches');
-        const branches = document.querySelectorAll('.branch');
         
-        // Reset animation state
-        function resetAnimation() {
-          [triggerStep, processStep, actionStep, notificationStep, databaseStep].forEach(step => {
-            step.classList.remove('active');
-          });
-          
-          [connector1, connector2, connector3, connector4].forEach(connector => {
-            connector.classList.remove('active');
-            // Remove any inline styles
-            connector.style = '';
-          });
-          
-          integrationBranches.classList.remove('active');
-          
-          branches.forEach(branch => {
-            branch.classList.remove('active');
-          });
-          
-          startButton.disabled = false;
-        }
-        
-        // Run the animation
+        // Enable all steps immediately without animation
         startButton.addEventListener('click', function() {
-          // Disable button during animation
-          startButton.disabled = true;
+          // Show all elements immediately
+          document.querySelectorAll('.process-step-linear, .step-connector, .branch').forEach(el => {
+            el.classList.add('active');
+          });
           
-          // Reset any existing animation
-          resetAnimation();
+          document.getElementById('integration-branches').classList.add('active');
           
-          // Trigger step
+          // Reset after 3 seconds
           setTimeout(() => {
-            triggerStep.classList.add('active');
-          }, 500);
-          
-          // Connector 1 animation
-          setTimeout(() => {
-            connector1.classList.add('active');
-          }, 1000);
-          
-          // Process step
-          setTimeout(() => {
-            processStep.classList.add('active');
-            processStep.querySelector('.process-icon').classList.add('active');
-          }, 2000);
-          
-          // Connector 2 animation
-          setTimeout(() => {
-            connector2.classList.add('active');
+            document.querySelectorAll('.process-step-linear, .step-connector, .branch').forEach(el => {
+              el.classList.remove('active');
+            });
+            document.getElementById('integration-branches').classList.remove('active');
           }, 3000);
-          
-          // Action step
-          setTimeout(() => {
-            actionStep.classList.add('active');
-          }, 4000);
-          
-          // Show integration branches
-          setTimeout(() => {
-            integrationBranches.classList.add('active');
-          }, 4500);
-          
-          // Activate branches one by one
-          setTimeout(() => {
-            document.querySelector('.branch-facebook').classList.add('active');
-          }, 5000);
-          
-          setTimeout(() => {
-            document.querySelector('.branch-instagram').classList.add('active');
-          }, 5300);
-          
-          setTimeout(() => {
-            document.querySelector('.branch-telegram').classList.add('active');
-          }, 5600);
-          
-          setTimeout(() => {
-            document.querySelector('.branch-crm').classList.add('active');
-          }, 5900);
-          
-          // Continue with the main flow after branches
-          setTimeout(() => {
-            connector3.classList.add('active');
-          }, 6500);
-          
-          // Notification step
-          setTimeout(() => {
-            notificationStep.classList.add('active');
-          }, 7500);
-          
-          // Connector 4 animation
-          setTimeout(() => {
-            connector4.classList.add('active');
-          }, 8500);
-          
-          // Database step
-          setTimeout(() => {
-            databaseStep.classList.add('active');
-          }, 9500);
-          
-          // Reset after animation completes
-          setTimeout(() => {
-            resetAnimation();
-          }, 12000);
         });
       });
     </script>
 
-    <!-- Additional styles for workflow animation -->
-    <style>
-      /* Animation for dot movement */
-      @keyframes movePoint {
-        0% { left: 0; opacity: 1; }
-        100% { left: 100%; opacity: 1; }
-      }
-      
-      /* Add specific styles for steps and connectors */
-      .step-connector {
-        position: relative;
-        height: 3px;
-        width: 80px; 
-        margin: 0 10px;
-        background: #ddd;
-        opacity: 0.3;
-      }
-      
-      .step-connector.active {
-        background: #8B5CF6;
-        opacity: 1;
-      }
-      
-      .step-connector.active:after {
-        content: '';
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: #8B5CF6;
-        border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        animation: movePoint 2s linear forwards;
-      }
-      
-      /* Individual connector animations with delays */
-      #connector-1.active:after {
-        animation-delay: 0s;
-      }
-      
-      #connector-2.active:after {
-        animation-delay: 2s;
-      }
-      
-      #connector-3.active:after {
-        animation-delay: 6s;
-      }
-      
-      #connector-4.active:after {
-        animation-delay: 8s;
-      }
-      
-      /* Step highlight animation */
-      .process-step-linear.active .step-icon {
-        opacity: 1;
-        transform: scale(1.1);
-        box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
-      }
-
-      /* Ukrainian Community Toggle Styles */
-      .community-toggle-container {
-        margin-top: 15px;
-        padding: 10px;
-        background: #f0f9ff;
-        border-radius: 8px;
-        border-left: 4px solid #0057b7;
-      }
-      
-      .community-toggle-container .toggle-label {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        font-size: 14px;
-        color: #374151;
-      }
-      
-      .community-toggle-container .toggle-label span {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-      
-      .community-toggle-container .toggle-label small {
-        font-weight: 400;
-        color: #6b7280;
-        margin-left: 5px;
-      }
-      
-      .community-toggle-container .toggle-switch {
-        position: relative;
-        display: inline-block;
-        width: 48px;
-        height: 24px;
-      }
-      
-      .community-toggle-container .toggle-switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-      
-      .community-toggle-container .toggle-slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: .3s;
-        border-radius: 24px;
-      }
-      
-      .community-toggle-container .toggle-slider:before {
-        position: absolute;
-        content: "";
-        height: 18px;
-        width: 18px;
-        left: 3px;
-        bottom: 3px;
-        background-color: white;
-        transition: .3s;
-        border-radius: 50%;
-      }
-      
-      .community-toggle-container input:checked + .toggle-slider {
-        background: linear-gradient(to right, #0057b7, #ffd700);
-      }
-      
-      .community-toggle-container input:checked + .toggle-slider:before {
-        transform: translateX(24px);
-      }
-    </style>
+    <!-- Всі стилі перенесено до файлу styles.css -->
 </body>
 </html> 
