@@ -1446,25 +1446,15 @@
             <h2>Package Builder</h2>
             <p class="section-description">Combine different automation packages and receive significant discounts. The more solutions you choose, the greater your savings!</p>
             
-            <!-- Community Toggle -->
-            <div class="community-toggle">
-                <div class="promo-section">
-                    <div class="promo-code-container">
-                        <label for="promo-code">Member of the Ukrainian community? Enter promo code:</label>
-                        <div class="promo-input-group">
-                            <input type="text" id="promo-code" placeholder="Enter promo code">
-                            <button id="apply-promo" class="apply-promo-btn">Apply</button>
-                        </div>
-                        <div id="promo-message" class="promo-message"></div>
+            <!-- Promo Code Field -->
+            <div class="promo-section">
+                <div class="promo-code-container">
+                    <label for="promo-code">Promo code:</label>
+                    <div class="promo-input-group">
+                        <input type="text" id="promo-code" placeholder="Enter promo code">
+                        <button id="apply-promo" class="apply-promo-btn">Apply</button>
                     </div>
-                    <label class="toggle-label">
-                        <span>Svoi Mode</span>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="community-toggle">
-                            <div class="toggle-slider" id="toggle-slider"></div>
-                        </div>
-                        <span id="discount-indicator" class="discount-indicator">30% OFF</span>
-                    </label>
+                    <div id="promo-message" class="promo-message"></div>
                 </div>
             </div>
             
@@ -1742,7 +1732,7 @@
     <!-- Svoi Mode Indicator -->
     <div id="svoi-mode-indicator" class="svoi-mode-indicator">
         <i class="fas fa-tag"></i>
-        <span>Svoi Mode Activated: 30% OFF</span>
+        <span>SVOI: 30% OFF</span>
     </div>
 
     <!-- Questionnaire Modal -->
@@ -1791,12 +1781,10 @@
             const promoCodeInput = document.getElementById('promo-code');
             const applyPromoBtn = document.getElementById('apply-promo');
             const promoMessage = document.getElementById('promo-message');
-            const communityToggle = document.getElementById('community-toggle');
-            const discountIndicator = document.getElementById('discount-indicator');
             const svoiModeIndicator = document.getElementById('svoi-mode-indicator');
             
-            // Valid promo codes
-            const validPromoCodes = ['SVOI', 'СВОI', 'УКРАЇНА', 'UKRAINE'];
+            // Valid promo code
+            const validPromoCode = 'SVOI';
             
             // Check if Svoi mode is active in cookie
             function checkSvoiModeCookie() {
@@ -1832,8 +1820,7 @@
                         element.style.display = 'inline';
                     });
                     
-                    // Show Svoi mode indicators
-                    discountIndicator.classList.add('active');
+                    // Show Svoi mode indicator
                     svoiModeIndicator.classList.add('active');
                 } else {
                     originalPriceDisplays.forEach(element => {
@@ -1845,15 +1832,13 @@
                         element.style.display = 'none';
                     });
                     
-                    // Hide Svoi mode indicators
-                    discountIndicator.classList.remove('active');
+                    // Hide Svoi mode indicator
                     svoiModeIndicator.classList.remove('active');
                 }
             }
             
             // Toggle Svoi mode
-            function toggleSvoiMode(active) {
-                communityToggle.checked = active;
+            function setSvoiMode(active) {
                 applyDiscount(active);
                 setSvoiModeCookie(active);
             }
@@ -1862,10 +1847,10 @@
             applyPromoBtn.addEventListener('click', function() {
                 const promoCode = promoCodeInput.value.trim().toUpperCase();
                 
-                if (validPromoCodes.includes(promoCode)) {
+                if (promoCode === validPromoCode) {
                     promoMessage.textContent = 'Promo code applied successfully!';
                     promoMessage.className = 'promo-message success';
-                    toggleSvoiMode(true);
+                    setSvoiMode(true);
                 } else if (promoCode === '') {
                     promoMessage.textContent = 'Please enter a promo code';
                     promoMessage.className = 'promo-message error';
@@ -1873,11 +1858,6 @@
                     promoMessage.textContent = 'Invalid promo code';
                     promoMessage.className = 'promo-message error';
                 }
-            });
-            
-            // Toggle switch handling
-            communityToggle.addEventListener('change', function() {
-                toggleSvoiMode(this.checked);
             });
             
             // Enter key for promo code input
@@ -1890,7 +1870,7 @@
             // Check cookie on page load
             const isSvoiMode = checkSvoiModeCookie();
             if (isSvoiMode) {
-                toggleSvoiMode(true);
+                setSvoiMode(true);
             }
         });
     </script>
@@ -2498,40 +2478,49 @@
         .promo-section {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            background: rgba(139, 92, 246, 0.1);
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(139, 92, 246, 0.05);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .promo-code-container {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 5px;
+        }
+        
+        .promo-code-container label {
+            font-size: 14px;
+            color: #6b7280;
         }
         
         .promo-input-group {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
         
         #promo-code {
-            padding: 8px 12px;
+            padding: 6px 10px;
             border: 1px solid #d1d5db;
-            border-radius: 6px;
+            border-radius: 4px;
             flex-grow: 1;
+            font-size: 14px;
         }
         
         .apply-promo-btn {
             background: #8B5CF6;
             color: white;
             border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
+            border-radius: 4px;
+            padding: 6px 12px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.2s;
+            font-size: 14px;
         }
         
         .apply-promo-btn:hover {
@@ -2539,9 +2528,9 @@
         }
         
         .promo-message {
-            font-size: 14px;
-            height: 20px;
-            margin-top: 5px;
+            font-size: 12px;
+            height: 16px;
+            margin-top: 3px;
         }
         
         .promo-message.success {
@@ -2633,19 +2622,19 @@
         /* Svoi mode indicator */
         .svoi-mode-indicator {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #8B5CF6;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(139, 92, 246, 0.9);
             color: white;
-            padding: 10px 15px;
-            border-radius: 50px;
-            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: 500;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             display: none;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .svoi-mode-indicator.active {
@@ -2653,7 +2642,7 @@
         }
         
         .svoi-mode-indicator i {
-            font-size: 16px;
+            font-size: 14px;
         }
     </style>
 </body>
