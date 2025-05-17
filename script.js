@@ -623,4 +623,361 @@ function initializePackageSelector() {
     
     // Initial update
     updateSummary();
-} 
+}
+
+// Svoi Mode Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const promoCodeInput = document.getElementById('promo-code');
+    const applyPromoBtn = document.getElementById('apply-promo');
+    const promoResetBtn = document.getElementById('product-reset-promo-builder');
+    const promoMessage = document.getElementById('promo-message');
+    const svoiModeIndicator = document.getElementById('svoi-mode-indicator');
+    
+    // Product promo elements
+    const productPromoInput = document.getElementById('product-promo');
+    const productApplyPromoBtn = document.getElementById('product-apply-promo');
+    
+    // Valid promo code
+    const validPromoCode = 'SVOI';
+    
+    // Check if Svoi mode is active in cookie
+    function checkSvoiModeCookie() {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith('svoi_mode=')) {
+                return cookie.substring('svoi_mode='.length) === 'true';
+            }
+        }
+        return false;
+    }
+    
+    // Set Svoi mode cookie
+    function setSvoiModeCookie(active) {
+        const expiryDate = new Date();
+        expiryDate.setTime(expiryDate.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days
+        document.cookie = `svoi_mode=${active}; expires=${expiryDate.toUTCString()}; path=/`;
+    }
+    
+    // Apply discount to all prices
+    // Функція для видалення знижки з місячної підтримки
+    function removeDiscountFromSubscription() {
+        const subscriptions = document.querySelectorAll('.subscription');
+        subscriptions.forEach(subscription => {
+            const originalPrice = subscription.querySelector('.original-price-display');
+            const discountedPrice = subscription.querySelector('.discounted-price-display');
+            
+            if (originalPrice && discountedPrice) {
+                originalPrice.textContent = "$149";
+                originalPrice.style.textDecoration = "none";
+                originalPrice.style.color = "inherit";
+                originalPrice.classList.remove('original-price-crossed');
+                discountedPrice.style.display = "none";
+            }
+        });
+    }
+
+    function applyDiscount(active) {
+        const originalPriceDisplays = document.querySelectorAll('.original-price-display');
+        const discountedPriceDisplays = document.querySelectorAll('.discounted-price-display');
+        
+        if (active) {
+            originalPriceDisplays.forEach(element => {
+                element.style.display = 'inline';
+                element.classList.add('original-price-crossed');
+            });
+            
+            discountedPriceDisplays.forEach(element => {
+                element.style.display = 'inline';
+                element.style.color = '#8B5CF6';
+                element.style.fontWeight = 'bold';
+                // Add the one-time setup text to the last discounted price in each price section
+                const parentDiv = element.closest('.price-tag');
+                if (parentDiv) {
+                    const oneTimeSetupSpan = parentDiv.querySelector('span:not(.original-price-display):not(.discounted-price-display)');
+                    if (oneTimeSetupSpan && oneTimeSetupSpan.textContent.includes('one-time setup')) {
+                        oneTimeSetupSpan.style.display = 'inline';
+                    }
+                }
+            });
+            
+            // Видаляємо знижку з місячної підтримки
+            removeDiscountFromSubscription();
+            
+            // Show Svoi mode indicator
+            svoiModeIndicator.classList.add('active');
+            
+            // Update all product promo fields
+            function updatePromoField(inputId, applyBtnId, resetBtnId) {
+                const inputElem = document.getElementById(inputId);
+                const applyBtn = document.getElementById(applyBtnId);
+                const resetBtn = document.getElementById(resetBtnId);
+                
+                if (inputElem && applyBtn && resetBtn) {
+                    inputElem.value = validPromoCode;
+                    inputElem.disabled = true;
+                    applyBtn.textContent = "Applied";
+                    applyBtn.disabled = true;
+                    applyBtn.style.background = "#4CAF50";
+                    resetBtn.classList.add('visible');
+                }
+            }
+            
+            // Update all product promo fields
+            updatePromoField('product-promo', 'product-apply-promo', 'product-reset-promo');
+            updatePromoField('shopify-promo', 'shopify-apply-promo', 'shopify-reset-promo');
+            updatePromoField('chatbot-promo', 'chatbot-apply-promo', 'chatbot-reset-promo');
+            updatePromoField('email-promo', 'email-apply-promo', 'email-reset-promo');
+            updatePromoField('quickbooks-promo', 'quickbooks-apply-promo', 'quickbooks-reset-promo');
+            updatePromoField('social-promo', 'social-apply-promo', 'social-reset-promo');
+            
+            // Update package builder promo code field
+            if (promoCodeInput) {
+                promoCodeInput.value = validPromoCode;
+                promoCodeInput.disabled = true;
+                applyPromoBtn.textContent = "Applied";
+                applyPromoBtn.disabled = true;
+                applyPromoBtn.style.background = "#4CAF50";
+                if (promoResetBtn) {
+                    promoResetBtn.classList.add('visible');
+                }
+                if (promoMessage) {
+                    promoMessage.textContent = 'Promo code applied successfully!';
+                    promoMessage.className = 'promo-message success';
+                }
+            }
+        } else {
+            originalPriceDisplays.forEach(element => {
+                element.style.display = 'inline';
+                element.classList.remove('original-price-crossed');
+                element.style.color = '#8B5CF6';
+                element.style.fontSize = '2rem';
+            });
+            
+            discountedPriceDisplays.forEach(element => {
+                element.style.display = 'none';
+            });
+            
+            // Переконаємось, що місячна підтримка показує $149 без знижки
+            removeDiscountFromSubscription();
+            
+            // Hide Svoi mode indicator
+            svoiModeIndicator.classList.remove('active');
+            
+            // Function to reset promo fields
+            function resetPromoField(inputId, applyBtnId, resetBtnId) {
+                const inputElem = document.getElementById(inputId);
+                const applyBtn = document.getElementById(applyBtnId);
+                const resetBtn = document.getElementById(resetBtnId);
+                
+                if (inputElem && applyBtn && resetBtn) {
+                    inputElem.value = "";
+                    inputElem.disabled = false;
+                    applyBtn.textContent = "Apply";
+                    applyBtn.disabled = false;
+                    applyBtn.style.background = "linear-gradient(to right, #ffd700, #ebc000)";
+                    resetBtn.classList.remove('visible');
+                }
+            }
+            
+            // Reset all product promo fields
+            resetPromoField('product-promo', 'product-apply-promo', 'product-reset-promo');
+            resetPromoField('shopify-promo', 'shopify-apply-promo', 'shopify-reset-promo');
+            resetPromoField('chatbot-promo', 'chatbot-apply-promo', 'chatbot-reset-promo');
+            resetPromoField('email-promo', 'email-apply-promo', 'email-reset-promo');
+            resetPromoField('quickbooks-promo', 'quickbooks-apply-promo', 'quickbooks-reset-promo');
+            resetPromoField('social-promo', 'social-apply-promo', 'social-reset-promo');
+            
+            // Reset package builder promo field
+            if (promoCodeInput) {
+                promoCodeInput.value = "";
+                promoCodeInput.disabled = false;
+                applyPromoBtn.textContent = "Apply";
+                applyPromoBtn.disabled = false;
+                applyPromoBtn.style.background = "linear-gradient(to right, #ffd700, #ebc000)";
+                if (promoResetBtn) {
+                    promoResetBtn.classList.remove('visible');
+                }
+                if (promoMessage) {
+                    promoMessage.textContent = '';
+                }
+            }
+        }
+    }
+    
+    // Toggle Svoi mode
+    function setSvoiMode(active) {
+        applyDiscount(active);
+        setSvoiModeCookie(active);
+    }
+    
+    // Apply promo code from package builder section
+    if (applyPromoBtn) {
+        applyPromoBtn.addEventListener('click', function() {
+            const promoCode = promoCodeInput.value.trim().toUpperCase();
+            
+            if (promoCode === validPromoCode || promoCode === 'СВОI' || promoCode === 'УКРАЇНА' || promoCode === 'UKRAINE') {
+                if (promoMessage) {
+                    promoMessage.textContent = 'Promo code applied successfully!';
+                    promoMessage.className = 'promo-message success';
+                }
+                setSvoiMode(true);
+                
+                // Show a quick toast-style notification
+                const toast = document.createElement('div');
+                toast.className = 'promo-toast';
+                toast.textContent = '30% discount applied successfully!';
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 100);
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 500);
+                }, 3000);
+            } else if (promoCode === '') {
+                if (promoMessage) {
+                    promoMessage.textContent = 'Please enter a promo code';
+                    promoMessage.className = 'promo-message error';
+                } else {
+                    alert('Please enter a promo code');
+                }
+            } else {
+                if (promoMessage) {
+                    promoMessage.textContent = 'Invalid promo code';
+                    promoMessage.className = 'promo-message error';
+                } else {
+                    alert('Invalid promo code');
+                }
+            }
+        });
+        
+        // Enter key for promo code input
+        if (promoCodeInput) {
+            promoCodeInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    applyPromoBtn.click();
+                }
+            });
+        }
+    }
+    
+    // Reset promo button functionality for package builder
+    if (promoResetBtn) {
+        promoResetBtn.addEventListener('click', function() {
+            setSvoiMode(false);
+        });
+    }
+    
+    // Product-level promo code application for all products
+    function setupPromoCode(inputId, applyBtnId, resetBtnId) {
+        const inputElem = document.getElementById(inputId);
+        const applyBtn = document.getElementById(applyBtnId);
+        const resetBtn = document.getElementById(resetBtnId);
+        
+        if (!inputElem || !applyBtn || !resetBtn) return;
+        
+        // Function to update reset button visibility
+        function updateResetButtonVisibility() {
+            if (inputElem.value.trim() !== '' || checkSvoiModeCookie()) {
+                resetBtn.classList.add('visible');
+            } else {
+                resetBtn.classList.remove('visible');
+            }
+        }
+        
+        // Check on page load
+        updateResetButtonVisibility();
+        
+        // Update on input change
+        inputElem.addEventListener('input', updateResetButtonVisibility);
+        
+        // Reset promo button functionality
+        resetBtn.addEventListener('click', function() {
+            inputElem.value = '';
+            inputElem.disabled = false;
+            applyBtn.textContent = "Apply";
+            applyBtn.disabled = false;
+            applyBtn.style.background = "linear-gradient(to right, #ffd700, #ebc000)";
+            setSvoiMode(false);
+            resetBtn.classList.remove('visible');
+        });
+        
+        // Apply promo button functionality
+        applyBtn.addEventListener('click', function() {
+            const promoCode = inputElem.value.trim().toUpperCase();
+            
+            if (promoCode === validPromoCode || promoCode === 'СВОI' || promoCode === 'УКРАЇНА' || promoCode === 'UKRAINE') {
+                setSvoiMode(true);
+                resetBtn.classList.add('visible');
+                
+                // Show a quick toast-style notification
+                const toast = document.createElement('div');
+                toast.className = 'promo-toast';
+                toast.textContent = '30% discount applied successfully!';
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 100);
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 500);
+                }, 3000);
+            } else if (promoCode === '') {
+                alert('Please enter a promo code');
+            } else {
+                alert('Invalid promo code');
+            }
+        });
+        
+        // Enter key for product promo code input
+        inputElem.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                applyBtn.click();
+            }
+        });
+    }
+    
+    // Setup promo code fields for all product cards
+    setupPromoCode('product-promo', 'product-apply-promo', 'product-reset-promo'); // Etsy
+    setupPromoCode('shopify-promo', 'shopify-apply-promo', 'shopify-reset-promo'); // Shopify
+    setupPromoCode('chatbot-promo', 'chatbot-apply-promo', 'chatbot-reset-promo'); // Chatbot
+    setupPromoCode('email-promo', 'email-apply-promo', 'email-reset-promo'); // Email
+    setupPromoCode('quickbooks-promo', 'quickbooks-apply-promo', 'quickbooks-reset-promo'); // QuickBooks
+    setupPromoCode('social-promo', 'social-apply-promo', 'social-reset-promo'); // Social Media
+    
+    // Check cookie on page load
+    const isSvoiMode = checkSvoiModeCookie();
+    if (isSvoiMode) {
+        setSvoiMode(true);
+    }
+    
+    // Update visibility of package builder promo code reset button
+    if (promoCodeInput && promoResetBtn) {
+        promoCodeInput.addEventListener('input', function() {
+            if (promoCodeInput.value.trim() !== '' || checkSvoiModeCookie()) {
+                promoResetBtn.classList.add('visible');
+            } else {
+                promoResetBtn.classList.remove('visible');
+            }
+        });
+        
+        // Check initial state
+        if (promoCodeInput.value.trim() !== '' || checkSvoiModeCookie()) {
+            promoResetBtn.classList.add('visible');
+        } else {
+            promoResetBtn.classList.remove('visible');
+        }
+    }
+    
+    // Видаляємо знижки з місячної підтримки при загрузці сторінки
+    removeDiscountFromSubscription();
+}); 
