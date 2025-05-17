@@ -2642,4 +2642,73 @@ body {
     .modal-body {
         padding: 15px 10px;
     }
+}
+
+/* Further mobile optimizations for containers */
+@media (max-width: 576px) {
+    /* Make containers wider on mobile */
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    /* Expand accordion content containers */
+    .accordion-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px 10px;
+    }
+    
+    /* Expand product detail sections */
+    .product-details, 
+    .product-description,
+    .feature-card,
+    .pricing-info,
+    .accordion-item {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        box-sizing: border-box;
+    }
+    
+    /* Fixed feature text widths */
+    .feature-card ul li,
+    .product-description p {
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.5;
+        padding-right: 5px;
+    }
+    
+    /* Ensure modal content takes full width */
+    .modal-content,
+    .modal-body {
+        width: 100%;
+        max-width: 100vw;
+        padding: 15px 10px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    /* Feature cards full width */
+    .feature-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* What's Included modal */
+    #whats-included-modal .modal-content {
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        padding: 10px;
+    }
+    
+    .feature-card ul {
+        padding-left: 20px;
+    }
 } 
