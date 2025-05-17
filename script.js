@@ -414,8 +414,6 @@ function initializePackageSelector() {
     const packageGrid = document.getElementById('packages-grid');
     const summaryPanel = document.getElementById('summary-panel');
     const emptyCart = document.getElementById('empty-cart');
-    const communityToggle = document.getElementById('ua-community-toggle');
-    const toggleSlider = communityToggle ? communityToggle.nextElementSibling : null;
     const selectedPackagesList = document.getElementById('selected-packages-list');
     const priceItems = document.getElementById('price-items');
     const nextDiscountAlert = document.getElementById('next-discount-alert');
@@ -425,7 +423,6 @@ function initializePackageSelector() {
     if (!packageGrid) return;
     
     let selectedPackages = [];
-    let isUkrainianCommunity = false;
     
     // Render package cards
     packages.forEach(pkg => {
@@ -456,16 +453,7 @@ function initializePackageSelector() {
         packageGrid.appendChild(card);
     });
     
-    // Community toggle functionality
-    if (communityToggle) {
-        communityToggle.addEventListener('change', () => {
-            isUkrainianCommunity = communityToggle.checked;
-            if (toggleSlider) {
-                toggleSlider.classList.toggle('active', isUkrainianCommunity);
-            }
-            updateSummary();
-        });
-    }
+
     
     // Toggle package selection
     function togglePackage(packageId) {
@@ -550,42 +538,8 @@ function initializePackageSelector() {
             `;
         }
         
-        // Community discount calculation - original 30% discount
+        // Set final price
         let finalPrice = afterBaseDiscount;
-        let communityDiscountAmount = 0;
-        
-        if (isUkrainianCommunity) {
-            // Original svoi mode discount
-            communityDiscountAmount = Math.round(afterBaseDiscount * discountInfo.communityDiscount / 100);
-            
-            // Add additional 10% discount for Ukrainian community if 2+ packages selected
-            let uaCommunityDiscountAmount = 0;
-            if (packageCount >= 2) {
-                uaCommunityDiscountAmount = Math.round(afterBaseDiscount * 10 / 100);
-                
-                priceCalculationHTML += `
-                    <div class="price-item discount">
-                        <span>Ukrainian community discount (30%):</span>
-                        <span>-$${communityDiscountAmount}</span>
-                    </div>
-                    <div class="price-item discount">
-                        <span>Additional UA discount for ${packageCount}+ packages (10%):</span>
-                        <span>-$${uaCommunityDiscountAmount}</span>
-                    </div>
-                `;
-                
-                finalPrice = afterBaseDiscount - communityDiscountAmount - uaCommunityDiscountAmount;
-            } else {
-                priceCalculationHTML += `
-                    <div class="price-item discount">
-                        <span>Ukrainian community discount (${discountInfo.communityDiscount}%):</span>
-                        <span>-$${communityDiscountAmount}</span>
-                    </div>
-                `;
-                
-                finalPrice = afterBaseDiscount - communityDiscountAmount;
-            }
-        }
         
         priceItems.innerHTML = priceCalculationHTML;
         
@@ -604,17 +558,9 @@ function initializePackageSelector() {
             
             let nextDiscountText = `
                 <p>
-                    <strong>Add one more package</strong> to get a ${nextDiscount.baseDiscount}% discount
+                    <strong>Add one more package</strong> to get a ${nextDiscount.baseDiscount}% discount!
+                </p>
             `;
-            
-            if (isUkrainianCommunity) {
-                nextDiscountText += ` + ${nextDiscount.communityDiscount}% Ukrainian community discount`;
-                if (packageCount === 1) {
-                    nextDiscountText += ` + 10% additional UA discount`;
-                }
-            }
-            
-            nextDiscountText += `!</p>`;
             nextDiscountAlert.innerHTML = nextDiscountText;
         } else {
             nextDiscountAlert.style.display = 'none';
@@ -810,37 +756,11 @@ document.addEventListener('DOMContentLoaded', function() {
         applyDiscount(active);
         setSvoiModeCookie(active);
         
-        // Disable Ukrainian Community toggle when promo code is applied
-        const communityToggle = document.getElementById('ua-community-toggle');
-        if (communityToggle) {
-            if (active) {
-                // If promo code is active, disable and uncheck UA Community toggle
-                communityToggle.checked = false;
-                communityToggle.disabled = true;
-                
-                // Also make sure the isUkrainianCommunity variable is updated in the package selector
-                if (typeof isUkrainianCommunity !== 'undefined') {
-                    isUkrainianCommunity = false;
-                }
-                
-                // Apply 30% promo code discount to package builder
-                applySvoiDiscount();
-            } else {
-                // Re-enable the toggle when promo code is removed
-                communityToggle.disabled = false;
-                
-                // Update package builder without the svoi discount
-                if (typeof updateSummary === 'function') {
-                    updateSummary();
-                }
-            }
-        } else {
-            // If toggle not found, still try to update package builder
-            if (active && typeof applySvoiDiscount === 'function') {
-                applySvoiDiscount();
-            } else if (!active && typeof updateSummary === 'function') {
-                updateSummary();
-            }
+        // Apply promo code discount if needed
+        if (active && typeof applySvoiDiscount === 'function') {
+            applySvoiDiscount();
+        } else if (!active && typeof updateSummary === 'function') {
+            updateSummary();
         }
     }
     
