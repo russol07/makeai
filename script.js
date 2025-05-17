@@ -821,13 +821,90 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Also make sure the isUkrainianCommunity variable is updated in the package selector
                 if (typeof isUkrainianCommunity !== 'undefined') {
                     isUkrainianCommunity = false;
-                    updateSummary();
                 }
+                
+                // Apply 30% promo code discount to package builder
+                applySvoiDiscount();
             } else {
                 // Re-enable the toggle when promo code is removed
                 communityToggle.disabled = false;
+                
+                // Update package builder without the svoi discount
+                if (typeof updateSummary === 'function') {
+                    updateSummary();
+                }
+            }
+        } else {
+            // If toggle not found, still try to update package builder
+            if (active && typeof applySvoiDiscount === 'function') {
+                applySvoiDiscount();
+            } else if (!active && typeof updateSummary === 'function') {
+                updateSummary();
             }
         }
+    }
+    
+    // Function to apply the SVOI discount to the package builder
+    function applySvoiDiscount() {
+        // First get the needed elements
+        const priceItems = document.getElementById('price-items');
+        const finalPriceElement = document.getElementById('final-price');
+        const savingsElement = document.getElementById('savings');
+        const selectedPackages = Array.from(document.querySelectorAll('.package-card.selected')).map(card => parseInt(card.dataset.id));
+        
+        if (!priceItems || !finalPriceElement || !savingsElement || selectedPackages.length === 0) {
+            return;
+        }
+        
+        // Calculate base price
+        let baseTotal = 0;
+        selectedPackages.forEach(id => {
+            const pkg = packages.find(p => p.id === id);
+            if (pkg) baseTotal += pkg.basePrice;
+        });
+        
+        // Calculate package bundle discount
+        const packageCount = selectedPackages.length;
+        const discountInfo = discountTable[packageCount - 1];
+        const baseDiscountAmount = Math.round(baseTotal * discountInfo.baseDiscount / 100);
+        const afterBaseDiscount = baseTotal - baseDiscountAmount;
+        
+        // Apply 30% SVOI promo code discount
+        const svoiDiscountAmount = Math.round(afterBaseDiscount * 30 / 100);
+        const finalPrice = afterBaseDiscount - svoiDiscountAmount;
+        
+        // Update the price calculation HTML
+        let priceCalculationHTML = `
+            <div class="price-item">
+                <span>Base price:</span>
+                <span>$${baseTotal}</span>
+            </div>
+        `;
+        
+        if (packageCount > 1) {
+            priceCalculationHTML += `
+                <div class="price-item discount">
+                    <span>Package bundle discount (${discountInfo.baseDiscount}%):</span>
+                    <span>-$${baseDiscountAmount}</span>
+                </div>
+            `;
+        }
+        
+        priceCalculationHTML += `
+            <div class="price-item discount">
+                <span>Promo code discount (30%):</span>
+                <span>-$${svoiDiscountAmount}</span>
+            </div>
+        `;
+        
+        priceItems.innerHTML = priceCalculationHTML;
+        
+        // Update final price and savings
+        const savings = baseTotal - finalPrice;
+        const discountPercentage = Math.round((savings / baseTotal) * 1000) / 10; // Round to 1 decimal
+        
+        finalPriceElement.textContent = `$${finalPrice}`;
+        savingsElement.textContent = `$${savings} (${discountPercentage}%)`;
     }
     
     // Apply promo code from package builder section
@@ -889,6 +966,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (promoResetBtn) {
         promoResetBtn.addEventListener('click', function() {
             setSvoiMode(false);
+            
+            // Ensure price calculation is updated correctly
+            if (typeof updateSummary === 'function') {
+                updateSummary();
+            }
         });
     }
     
