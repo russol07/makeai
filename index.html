@@ -42,68 +42,97 @@
                 <a href="#learn-more" class="secondary-button">Learn More</a>
             </div>
             
-            <!-- Solar System Animation directly in hero section -->
-            <div class="hero-solar-system">
-                <!-- Center Make.com hub -->
-                <div class="make-hub">
-                    <div class="make-logo">
-                        <span>Make.com</span>
+            <!-- Dual solar systems with makebox.ai in the middle -->
+            <div class="dual-systems-container">
+                <!-- Make.com Solar System -->
+                <div class="hero-solar-system make-system">
+                    <!-- Center Make.com hub -->
+                    <div class="make-hub">
+                        <div class="make-logo">
+                            <span>Make.com</span>
+                        </div>
+                        <div class="hub-pulse"></div>
                     </div>
-                    <div class="hub-pulse"></div>
-                </div>
-                
-                <!-- Orbits and services -->
-                <div class="orbit orbit-1">
-                    <div class="service-icon instagram">
-                        <i class="fab fa-instagram"></i>
+                    
+                    <!-- Orbits and services -->
+                    <div class="orbit orbit-1">
+                        <div class="service-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="orbit orbit-2">
-                    <div class="service-icon facebook">
-                        <i class="fab fa-facebook"></i>
+                    
+                    <div class="orbit orbit-2">
+                        <div class="service-icon facebook">
+                            <i class="fab fa-facebook"></i>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="orbit orbit-3">
-                    <div class="service-icon twitter">
-                        <i class="fab fa-twitter"></i>
+                    
+                    <div class="orbit orbit-3">
+                        <div class="service-icon twitter">
+                            <i class="fab fa-twitter"></i>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="orbit orbit-4">
-                    <div class="service-icon shopify">
-                        <i class="fab fa-shopify"></i>
+                    
+                    <div class="orbit orbit-4">
+                        <div class="service-icon shopify">
+                            <i class="fab fa-shopify"></i>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="orbit orbit-5">
-                    <div class="service-icon etsy">
-                        <img src="https://cdn.cdnlogo.com/logos/e/18/etsy.svg" alt="Etsy">
-                    </div>
-                </div>
-                
-                <div class="orbit orbit-6">
-                    <div class="service-icon gmail">
-                        <i class="far fa-envelope"></i>
+                    
+                    <div class="orbit orbit-5">
+                        <div class="service-icon etsy">
+                            <img src="https://cdn.cdnlogo.com/logos/e/18/etsy.svg" alt="Etsy">
+                        </div>
                     </div>
                 </div>
                 
-                <div class="orbit orbit-7">
-                    <div class="service-icon telegram">
-                        <i class="fab fa-telegram"></i>
+                <!-- makebox.ai in the middle -->
+                <div class="makebox-container">
+                    <div class="makebox-logo">
+                        <span>makebox.ai</span>
                     </div>
+                    <div class="makebox-pulse"></div>
                 </div>
                 
-                <div class="orbit orbit-8">
-                    <div class="service-icon whatsapp">
-                        <i class="fab fa-whatsapp"></i>
+                <!-- n8n Solar System -->
+                <div class="hero-solar-system n8n-system">
+                    <!-- Center n8n hub -->
+                    <div class="n8n-hub">
+                        <div class="n8n-logo">
+                            <span>n8n</span>
+                        </div>
+                        <div class="hub-pulse"></div>
                     </div>
-                </div>
-                
-                <div class="orbit orbit-9">
-                    <div class="service-icon sheets">
-                        <i class="fas fa-table"></i>
+                    
+                    <!-- Orbits and services -->
+                    <div class="orbit orbit-1">
+                        <div class="service-icon gmail">
+                            <i class="far fa-envelope"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="orbit orbit-2">
+                        <div class="service-icon telegram">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="orbit orbit-3">
+                        <div class="service-icon whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="orbit orbit-4">
+                        <div class="service-icon sheets">
+                            <i class="fas fa-table"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="orbit orbit-5">
+                        <div class="service-icon trello">
+                            <i class="fab fa-trello"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1943,16 +1972,89 @@
 
     <!-- Add Hero Solar System Styles -->
     <style>
-        .hero-solar-system {
+        /* Dual systems container */
+        .dual-systems-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            height: 220px;
+            max-width: 900px;
+            height: 250px;
             margin: 10px auto 0;
             z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .hero-solar-system .make-hub {
+        /* makebox.ai in the middle */
+        .makebox-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            z-index: 20;
+        }
+        
+        .makebox-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 21;
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+        }
+        
+        .makebox-logo span {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .makebox-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 107, 107, 0.3);
+            animation: makebox-pulse 3s infinite;
+            z-index: 20;
+        }
+        
+        @keyframes makebox-pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* Solar system shared styles */
+        .hero-solar-system {
+            position: relative;
+            width: 300px;
+            height: 220px;
+            z-index: 2;
+            margin: 0 10px;
+        }
+        
+        /* Make.com system */
+        .make-system .make-hub {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -1968,8 +2070,32 @@
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
         }
         
-        .hero-solar-system .make-logo {
+        .make-system .make-logo {
             color: #5046E5;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        /* n8n system */
+        .n8n-system .n8n-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+        
+        .n8n-system .n8n-logo {
+            color: #FF6B6B;
             font-weight: bold;
             font-size: 12px;
             text-align: center;
@@ -2041,30 +2167,6 @@
             animation: rotate5 24s linear infinite;
         }
         
-        .hero-solar-system .orbit-6 {
-            width: 240px;
-            height: 240px;
-            animation: rotate6 26s linear infinite;
-        }
-        
-        .hero-solar-system .orbit-7 {
-            width: 270px;
-            height: 270px;
-            animation: rotate7 28s linear infinite;
-        }
-        
-        .hero-solar-system .orbit-8 {
-            width: 300px;
-            height: 300px;
-            animation: rotate8 30s linear infinite;
-        }
-        
-        .hero-solar-system .orbit-9 {
-            width: 330px;
-            height: 330px;
-            animation: rotate9 32s linear infinite;
-        }
-        
         /* Несинхронні анімації обертання для кожної орбіти */
         @keyframes rotate1 {
             from { transform: translate(-50%, -50%) rotate(45deg); }
@@ -2089,26 +2191,6 @@
         @keyframes rotate5 {
             from { transform: translate(-50%, -50%) rotate(120deg); }
             to { transform: translate(-50%, -50%) rotate(480deg); }
-        }
-        
-        @keyframes rotate6 {
-            from { transform: translate(-50%, -50%) rotate(210deg); }
-            to { transform: translate(-50%, -50%) rotate(-150deg); }
-        }
-        
-        @keyframes rotate7 {
-            from { transform: translate(-50%, -50%) rotate(30deg); }
-            to { transform: translate(-50%, -50%) rotate(390deg); }
-        }
-        
-        @keyframes rotate8 {
-            from { transform: translate(-50%, -50%) rotate(300deg); }
-            to { transform: translate(-50%, -50%) rotate(-60deg); }
-        }
-        
-        @keyframes rotate9 {
-            from { transform: translate(-50%, -50%) rotate(150deg); }
-            to { transform: translate(-50%, -50%) rotate(510deg); }
         }
         
         .hero-solar-system .service-icon {
@@ -2151,36 +2233,39 @@
         .hero-solar-system .telegram i { color: #0088CC; }
         .hero-solar-system .whatsapp i { color: #25D366; }
         .hero-solar-system .sheets i { color: #0F9D58; }
+        .hero-solar-system .trello i { color: #0079BF; }
         
         /* Медіа-запити для адаптивності */
         @media (max-width: 768px) {
-            .hero-solar-system {
-                height: 180px;
+            .dual-systems-container {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 0;
             }
             
-            .hero-solar-system .make-hub {
+            .makebox-container {
+                margin: 20px 0;
+            }
+            
+            .hero-solar-system {
+                height: 180px;
+                margin: 10px 0;
+            }
+            
+            .hero-solar-system .make-hub,
+            .hero-solar-system .n8n-hub {
                 width: 50px;
                 height: 50px;
             }
             
-            .hero-solar-system .orbit-9 {
-                width: 260px;
-                height: 260px;
+            .makebox-logo {
+                width: 60px;
+                height: 60px;
             }
             
-            .hero-solar-system .orbit-8 {
-                width: 240px;
-                height: 240px;
-            }
-            
-            .hero-solar-system .orbit-7 {
-                width: 220px;
-                height: 220px;
-            }
-            
-            .hero-solar-system .orbit-6 {
-                width: 200px;
-                height: 200px;
+            .makebox-pulse {
+                width: 60px;
+                height: 60px;
             }
             
             .hero-solar-system .orbit-5 {
