@@ -414,8 +414,8 @@ function initializePackageSelector() {
     const packageGrid = document.getElementById('packages-grid');
     const summaryPanel = document.getElementById('summary-panel');
     const emptyCart = document.getElementById('empty-cart');
-    const communityToggle = document.getElementById('community-toggle');
-    const toggleSlider = document.getElementById('toggle-slider');
+    const communityToggle = document.getElementById('ua-community-toggle');
+    const toggleSlider = communityToggle ? communityToggle.nextElementSibling : null;
     const selectedPackagesList = document.getElementById('selected-packages-list');
     const priceItems = document.getElementById('price-items');
     const nextDiscountAlert = document.getElementById('next-discount-alert');
@@ -457,11 +457,15 @@ function initializePackageSelector() {
     });
     
     // Community toggle functionality
-    communityToggle.addEventListener('change', () => {
-        isUkrainianCommunity = communityToggle.checked;
-        toggleSlider.classList.toggle('active', isUkrainianCommunity);
-        updateSummary();
-    });
+    if (communityToggle) {
+        communityToggle.addEventListener('change', () => {
+            isUkrainianCommunity = communityToggle.checked;
+            if (toggleSlider) {
+                toggleSlider.classList.toggle('active', isUkrainianCommunity);
+            }
+            updateSummary();
+        });
+    }
     
     // Toggle package selection
     function togglePackage(packageId) {
@@ -546,18 +550,41 @@ function initializePackageSelector() {
             `;
         }
         
-        // Community discount calculation
+        // Community discount calculation - original 30% discount
         let finalPrice = afterBaseDiscount;
+        let communityDiscountAmount = 0;
+        
         if (isUkrainianCommunity) {
-            const communityDiscountAmount = Math.round(afterBaseDiscount * discountInfo.communityDiscount / 100);
-            finalPrice = afterBaseDiscount - communityDiscountAmount;
+            // Original svoi mode discount
+            communityDiscountAmount = Math.round(afterBaseDiscount * discountInfo.communityDiscount / 100);
             
-            priceCalculationHTML += `
-                <div class="price-item discount">
-                    <span>Ukrainian business community discount (${discountInfo.communityDiscount}%):</span>
-                    <span>-$${communityDiscountAmount}</span>
-                </div>
-            `;
+            // Add additional 10% discount for Ukrainian community if 2+ packages selected
+            let uaCommunityDiscountAmount = 0;
+            if (packageCount >= 2) {
+                uaCommunityDiscountAmount = Math.round(afterBaseDiscount * 10 / 100);
+                
+                priceCalculationHTML += `
+                    <div class="price-item discount">
+                        <span>Ukrainian community discount (30%):</span>
+                        <span>-$${communityDiscountAmount}</span>
+                    </div>
+                    <div class="price-item discount">
+                        <span>Additional UA discount for ${packageCount}+ packages (10%):</span>
+                        <span>-$${uaCommunityDiscountAmount}</span>
+                    </div>
+                `;
+                
+                finalPrice = afterBaseDiscount - communityDiscountAmount - uaCommunityDiscountAmount;
+            } else {
+                priceCalculationHTML += `
+                    <div class="price-item discount">
+                        <span>Ukrainian community discount (${discountInfo.communityDiscount}%):</span>
+                        <span>-$${communityDiscountAmount}</span>
+                    </div>
+                `;
+                
+                finalPrice = afterBaseDiscount - communityDiscountAmount;
+            }
         }
         
         priceItems.innerHTML = priceCalculationHTML;
@@ -574,12 +601,21 @@ function initializePackageSelector() {
         if (packageCount < 6) {
             const nextDiscount = discountTable[packageCount];
             nextDiscountAlert.style.display = 'block';
-            nextDiscountAlert.innerHTML = `
+            
+            let nextDiscountText = `
                 <p>
-                    <strong>Add one more package</strong> to get a ${nextDiscount.baseDiscount}% discount 
-                    ${isUkrainianCommunity ? `+ ${nextDiscount.communityDiscount}%` : ''}!
-                </p>
+                    <strong>Add one more package</strong> to get a ${nextDiscount.baseDiscount}% discount
             `;
+            
+            if (isUkrainianCommunity) {
+                nextDiscountText += ` + ${nextDiscount.communityDiscount}% Ukrainian community discount`;
+                if (packageCount === 1) {
+                    nextDiscountText += ` + 10% additional UA discount`;
+                }
+            }
+            
+            nextDiscountText += `!</p>`;
+            nextDiscountAlert.innerHTML = nextDiscountText;
         } else {
             nextDiscountAlert.style.display = 'none';
         }
