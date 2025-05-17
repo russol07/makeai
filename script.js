@@ -391,22 +391,22 @@ window.addEventListener('load', () => {
 
 // Основні дані пакетів
 const packages = [
-    { id: 1, name: 'Etsy Ultimate', basePrice: 3999, icon: '🛍️', description: 'Complete automation of your Etsy store with AI-generated descriptions and sales analytics.' },
-    { id: 2, name: 'Shopify Ultimate', basePrice: 4999, icon: '🏪', description: 'Comprehensive Shopify automation with multichannel integrations and marketing tools.' },
-    { id: 3, name: 'QuickBooks Ultimate', basePrice: 3799, icon: '📊', description: 'Financial automation with receipt recognition and automatic invoice generation.' },
-    { id: 4, name: 'AI Chatbot Ultimate', basePrice: 4799, icon: '🤖', description: 'Omnichannel AI chatbot for website, WhatsApp, and Instagram trained on your own data.' },
-    { id: 5, name: 'Email Ultimate', basePrice: 2999, icon: '📧', description: 'Email marketing automation with segmentation, personalization, and A/B testing.' },
-    { id: 6, name: 'Social Media Ultimate', basePrice: 3699, icon: '📱', description: 'Automation of all social networks with AI content, analytics, and scheduling.' },
+    { id: 1, name: 'Etsy Ultimate', basePrice: 3300, icon: '🛍️', description: 'Complete automation of your Etsy store with AI-generated descriptions and sales analytics.' },
+    { id: 2, name: 'Shopify Ultimate', basePrice: 5000, icon: '🏪', description: 'Comprehensive Shopify automation with multichannel integrations and marketing tools.' },
+    { id: 3, name: 'QuickBooks Ultimate', basePrice: 3600, icon: '📊', description: 'Financial automation with receipt recognition and automatic invoice generation.' },
+    { id: 4, name: 'AI Chatbot Ultimate', basePrice: 7800, icon: '🤖', description: 'Omnichannel AI chatbot for website, WhatsApp, and Instagram trained on your own data.' },
+    { id: 5, name: 'Email Ultimate', basePrice: 3000, icon: '📧', description: 'Email marketing automation with segmentation, personalization, and A/B testing.' },
+    { id: 6, name: 'Social Media Ultimate', basePrice: 4200, icon: '📱', description: 'Automation of all social networks with AI content, analytics, and scheduling.' },
 ];
 
 // Таблиця знижок
 const discountTable = [
     { packages: 1, baseDiscount: 0, communityDiscount: 30 },
-    { packages: 2, baseDiscount: 15, communityDiscount: 25 },
-    { packages: 3, baseDiscount: 20, communityDiscount: 25 },
-    { packages: 4, baseDiscount: 25, communityDiscount: 22 },
-    { packages: 5, baseDiscount: 30, communityDiscount: 20 },
-    { packages: 6, baseDiscount: 35, communityDiscount: 20 },
+    { packages: 2, baseDiscount: 10, communityDiscount: 30 },
+    { packages: 3, baseDiscount: 14, communityDiscount: 30 },
+    { packages: 4, baseDiscount: 18, communityDiscount: 30 },
+    { packages: 5, baseDiscount: 22, communityDiscount: 30 },
+    { packages: 6, baseDiscount: 25, communityDiscount: 30 },
 ];
 
 // Initialize Package Selector

@@ -176,8 +176,8 @@
                                 <div class="price-section">
                                     <div class="price-info-col">
                                                                     <div class="price-tag">
-                                <span class="original-price-display" style="font-size: 1.8rem;">$2900</span>
-                                <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$2000</span>
+                                <span class="original-price-display" style="font-size: 1.8rem;">$3300</span>
+                                <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$2310</span>
                                 <span class="setup-text" style="display: inline-block; margin-left: 5px; font-size: 1rem;">(one-time setup)</span>
                             </div>
                                         <div class="subscription">
@@ -192,6 +192,7 @@
                                     <div class="product-promo-code">
                                         <div class="ua-promo-container">
                                             <input type="text" id="product-promo" placeholder="Promo code">
+                                            <button id="product-reset-promo" class="ua-reset-promo-btn">✕</button>
                                             <button id="product-apply-promo" class="ua-apply-promo-btn">Apply</button>
                                         </div>
                                     </div>
@@ -459,8 +460,8 @@
                             <h1 class="product-title">Shopify Automation PRO — Complete Shopify Store Automation Package <span class="coming-soon-label">COMING SOON</span></h1>
                             <div class="pricing-info">
                                 <div class="price-tag">
-                                    <span class="original-price-display" style="font-size: 1.8rem;">$3600</span>
-                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$2500</span>
+                                    <span class="original-price-display" style="font-size: 1.8rem;">$5000</span>
+                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$3500</span>
                                     <span style="display: inline-block; margin-left: 5px; font-size: 1rem;">(one-time setup)</span>
                                 </div>
                                 <div class="subscription">
@@ -671,8 +672,8 @@
                             <h1 class="product-title">AI Chatbot PRO — Omnichannel Knowledge Bot <span class="coming-soon-label">COMING SOON</span></h1>
                             <div class="pricing-info">
                                 <div class="price-tag">
-                                    <span class="original-price-display" style="font-size: 1.8rem;">$4600</span>
-                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$3200</span>
+                                    <span class="original-price-display" style="font-size: 1.8rem;">$7800</span>
+                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$5460</span>
                                     <span style="display: inline-block; margin-left: 5px; font-size: 1rem;">(one-time setup)</span>
                                 </div>
                                 <div class="subscription">
@@ -867,8 +868,8 @@
                             <h1 class="product-title">Email Automation PRO — AI Email Service <span class="coming-soon-label">COMING SOON</span></h1>
                             <div class="pricing-info">
                                 <div class="price-tag">
-                                    <span class="original-price-display" style="font-size: 1.8rem;">$2500</span>
-                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$1700</span>
+                                    <span class="original-price-display" style="font-size: 1.8rem;">$3000</span>
+                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$2100</span>
                                     <span style="display: inline-block; margin-left: 5px; font-size: 1rem;">(one-time setup)</span>
                                 </div>
                                 <div class="subscription">
@@ -1069,8 +1070,8 @@
                             <h1 class="product-title">QuickBooks Automation PRO — AI Accounting Integration <span class="coming-soon-label">COMING SOON</span></h1>
                             <div class="pricing-info">
                                 <div class="price-tag">
-                                    <span class="original-price-display" style="font-size: 1.8rem;">$2600</span>
-                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$1800</span>
+                                    <span class="original-price-display" style="font-size: 1.8rem;">$3600</span>
+                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$2520</span>
                                     <span style="display: inline-block; margin-left: 5px; font-size: 1rem;">(one-time setup)</span>
                                 </div>
                                 <div class="subscription">
@@ -1259,8 +1260,8 @@
                             <h1 class="product-title">Social Media Automation PRO — AI-Powered Automation for SMM <span class="coming-soon-label">COMING SOON</span></h1>
                             <div class="pricing-info">
                                 <div class="price-tag">
-                                    <span class="original-price-display" style="font-size: 1.8rem;">$2900</span>
-                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$2000</span>
+                                    <span class="original-price-display" style="font-size: 1.8rem;">$4200</span>
+                                    <span class="discounted-price-display" style="display: none; font-size: 1.8rem;">$2940</span>
                                     <span style="display: inline-block; margin-left: 5px; font-size: 1rem;">(one-time setup)</span>
                                 </div>
                                 <div class="subscription">
@@ -1559,58 +1560,71 @@
             
             <div class="process-diagram">
                 <div class="linear-process">
-                    <div class="process-step-linear">
+                    <div class="process-step-linear" id="trigger-step">
                         <div class="step-icon trigger-icon">
                             <i class="fas fa-bell"></i>
                         </div>
                         <div class="step-label">Trigger</div>
                     </div>
-                    <div class="step-connector has-animation"></div>
-                    <div class="process-step-linear">
+                    <div class="step-connector" id="connector-1"></div>
+                    <div class="process-step-linear" id="process-step">
                         <div class="step-icon process-icon">
                             <i class="fas fa-cog"></i>
                         </div>
                         <div class="step-label">Process</div>
                     </div>
-                    <div class="step-connector has-animation"></div>
-                    <div class="process-step-linear">
+                    <div class="step-connector" id="connector-2"></div>
+                    <div class="process-step-linear" id="action-step">
                         <div class="step-icon action-icon">
                             <i class="fas fa-bolt"></i>
                         </div>
                         <div class="step-label">Action</div>
+                        
+                        <!-- Integration branches that will be shown after action step -->
+                        <div class="integration-branches" id="integration-branches">
+                            <div class="branch branch-facebook">
+                                <div class="branch-connector"></div>
+                                <div class="integration-icon">
+                                    <i class="fab fa-facebook" style="color: #1877F2;"></i>
+                                    <span>Facebook</span>
+                                </div>
+                            </div>
+                            <div class="branch branch-instagram">
+                                <div class="branch-connector"></div>
+                                <div class="integration-icon">
+                                    <i class="fab fa-instagram" style="color: #E4405F;"></i>
+                                    <span>Instagram</span>
+                                </div>
+                            </div>
+                            <div class="branch branch-telegram">
+                                <div class="branch-connector"></div>
+                                <div class="integration-icon">
+                                    <i class="fab fa-telegram" style="color: #0088cc;"></i>
+                                    <span>Telegram</span>
+                                </div>
+                            </div>
+                            <div class="branch branch-crm">
+                                <div class="branch-connector"></div>
+                                <div class="integration-icon">
+                                    <i class="fas fa-chart-line" style="color: #ff6384;"></i>
+                                    <span>CRM</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="step-connector has-animation"></div>
-                    <div class="process-step-linear">
+                    <div class="step-connector" id="connector-3"></div>
+                    <div class="process-step-linear" id="notification-step">
                         <div class="step-icon notification-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                         <div class="step-label">Notification</div>
                     </div>
-                    <div class="step-connector has-animation"></div>
-                    <div class="process-step-linear">
+                    <div class="step-connector" id="connector-4"></div>
+                    <div class="process-step-linear" id="database-step">
                         <div class="step-icon database-icon">
                             <i class="fas fa-database"></i>
                         </div>
                         <div class="step-label">Database</div>
-                    </div>
-                </div>
-
-                <div class="integration-icons" style="display: flex; justify-content: center; margin: 2rem 0; gap: 2rem;">
-                    <div class="integration-icon" style="display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <i class="fab fa-facebook" style="font-size: 2rem; color: #1877F2;"></i>
-                        <span>Facebook</span>
-                    </div>
-                    <div class="integration-icon" style="display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <i class="fab fa-instagram" style="font-size: 2rem; color: #E4405F;"></i>
-                        <span>Instagram</span>
-                    </div>
-                    <div class="integration-icon" style="display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <i class="fab fa-telegram" style="font-size: 2rem; color: #0088cc;"></i>
-                        <span>Telegram</span>
-                    </div>
-                    <div class="integration-icon" style="display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <i class="fas fa-chart-line" style="font-size: 2rem; color: #ff6384;"></i>
-                        <span>CRM</span>
                     </div>
                 </div>
                 
@@ -1620,7 +1634,7 @@
                 </div>
                 
                 <div class="automation-action">
-                    <button class="start-automation-btn">Run Automation</button>
+                    <button class="start-automation-btn" id="start-automation">Run Automation</button>
                 </div>
                 
                 <div class="automation-note">
@@ -1878,6 +1892,10 @@
                         productApplyPromoBtn.textContent = "Applied";
                         productApplyPromoBtn.disabled = true;
                         productApplyPromoBtn.style.background = "#4CAF50";
+                        const productResetPromoBtn = document.getElementById('product-reset-promo');
+                        if (productResetPromoBtn) {
+                            productResetPromoBtn.classList.add('visible');
+                        }
                     }
                 } else {
                     originalPriceDisplays.forEach(element => {
@@ -1903,7 +1921,11 @@
                         productPromoInput.disabled = false;
                         productApplyPromoBtn.textContent = "Apply";
                         productApplyPromoBtn.disabled = false;
-                        productApplyPromoBtn.style.background = "linear-gradient(to right, #0057b7, #0057b7)";
+                        productApplyPromoBtn.style.background = "linear-gradient(to right, #ffd700, #ebc000)";
+                        const productResetPromoBtn = document.getElementById('product-reset-promo');
+                        if (productResetPromoBtn) {
+                            productResetPromoBtn.classList.remove('visible');
+                        }
                     }
                 }
             }
@@ -1954,11 +1976,42 @@
             
             // Product-level promo code application
             if (productApplyPromoBtn) {
+                const productResetPromoBtn = document.getElementById('product-reset-promo');
+                
+                // Function to update reset button visibility
+                function updateResetButtonVisibility() {
+                    if (productPromoInput.value.trim() !== '' || checkSvoiModeCookie()) {
+                        productResetPromoBtn.classList.add('visible');
+                    } else {
+                        productResetPromoBtn.classList.remove('visible');
+                    }
+                }
+                
+                // Check on page load
+                updateResetButtonVisibility();
+                
+                // Update on input change
+                productPromoInput.addEventListener('input', updateResetButtonVisibility);
+                
+                // Reset promo button functionality
+                if (productResetPromoBtn) {
+                    productResetPromoBtn.addEventListener('click', function() {
+                        productPromoInput.value = '';
+                        productPromoInput.disabled = false;
+                        productApplyPromoBtn.textContent = "Apply";
+                        productApplyPromoBtn.disabled = false;
+                        productApplyPromoBtn.style.background = "linear-gradient(to right, #ffd700, #ebc000)";
+                        setSvoiMode(false);
+                        productResetPromoBtn.classList.remove('visible');
+                    });
+                }
+                
                 productApplyPromoBtn.addEventListener('click', function() {
                     const promoCode = productPromoInput.value.trim().toUpperCase();
                     
-                    if (promoCode === validPromoCode) {
+                    if (promoCode === validPromoCode || promoCode === 'СВОI' || promoCode === 'УКРАЇНА' || promoCode === 'UKRAINE') {
                         setSvoiMode(true);
+                        productResetPromoBtn.classList.add('visible');
                         
                         // Show a quick toast-style notification
                         const toast = document.createElement('div');
@@ -1979,7 +2032,7 @@
                     } else if (promoCode === '') {
                         alert('Please enter a promo code');
                     } else {
-                        alert('Invalid promo code. Try SVOI');
+                        alert('Invalid promo code. Try SVOI, СВОI, УКРАЇНА, or UKRAINE');
                     }
                 });
                 
@@ -2004,12 +2057,12 @@
 
     <div class="integration-map">
       <svg width="800" height="500" viewBox="0 0 800 500">
-        <!-- Вузли (сервіси) -->
+        <!-- Nodes (services) -->
         <g class="nodes">
           <circle cx="400" cy="250" r="50" fill="#5046E5" class="central-node" />
           <text x="400" y="250" text-anchor="middle" fill="white" dy=".3em">Make.com</text>
           
-          <!-- Периферійні вузли (сервіси) - розширений список -->
+          <!-- Peripheral nodes (services) - extended list -->
           <circle cx="200" cy="150" r="30" fill="#FF6B6B" class="service-node" data-name="Etsy" />
           <text x="200" y="150" text-anchor="middle" fill="white" dy=".3em">Etsy</text>
           
@@ -2041,7 +2094,7 @@
           <text x="500" y="400" text-anchor="middle" fill="white" dy=".3em">Viber</text>
         </g>
         
-        <!-- Зв'язки (лінії) -->
+        <!-- Links (lines) -->
         <g class="connections" stroke-dasharray="5,5">
           <line x1="400" y1="250" x2="200" y2="150" stroke="#FF6B6B" stroke-width="3" class="connection" />
           <line x1="400" y1="250" x2="600" y2="150" stroke="#4ECDC4" stroke-width="3" class="connection" />
@@ -2055,7 +2108,7 @@
           <line x1="400" y1="250" x2="500" y2="400" stroke="#8338EC" stroke-width="3" class="connection" />
         </g>
         
-        <!-- Анімовані "пакети даних" -->
+        <!-- Animated "data packets" -->
         <g class="packets">
           <circle cx="200" cy="150" r="5" fill="white" class="packet packet-etsy" />
           <circle cx="600" cy="150" r="5" fill="white" class="packet packet-shopify" />
@@ -2070,7 +2123,7 @@
         </g>
       </svg>
       
-      <!-- Вспливаюча інформація -->
+      <!-- Popup information -->
       <div class="info-panel"></div>
     </div>
 
@@ -2095,7 +2148,7 @@
         opacity: 0;
       }
       
-      /* Всі анімації починаються з Etsy (першого модуля) */
+      /* All animations start from Etsy (first module) */
       .packet-etsy {
         animation: moveEtsyToMake 4s infinite;
       }
@@ -2145,7 +2198,7 @@
         animation-delay: 1.8s;
       }
       
-      /* Нові анімації від Etsy до інших сервісів через Make.com */
+      /* New animations from Etsy to other services via Make.com */
       @keyframes moveEtsyToMake {
         0%, 100% { transform: translate(0, 0); opacity: 0; }
         5% { opacity: 1; }
@@ -2462,7 +2515,7 @@
             animation: rotate5 24s linear infinite;
         }
         
-        /* Несинхронні анімації обертання для кожної орбіти */
+        /* Non-synchronized animations for each orbit */
         @keyframes rotate1 {
             from { transform: translate(-50%, -50%) rotate(45deg); }
             to { transform: translate(-50%, -50%) rotate(405deg); }
@@ -2530,7 +2583,7 @@
         .hero-solar-system .sheets i { color: #0F9D58; }
         .hero-solar-system .trello i { color: #0079BF; }
         
-        /* Медіа-запити для адаптивності */
+        /* Media queries for responsiveness */
         @media (max-width: 768px) {
             .dual-systems-container {
                 flex-direction: column;
@@ -2808,7 +2861,7 @@
             border-radius: 8px;
             padding: 2px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 220px;
+            max-width: 240px;
             position: relative;
             overflow: hidden;
             animation: pulse-ua-colors 3s infinite;
@@ -2832,12 +2885,11 @@
             content: "🇺🇦";
             position: absolute;
             top: 50%;
-            right: 10px;
+            left: 10px;
             transform: translateY(-50%);
             font-size: 18px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             opacity: 0.8;
-            display: none; /* Hide by default, show in wider screens */
         }
         
         .ua-promo-container label {
@@ -2855,23 +2907,24 @@
             background: white;
             padding: 0 10px 8px;
             border-radius: 0 0 6px 6px;
+            position: relative;
         }
         
         .ua-promo-container input {
             flex-grow: 1;
-            border: none;
+            border: 1px solid #0057b7;
             border-radius: 0;
             height: 100%;
-            padding: 0 10px;
+            padding: 0 10px 0 30px;
             font-size: 14px;
-            background: white;
-            width: 120px;
+            background: #e6f2ff;
+            min-width: 120px;
             border-radius: 6px 0 0 6px;
         }
         
         .ua-apply-promo-btn {
-            background: linear-gradient(to right, #0057b7, #0057b7);
-            color: white;
+            background: linear-gradient(to right, #ffd700, #ebc000);
+            color: #333;
             border: none;
             border-radius: 0 6px 6px 0;
             padding: 0 12px;
@@ -2880,10 +2933,28 @@
             transition: all 0.2s;
             height: 100%;
             font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .ua-reset-promo-btn {
+            position: absolute;
+            right: 90px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 12px;
+            display: none;
+        }
+        
+        .ua-reset-promo-btn.visible {
+            display: block;
         }
         
         .ua-apply-promo-btn:hover {
-            background: linear-gradient(to right, #003f84, #003f84);
+            background: linear-gradient(to right, #ebc000, #d4ae00);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
@@ -2956,5 +3027,263 @@
             color: #6b7280;
         }
     </style>
+
+    <!-- New styles for process branching animation -->
+    <style>
+      /* Integration branches styling */
+      .integration-branches {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+        width: 400px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s;
+      }
+      
+      .integration-branches.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .branch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80px;
+      }
+      
+      .branch-connector {
+        width: 2px;
+        height: 0;
+        background: #ddd;
+        margin-bottom: 10px;
+        transition: height 1s ease;
+      }
+      
+      .branch.active .branch-connector {
+        height: 50px;
+      }
+      
+      .integration-icon {
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: scale(0);
+        transition: transform 0.5s ease;
+        cursor: pointer;
+      }
+      
+      .branch.active .integration-icon {
+        transform: scale(1);
+      }
+      
+      .integration-icon i {
+        font-size: 1.2rem;
+      }
+      
+      .integration-icon span {
+        font-size: 0.7rem;
+        margin-top: 2px;
+        white-space: nowrap;
+        position: absolute;
+        top: 100%;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      .integration-icon:hover span {
+        opacity: 1;
+      }
+      
+      /* Step animation styles */
+      .step-connector {
+        position: relative;
+      }
+      
+      .step-connector.active {
+        background: #ddd;
+      }
+      
+      .step-connector.active:after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #8B5CF6;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        animation: movePoint 2s linear forwards;
+      }
+      
+      .step-icon {
+        opacity: 0.5;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      
+      .process-step-linear.active .step-icon {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      
+      .process-icon.active i {
+        animation: rotate-gear 3s linear infinite;
+      }
+      
+      @media (max-width: 768px) {
+        .integration-branches {
+          width: 300px;
+        }
+        
+        .branch {
+          width: 60px;
+        }
+      }
+    </style>
+
+    <script>
+      document.querySelectorAll('.service-node').forEach(node => {
+        node.addEventListener('mouseenter', function() {
+          const infoPanel = document.querySelector('.info-panel');
+          const serviceName = this.getAttribute('data-name');
+          infoPanel.textContent = `${serviceName} integrates with dozens of other services through Make.com`;
+          infoPanel.style.opacity = 1;
+        });
+        
+        node.addEventListener('mouseleave', function() {
+          document.querySelector('.info-panel').style.opacity = 0;
+        });
+      });
+    </script>
+
+    <!-- Automation workflow animation script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const startButton = document.getElementById('start-automation');
+        const triggerStep = document.getElementById('trigger-step');
+        const processStep = document.getElementById('process-step');
+        const actionStep = document.getElementById('action-step');
+        const notificationStep = document.getElementById('notification-step');
+        const databaseStep = document.getElementById('database-step');
+        const connector1 = document.getElementById('connector-1');
+        const connector2 = document.getElementById('connector-2');
+        const connector3 = document.getElementById('connector-3');
+        const connector4 = document.getElementById('connector-4');
+        const integrationBranches = document.getElementById('integration-branches');
+        const branches = document.querySelectorAll('.branch');
+        
+        // Reset animation state
+        function resetAnimation() {
+          [triggerStep, processStep, actionStep, notificationStep, databaseStep].forEach(step => {
+            step.classList.remove('active');
+          });
+          
+          [connector1, connector2, connector3, connector4].forEach(connector => {
+            connector.classList.remove('active');
+          });
+          
+          integrationBranches.classList.remove('active');
+          
+          branches.forEach(branch => {
+            branch.classList.remove('active');
+          });
+          
+          startButton.disabled = false;
+        }
+        
+        // Run the animation
+        startButton.addEventListener('click', function() {
+          // Disable button during animation
+          startButton.disabled = true;
+          
+          // Reset any existing animation
+          resetAnimation();
+          
+          // Trigger step
+          setTimeout(() => {
+            triggerStep.classList.add('active');
+          }, 500);
+          
+          // Connector 1 animation
+          setTimeout(() => {
+            connector1.classList.add('active');
+          }, 1000);
+          
+          // Process step
+          setTimeout(() => {
+            processStep.classList.add('active');
+            processStep.querySelector('.process-icon').classList.add('active');
+          }, 2000);
+          
+          // Connector 2 animation
+          setTimeout(() => {
+            connector2.classList.add('active');
+          }, 3000);
+          
+          // Action step
+          setTimeout(() => {
+            actionStep.classList.add('active');
+          }, 4000);
+          
+          // Show integration branches
+          setTimeout(() => {
+            integrationBranches.classList.add('active');
+          }, 4500);
+          
+          // Activate branches one by one
+          setTimeout(() => {
+            document.querySelector('.branch-facebook').classList.add('active');
+          }, 5000);
+          
+          setTimeout(() => {
+            document.querySelector('.branch-instagram').classList.add('active');
+          }, 5300);
+          
+          setTimeout(() => {
+            document.querySelector('.branch-telegram').classList.add('active');
+          }, 5600);
+          
+          setTimeout(() => {
+            document.querySelector('.branch-crm').classList.add('active');
+          }, 5900);
+          
+          // Continue with the main flow after branches
+          setTimeout(() => {
+            connector3.classList.add('active');
+          }, 6500);
+          
+          // Notification step
+          setTimeout(() => {
+            notificationStep.classList.add('active');
+          }, 7500);
+          
+          // Connector 4 animation
+          setTimeout(() => {
+            connector4.classList.add('active');
+          }, 8500);
+          
+          // Database step
+          setTimeout(() => {
+            databaseStep.classList.add('active');
+          }, 9500);
+          
+          // Reset after animation completes
+          setTimeout(() => {
+            resetAnimation();
+          }, 12000);
+        });
+      });
+    </script>
 </body>
 </html> 
