@@ -809,6 +809,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function setSvoiMode(active) {
         applyDiscount(active);
         setSvoiModeCookie(active);
+        
+        // Disable Ukrainian Community toggle when promo code is applied
+        const communityToggle = document.getElementById('ua-community-toggle');
+        if (communityToggle) {
+            if (active) {
+                // If promo code is active, disable and uncheck UA Community toggle
+                communityToggle.checked = false;
+                communityToggle.disabled = true;
+                
+                // Also make sure the isUkrainianCommunity variable is updated in the package selector
+                if (typeof isUkrainianCommunity !== 'undefined') {
+                    isUkrainianCommunity = false;
+                    updateSummary();
+                }
+            } else {
+                // Re-enable the toggle when promo code is removed
+                communityToggle.disabled = false;
+            }
+        }
     }
     
     // Apply promo code from package builder section
