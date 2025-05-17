@@ -53,6 +53,41 @@
             .hero-wave, .section-wave {
                 display: none !important;
             }
+            
+            /* Compact Package Builder and product cards */
+            .product-image, .gallery-slider {
+                height: 150px !important;
+                max-height: 150px !important;
+            }
+            
+            .gallery-slider img {
+                max-height: 140px !important;
+                object-fit: contain !important;
+            }
+            
+            /* Decrease title size */
+            .product-title {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            /* Make prices smaller */
+            .price-tag, .subscription {
+                font-size: 1.1rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            /* Compact Package Builder cards */
+            .package-card {
+                height: auto !important;
+                margin-bottom: 0.75rem !important;
+            }
+            
+            .package-description {
+                -webkit-line-clamp: 2 !important;
+                max-height: 3em !important;
+            }
         }
     </style>
 </head>

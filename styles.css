@@ -2794,3 +2794,90 @@ body {
         margin-bottom: 1rem !important;
     }
 } 
+
+/* Оптимизация Package Builder и карточек товаров для мобильных устройств */
+@media (max-width: 576px) {
+    /* Уменьшение высоты карточек товаров */
+    .package-card, 
+    .solution-card,
+    .category-card {
+        height: auto !important;
+        max-height: none !important;
+    }
+    
+    /* Уменьшение изображений в карточках */
+    .solution-image, 
+    .product-image,
+    .gallery-slider {
+        height: 150px !important;
+        min-height: auto !important;
+        max-height: 150px !important;
+    }
+    
+    .solution-image img, 
+    .product-image img,
+    .gallery-slider img {
+        height: 150px !important;
+        max-height: 150px !important;
+        object-fit: contain !important;
+    }
+    
+    /* Уменьшение блока с описанием продукта */
+    .product-details {
+        padding: 10px 5px !important;
+    }
+    
+    /* Компактное отображение цены */
+    .solution-price,
+    .price-tag,
+    .product-price {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* Более компактные кнопки */
+    .solution-card .primary-button,
+    .category-card .primary-button {
+        margin: 0.5rem !important;
+        padding: 0.5rem 1rem !important;
+    }
+    
+    /* Уменьшение высоты Package Builder секции */
+    #package-builder {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    
+    /* Оптимизация сеток для карточек товаров */
+    .solutions-grid,
+    .packages-grid {
+        gap: 1rem !important;
+    }
+    
+    /* Уменьшение размера карточек в Package Builder */
+    .package-card {
+        padding: 0.75rem !important;
+    }
+    
+    .package-content {
+        padding: 0.5rem !important;
+    }
+    
+    .package-icon {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .package-description {
+        max-height: 3em !important;
+        overflow: hidden !important;
+        font-size: 0.9rem !important;
+        -webkit-line-clamp: 2 !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .package-price {
+        font-size: 1.1rem !important;
+        margin-top: 0.25rem !important;
+    }
+} 
