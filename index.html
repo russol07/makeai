@@ -184,6 +184,17 @@
                                     <span class="discounted-price-display" style="display: none;">$104</span>
                                     /month
                                 </div>
+                                
+                                <!-- Ukrainian-styled Promo Code -->
+                                <div class="product-promo-code">
+                                    <div class="ua-promo-container">
+                                        <label for="product-promo">Have a promo code?</label>
+                                        <div class="ua-promo-input-group">
+                                            <input type="text" id="product-promo" placeholder="Enter SVOI">
+                                            <button id="product-apply-promo" class="ua-apply-promo-btn">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div class="product-description">
@@ -1783,6 +1794,10 @@
             const promoMessage = document.getElementById('promo-message');
             const svoiModeIndicator = document.getElementById('svoi-mode-indicator');
             
+            // Product promo elements
+            const productPromoInput = document.getElementById('product-promo');
+            const productApplyPromoBtn = document.getElementById('product-apply-promo');
+            
             // Valid promo code
             const validPromoCode = 'SVOI';
             
@@ -1822,6 +1837,15 @@
                     
                     // Show Svoi mode indicator
                     svoiModeIndicator.classList.add('active');
+                    
+                    // Update product promo field if it exists
+                    if (productPromoInput) {
+                        productPromoInput.value = validPromoCode;
+                        productPromoInput.disabled = true;
+                        productApplyPromoBtn.textContent = "Applied";
+                        productApplyPromoBtn.disabled = true;
+                        productApplyPromoBtn.style.background = "#4CAF50";
+                    }
                 } else {
                     originalPriceDisplays.forEach(element => {
                         element.style.textDecoration = 'none';
@@ -1834,6 +1858,15 @@
                     
                     // Hide Svoi mode indicator
                     svoiModeIndicator.classList.remove('active');
+                    
+                    // Reset product promo field if it exists
+                    if (productPromoInput) {
+                        productPromoInput.value = "";
+                        productPromoInput.disabled = false;
+                        productApplyPromoBtn.textContent = "Apply";
+                        productApplyPromoBtn.disabled = false;
+                        productApplyPromoBtn.style.background = "linear-gradient(to right, #0057b7, #0057b7)";
+                    }
                 }
             }
             
@@ -1841,31 +1874,84 @@
             function setSvoiMode(active) {
                 applyDiscount(active);
                 setSvoiModeCookie(active);
+                
+                // If there's a promoCodeInput in the package builder section, update it too
+                if (promoCodeInput) {
+                    if (active) {
+                        promoCodeInput.value = validPromoCode;
+                        promoMessage.textContent = 'Promo code applied successfully!';
+                        promoMessage.className = 'promo-message success';
+                    } else {
+                        promoCodeInput.value = "";
+                        promoMessage.textContent = '';
+                    }
+                }
             }
             
-            // Apply promo code
-            applyPromoBtn.addEventListener('click', function() {
-                const promoCode = promoCodeInput.value.trim().toUpperCase();
+            // Apply promo code from package builder section
+            if (applyPromoBtn) {
+                applyPromoBtn.addEventListener('click', function() {
+                    const promoCode = promoCodeInput.value.trim().toUpperCase();
+                    
+                    if (promoCode === validPromoCode) {
+                        promoMessage.textContent = 'Promo code applied successfully!';
+                        promoMessage.className = 'promo-message success';
+                        setSvoiMode(true);
+                    } else if (promoCode === '') {
+                        promoMessage.textContent = 'Please enter a promo code';
+                        promoMessage.className = 'promo-message error';
+                    } else {
+                        promoMessage.textContent = 'Invalid promo code';
+                        promoMessage.className = 'promo-message error';
+                    }
+                });
                 
-                if (promoCode === validPromoCode) {
-                    promoMessage.textContent = 'Promo code applied successfully!';
-                    promoMessage.className = 'promo-message success';
-                    setSvoiMode(true);
-                } else if (promoCode === '') {
-                    promoMessage.textContent = 'Please enter a promo code';
-                    promoMessage.className = 'promo-message error';
-                } else {
-                    promoMessage.textContent = 'Invalid promo code';
-                    promoMessage.className = 'promo-message error';
-                }
-            });
+                // Enter key for promo code input
+                promoCodeInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        applyPromoBtn.click();
+                    }
+                });
+            }
             
-            // Enter key for promo code input
-            promoCodeInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    applyPromoBtn.click();
-                }
-            });
+            // Product-level promo code application
+            if (productApplyPromoBtn) {
+                productApplyPromoBtn.addEventListener('click', function() {
+                    const promoCode = productPromoInput.value.trim().toUpperCase();
+                    
+                    if (promoCode === validPromoCode) {
+                        setSvoiMode(true);
+                        
+                        // Show a quick toast-style notification
+                        const toast = document.createElement('div');
+                        toast.className = 'promo-toast';
+                        toast.textContent = '30% discount applied successfully!';
+                        document.body.appendChild(toast);
+                        
+                        setTimeout(() => {
+                            toast.classList.add('show');
+                        }, 100);
+                        
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                            setTimeout(() => {
+                                document.body.removeChild(toast);
+                            }, 500);
+                        }, 3000);
+                    } else if (promoCode === '') {
+                        alert('Please enter a promo code');
+                    } else {
+                        alert('Invalid promo code. Try SVOI');
+                    }
+                });
+                
+                // Enter key for product promo code input
+                productPromoInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        productApplyPromoBtn.click();
+                    }
+                });
+            }
             
             // Check cookie on page load
             const isSvoiMode = checkSvoiModeCookie();
@@ -2643,6 +2729,116 @@
         
         .svoi-mode-indicator i {
             font-size: 14px;
+        }
+        
+        /* Ukrainian-styled promo code */
+        .product-promo-code {
+            margin-top: 15px;
+        }
+        
+        .ua-promo-container {
+            background: linear-gradient(135deg, #0057b7 0%, #0057b7 50%, #ffd700 50%, #ffd700 100%);
+            border-radius: 8px;
+            padding: 2px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            animation: pulse-ua-colors 3s infinite;
+        }
+        
+        @keyframes pulse-ua-colors {
+            0% {
+                box-shadow: 0 0 5px rgba(0, 87, 183, 0.5), 0 0 7px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(0, 87, 183, 0.8), 0 0 18px rgba(255, 215, 0, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(0, 87, 183, 0.5), 0 0 7px rgba(255, 215, 0, 0.3);
+            }
+        }
+        
+        .ua-promo-container::before {
+            content: "🇺🇦";
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            font-size: 18px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 0.8;
+            display: none; /* Hide by default, show in wider screens */
+        }
+        
+        .ua-promo-container label {
+            display: block;
+            background: white;
+            color: #333;
+            padding: 8px 10px 4px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .ua-promo-input-group {
+            display: flex;
+            background: white;
+            padding: 0 10px 8px;
+            border-radius: 0 0 6px 6px;
+        }
+        
+        .ua-promo-input-group input {
+            flex-grow: 1;
+            border: 1px solid #d1d5db;
+            border-radius: 4px 0 0 4px;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .ua-apply-promo-btn {
+            background: linear-gradient(to right, #0057b7, #0057b7);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            padding: 8px 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ua-apply-promo-btn:hover {
+            background: linear-gradient(to right, #003f84, #003f84);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (min-width: 768px) {
+            .ua-promo-container::before {
+                display: block;
+            }
+        }
+        
+        /* Toast notification */
+        .promo-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
+            z-index: 1100;
+            transition: transform 0.4s ease-out;
+            text-align: center;
+        }
+        
+        .promo-toast.show {
+            transform: translateX(-50%) translateY(0);
         }
     </style>
 </body>
