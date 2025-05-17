@@ -2600,4 +2600,89 @@ body {
     .package-card.selected {
         transform: translateY(-5px);
     }
+}
+
+/* Enterprise Automation Section Styles */
+.enterprise-automation {
+    padding: 4rem 0;
+    background: linear-gradient(145deg, #f9fafb 0%, #f3f4f6 100%);
+}
+
+.enterprise-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+}
+
+.enterprise-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.enterprise-features-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4b5563;
+}
+
+.enterprise-features-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #7c3aed;
+    font-weight: bold;
+}
+
+.enterprise-implementation-list {
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.enterprise-implementation-list li {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4b5563;
+}
+
+.enterprise-audience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.enterprise-audience-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4b5563;
+}
+
+.enterprise-audience-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #7c3aed;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .enterprise-features-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-cards-grid {
+        grid-template-columns: 1fr;
+    }
 } 
