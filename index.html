@@ -1828,8 +1828,7 @@
                 
                 if (active) {
                     originalPriceDisplays.forEach(element => {
-                        element.style.textDecoration = 'line-through';
-                        element.style.color = '#9ca3af';
+                        element.style.display = 'none';
                     });
                     
                     discountedPriceDisplays.forEach(element => {
@@ -1849,6 +1848,7 @@
                     }
                 } else {
                     originalPriceDisplays.forEach(element => {
+                        element.style.display = 'inline';
                         element.style.textDecoration = 'none';
                         element.style.color = 'inherit';
                     });
@@ -2702,7 +2702,7 @@
         }
         
         .discounted-price {
-            color: #ef4444;
+            color: #8B5CF6;
             font-weight: bold;
         }
         
@@ -2754,7 +2754,7 @@
         .price-tag {
             font-size: 2rem;
             font-weight: 700;
-            color: #333;
+            color: #8B5CF6;
             margin-bottom: 8px;
         }
         
@@ -2881,7 +2881,7 @@
         .catalog .price-tag {
             font-size: 2rem;
             font-weight: 700;
-            color: #333;
+            color: #8B5CF6;
             margin-bottom: 8px;
         }
         
@@ -2889,8 +2889,15 @@
         .package-builder .price-tag {
             font-size: 2rem;
             font-weight: 700;
-            color: #333;
+            color: #8B5CF6;
             margin-bottom: 8px;
+        }
+        
+        /* Discounted price display */
+        .discounted-price-display {
+            color: #8B5CF6;
+            font-weight: 700;
+            font-size: 2rem;
         }
     </style>
 </body>
