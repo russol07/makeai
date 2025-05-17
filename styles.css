@@ -417,9 +417,10 @@ body {
 
 /* Modern Hero Section */
 .modern-hero {
-    padding-top: 6rem;
-    padding-bottom: 3rem;
-    min-height: 100vh;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    min-height: auto;
+    max-height: 600px;
     background: linear-gradient(125deg, #7c3aed 0%, #8b5cf6 100%);
     color: white;
     position: relative;
@@ -548,21 +549,22 @@ body {
     align-items: stretch;
 }
 
-.automation-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: #fff;
-    border-radius: 1.2rem;
-    box-shadow: 0 4px 24px rgba(124,58,237,0.08);
-    padding: 2rem 1.5rem;
-    transition: transform 0.2s;
-    cursor: grab;
-    user-select: none;
-    z-index: 1;
-    transition: box-shadow 0.2s, transform 0.25s cubic-bezier(.4,2,.6,1), top 0.25s, left 0.25s;
-    position: relative;
+.automation-card,
+.benefit-card,
+.feature-card,
+.team-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
 }
+
+.benefits-grid,
+.feature-cards-grid,
+.team-grid {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
 .automation-card:hover {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 0 8px 32px rgba(124,58,237,0.16);
@@ -599,14 +601,6 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2.5rem;
     margin-top: 2.5rem;
-}
-.benefit-card {
-    background: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 2px 16px rgba(124,58,237,0.08);
-    padding: 2rem 1.2rem;
-    text-align: center;
-    transition: transform 0.2s;
 }
 .benefit-card:hover {
     transform: translateY(-4px) scale(1.03);
@@ -650,12 +644,12 @@ body {
     align-self: flex-start;
 }
 .founder-photo {
-    max-width: 150px;
-    height: 150px;
-    width: 150px;
+    max-width: 120px;
+    height: 120px;
+    width: 120px;
     border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(124,58,237,0.15);
     object-fit: cover;
+    box-shadow: 0 2px 8px rgba(124,58,237,0.2);
 }
 .team-info {
     width: 100%;
@@ -2237,14 +2231,10 @@ select {
 
 .process-diagram {
     width: 100%;
-    max-width: 1000px;
-    margin: 0 auto clamp(2rem, 5vw, 4rem);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    padding: 1.5rem;
     border-radius: 12px;
-    background-color: #ffffff;
-    padding: clamp(1rem, 3vw, 2rem);
-    position: relative;
-    overflow: hidden;
 }
 
 
@@ -2254,17 +2244,17 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: clamp(1rem, 3vw, 2.5rem);
-    position: relative;
-    padding: 0 clamp(1rem, 2vw, 2rem);
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .process-step-linear {
+    flex: 1;
+    min-width: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    z-index: 2;
+    text-align: center;
 }
 
 .process-step-linear.active .step-icon {
@@ -2917,5 +2907,59 @@ select {
     /* Make header text in hero section wrap properly */
     .modern-hero h1 {
         word-break: break-word;
+    }
+}
+
+/* Мобільні оптимізації */
+@media (max-width: 768px) {
+    .modern-hero {
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        max-height: 500px;
+    }
+    
+    .modern-hero h1 {
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
+        margin-bottom: 1rem;
+    }
+    
+    .modern-hero .subheading {
+        font-size: clamp(0.95rem, 3vw, 1.2rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .automation-process h2,
+    .modern-benefits h2,
+    .package-builder h2,
+    section h2 {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    section {
+        padding: 2rem 0;
+    }
+    
+    .benefit-card,
+    .feature-card,
+    .team-card,
+    .mini-template-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .process-diagram {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .mobile-toggle {
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    p, li, .product-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 }

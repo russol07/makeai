@@ -879,6 +879,13 @@ document.addEventListener('DOMContentLoaded', function() {
         toggle.addEventListener('click', function() {
             const parent = this.closest('.mobile-collapsible');
             
+            // Close other open sections
+            document.querySelectorAll('.mobile-collapsible.active').forEach(item => {
+                if (item !== parent) {
+                    item.classList.remove('active');
+                }
+            });
+            
             // Toggle active class on parent
             parent.classList.toggle('active');
             
@@ -886,4 +893,24 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.toggle('active');
         });
     });
+    
+    // Auto-collapse sections on mobile when not in viewport
+    if (window.innerWidth <= 768) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // When element is off screen for more than 50%
+                if (!entry.isIntersecting && entry.intersectionRatio < 0.5) {
+                    const mobileCollapsible = entry.target.closest('.mobile-collapsible');
+                    if (mobileCollapsible && mobileCollapsible.classList.contains('active')) {
+                        mobileCollapsible.classList.remove('active');
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        // Observe all collapsible content
+        document.querySelectorAll('.mobile-collapsible-content').forEach(content => {
+            observer.observe(content);
+        });
+    }
 }); 
