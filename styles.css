@@ -2231,4 +2231,625 @@ select {
         overflow-y: auto;
         overflow-x: hidden;
     }
-} 
+}
+
+/* Automation Process Diagram */
+.automation-process {
+    padding: var(--section-padding);
+    background: linear-gradient(145deg, #f9fafb 0%, #f3f4f6 100%);
+    position: relative;
+}
+
+.automation-process h2 {
+    text-align: center;
+    margin-bottom: clamp(0.5rem, 2vw, 1rem);
+    font-size: var(--h2-font-size);
+    color: #1f2937;
+}
+
+.process-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto clamp(1.5rem, 5vw, 3rem);
+    color: #6b7280;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.process-diagram {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto clamp(2rem, 5vw, 4rem);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding: clamp(1rem, 3vw, 2rem);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Лінійний стиль процесу */
+.linear-process {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(1rem, 3vw, 2.5rem);
+    position: relative;
+    padding: 0 clamp(1rem, 2vw, 2rem);
+}
+
+.process-step-linear {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.process-step-linear.active .step-icon {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-color: currentColor;
+}
+
+.step-connector {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #e5e7eb;
+    position: relative;
+    margin: 0 10px;
+    max-width: clamp(50px, 10vw, 100px);
+    min-width: 20px;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+.step-connector.active-connector {
+    background-color: #4f46e5;
+    height: 3px;
+}
+
+/* Анімація руху точки по конектору */
+@keyframes movePoint {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 1;
+    }
+}
+
+.step-connector.active-connector::after,
+.step-connector.has-animation::after {
+    content: '';
+    width: clamp(6px, 1.5vw, 10px);
+    height: clamp(6px, 1.5vw, 10px);
+    background-color: #4f46e5;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.step-connector.active-connector::after {
+    animation: movePoint 1.5s ease-in-out;
+}
+
+.step-connector.has-animation::after {
+    animation: movePoint 2s ease-in-out infinite;
+}
+
+.step-icon {
+    width: clamp(40px, 8vw, 60px);
+    height: clamp(40px, 8vw, 60px);
+    border-radius: 50%;
+    background-color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.trigger-icon {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+.process-icon {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+.action-icon {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.step-label {
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    font-weight: 600;
+    color: #4b5563;
+}
+
+/* Кнопка запуску автоматизації */
+.automation-action {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.start-automation-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: clamp(0.6rem, 1.5vw, 0.8rem) clamp(1rem, 3vw, 2rem);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.start-automation-btn:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* Анімація шестерні */
+@keyframes rotate-gear {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.process-icon i {
+    animation: rotate-gear 8s linear infinite;
+}
+
+/* Package Builder Section */
+.package-builder {
+    padding: var(--section-padding);
+    background: linear-gradient(145deg, #f9fafb 0%, #f3f4f6 100%);
+    position: relative;
+}
+
+.package-builder h2 {
+    text-align: center;
+    margin-bottom: clamp(0.5rem, 2vw, 1rem);
+    font-size: var(--h2-font-size);
+    color: #1f2937;
+}
+
+.package-builder .section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto clamp(1rem, 3vw, 2.5rem);
+    color: #6b7280;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+/* Community Toggle */
+.community-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1.25rem);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.toggle-label span {
+    margin-right: 1rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.toggle-switch {
+    position: relative;
+    width: clamp(40px, 8vw, 56px);
+    height: clamp(24px, 5vw, 32px);
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e5e7eb;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: calc(clamp(24px, 5vw, 32px) - 8px);
+    width: calc(clamp(24px, 5vw, 32px) - 8px);
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.toggle-slider.active {
+    background-color: #7c3aed;
+}
+
+.toggle-slider.active:before {
+    transform: translateX(calc(clamp(40px, 8vw, 56px) - clamp(24px, 5vw, 32px)));
+}
+
+/* Відповідна адаптивність */
+@media (max-width: 768px) {
+    .linear-process {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+        gap: 1rem;
+    }
+    
+    .step-connector {
+        width: 2px;
+        height: 20px;
+        max-width: unset;
+        min-height: 20px;
+    }
+    
+    .process-diagram {
+        padding: 1.5rem;
+    }
+}
+
+/* Packages Grid */
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: var(--element-gap);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.package-card {
+    background-color: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.package-card.selected {
+    border-color: #7c3aed;
+    background-color: #f3f4ff;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.15);
+}
+
+.package-content {
+    padding: clamp(0.5rem, 1vw, 1.5rem);
+}
+
+.package-icon {
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.package-card h3 {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    color: #1f2937;
+}
+
+.package-description {
+    color: #6b7280;
+    font-size: clamp(0.85rem, 1.5vw, 0.9rem);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    height: auto;
+    max-height: 6rem;
+    overflow: auto;
+}
+
+.package-price {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 700;
+    text-align: center;
+    color: #7c3aed;
+    margin-bottom: 1rem;
+}
+
+.package-selector-indicator {
+    display: flex;
+    justify-content: center;
+}
+
+.package-selector-indicator span {
+    width: clamp(24px, 5vw, 32px);
+    height: clamp(24px, 5vw, 32px);
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.package-selector-indicator span.selected {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+    color: white;
+    font-weight: bold;
+}
+
+/* Summary Panel */
+.summary-panel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.summary-panel.visible {
+    max-height: 1000px;
+    opacity: 1;
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+.summary-content {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+.selected-packages h3,
+.price-calculation h3 {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+.selected-packages ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.selected-packages li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.next-discount-alert {
+    background-color: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+.next-discount-alert p {
+    color: #92400e;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    line-height: 1.5;
+}
+
+.price-items {
+    margin-bottom: 1.5rem;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    color: #6b7280;
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+}
+
+.price-item.discount span:last-child {
+    color: #10b981;
+    font-weight: 500;
+}
+
+.total-price {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.final-price {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    margin-bottom: 0.5rem;
+}
+
+.final-price span:last-child {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: #7c3aed;
+}
+
+.savings {
+    display: flex;
+    justify-content: space-between;
+    font-size: clamp(0.85rem, 1.5vw, 0.9rem);
+}
+
+.savings span:last-child {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.order-button {
+    width: 100%;
+    background: linear-gradient(90deg, #a78bfa 0%, #7c3aed 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: clamp(0.8rem, 1.5vw, 1rem);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.order-button:hover {
+    background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* Деталі тригера */
+.trigger-detail {
+    border: 1px solid #ef4444;
+    border-radius: 8px;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin: 0 auto clamp(1rem, 3vw, 2rem);
+    max-width: min(100%, 400px);
+    text-align: center;
+}
+
+.trigger-detail h3 {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 0.5rem;
+    color: #ef4444;
+}
+
+.trigger-detail p {
+    color: #4b5563;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+}
+
+/* Примітка внизу */
+.automation-note {
+    text-align: center;
+    margin-top: clamp(1rem, 3vw, 2rem);
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.automation-note p {
+    color: #6b7280;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    line-height: 1.5;
+}
+
+/* Анімація для кроків процесу */
+.process-step-linear:hover .step-icon {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: currentColor;
+}
+
+/* Стилі для Mini Templates */
+.mini-templates-title {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: clamp(0.8rem, 2vw, 1rem);
+    text-align: center;
+}
+
+.template-image {
+    width: 100%;
+    height: clamp(100px, 20vw, 160px);
+    overflow: hidden;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 0.5rem;
+    flex: 0 0 auto;
+}
+
+.template-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.setup-price {
+    font-size: clamp(0.8rem, 1.5vw, 0.85rem);
+    color: var(--primary-color);
+    text-align: center;
+    margin: 0.8rem 0;
+    font-weight: 600;
+    order: 3;
+}
+
+/* Tooltip styles */
+.mini-template-card .tooltip-text {
+    visibility: hidden;
+    position: absolute;
+    top: 2.5rem;
+    left: 0;
+    background-color: white;
+    color: var(--text-color);
+    text-align: left;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+    z-index: 30;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    border: 1px solid #f0f0f0;
+}
+
+.mini-template-card .description-container {
+    position: relative;
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.mini-template-card .description-container::after {
+    content: "ℹ️";
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.7;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.mini-template-card .description-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
