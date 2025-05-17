@@ -869,8 +869,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const baseDiscountAmount = Math.round(baseTotal * discountInfo.baseDiscount / 100);
         const afterBaseDiscount = baseTotal - baseDiscountAmount;
         
-        // Apply 30% SVOI promo code discount
-        const svoiDiscountAmount = Math.round(afterBaseDiscount * 30 / 100);
+        // Apply SVOI promo code discount
+        // If 2+ packages selected, apply 40% discount instead of 30%
+        const promoDiscountPercent = packageCount >= 2 ? 40 : 30;
+        const svoiDiscountAmount = Math.round(afterBaseDiscount * promoDiscountPercent / 100);
         const finalPrice = afterBaseDiscount - svoiDiscountAmount;
         
         // Update the price calculation HTML
@@ -892,7 +894,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         priceCalculationHTML += `
             <div class="price-item discount">
-                <span>Promo code discount (30%):</span>
+                <span>Promo code discount (${promoDiscountPercent}%):</span>
                 <span>-$${svoiDiscountAmount}</span>
             </div>
         `;
@@ -919,10 +921,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 setSvoiMode(true);
                 
+                // Check if we have 2+ packages selected for the toast message
+                const selectedPackages = document.querySelectorAll('.package-card.selected');
+                const discountPercent = selectedPackages.length >= 2 ? 40 : 30;
+                
                 // Show a quick toast-style notification
                 const toast = document.createElement('div');
                 toast.className = 'promo-toast';
-                toast.textContent = '30% discount applied successfully!';
+                toast.textContent = `${discountPercent}% discount applied successfully!`;
                 document.body.appendChild(toast);
                 
                 setTimeout(() => {
@@ -1016,10 +1022,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 setSvoiMode(true);
                 resetBtn.classList.add('visible');
                 
+                // Check if we have 2+ packages selected for the toast message
+                const selectedPackages = document.querySelectorAll('.package-card.selected');
+                const discountPercent = selectedPackages.length >= 2 ? 40 : 30;
+                
                 // Show a quick toast-style notification
                 const toast = document.createElement('div');
                 toast.className = 'promo-toast';
-                toast.textContent = '30% discount applied successfully!';
+                toast.textContent = `${discountPercent}% discount applied successfully!`;
                 document.body.appendChild(toast);
                 
                 setTimeout(() => {
