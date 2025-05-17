@@ -2592,4 +2592,54 @@ body {
     .package-card.selected {
         transform: translateY(-5px);
     }
+}
+
+/* Mobile specific improvements for accordion content */
+@media (max-width: 576px) {
+    .accordion-content {
+        padding: 15px 10px;
+        width: 100%;
+    }
+    
+    .feature-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .feature-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px;
+    }
+    
+    .feature-card h5 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .feature-card ul li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+        font-size: 16px;
+    }
+    
+    /* Ensure text doesn't appear too narrow */
+    .product-description p,
+    .accordion-content p,
+    .feature-card p {
+        max-width: none;
+        width: 100%;
+    }
+    
+    /* Improve the "What's included" modal on mobile */
+    .modal-content {
+        width: 95%;
+        max-width: 480px;
+        margin: 20px auto;
+        padding: 20px 15px;
+    }
+    
+    .modal-body {
+        padding: 15px 10px;
+    }
 } 

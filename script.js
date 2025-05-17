@@ -587,4 +587,43 @@ function initializePackageSelector() {
     
     // Initial update
     updateSummary();
-} 
+}
+
+// Function to improve mobile modals
+function enhanceMobileModals() {
+    // Find all modals on the page
+    const modals = document.querySelectorAll('.modal');
+    
+    // Check if we're on a mobile device
+    const isMobile = window.innerWidth <= 576;
+    
+    if (isMobile) {
+        modals.forEach(modal => {
+            // Add mobile-optimized class
+            modal.classList.add('mobile-optimized');
+            
+            // Adjust content width for better readability
+            const modalContent = modal.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.width = '95%';
+                modalContent.style.maxWidth = '480px';
+            }
+            
+            // Make feature lists more readable on mobile
+            const featureLists = modal.querySelectorAll('ul');
+            featureLists.forEach(list => {
+                list.style.paddingLeft = '20px';
+                const listItems = list.querySelectorAll('li');
+                listItems.forEach(item => {
+                    item.style.fontSize = '16px';
+                    item.style.lineHeight = '1.5';
+                    item.style.marginBottom = '10px';
+                });
+            });
+        });
+    }
+}
+
+// Run on page load and window resize
+document.addEventListener('DOMContentLoaded', enhanceMobileModals);
+window.addEventListener('resize', enhanceMobileModals); 
