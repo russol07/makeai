@@ -636,9 +636,11 @@ body {
 }
 .founder-photo {
     max-width: 150px;
-    height: auto;
-    border-radius: 8px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
     box-shadow: 0 4px 12px rgba(124,58,237,0.15);
+    object-fit: cover;
 }
 .team-info {
     width: 100%;
