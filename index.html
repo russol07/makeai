@@ -173,24 +173,25 @@
                         <div class="product-details">
                             <h1 class="product-title">Etsy Automation PRO — Complete Etsy Store Automation Package</h1>
                             <div class="pricing-info">
-                                <div class="price-tag">
-                                    <span class="original-price-display">$3999</span>
-                                    <span class="discounted-price-display" style="display: none;">$2799</span>
-                                    <span>(one-time setup)</span>
-                                </div>
-                                <div class="subscription">
-                                    Ongoing support & updates — 
-                                    <span class="original-price-display">$149</span>
-                                    <span class="discounted-price-display" style="display: none;">$104</span>
-                                    /month
-                                </div>
-                                
-                                <!-- Ukrainian-styled Promo Code -->
-                                <div class="product-promo-code">
-                                    <div class="ua-promo-container">
-                                        <label for="product-promo">Have a promo code?</label>
-                                        <div class="ua-promo-input-group">
-                                            <input type="text" id="product-promo" placeholder="Enter SVOI">
+                                <div class="price-section">
+                                    <div class="price-info-col">
+                                        <div class="price-tag">
+                                            <span class="original-price-display">$3999</span>
+                                            <span class="discounted-price-display" style="display: none;">$2799</span>
+                                            <span>(one-time setup)</span>
+                                        </div>
+                                        <div class="subscription">
+                                            Ongoing support & updates — 
+                                            <span class="original-price-display">$149</span>
+                                            <span class="discounted-price-display" style="display: none;">$104</span>
+                                            /month
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Ukrainian-styled Promo Code -->
+                                    <div class="product-promo-code">
+                                        <div class="ua-promo-container">
+                                            <input type="text" id="product-promo" placeholder="Promo code">
                                             <button id="product-apply-promo" class="ua-apply-promo-btn">Apply</button>
                                         </div>
                                     </div>
@@ -2733,7 +2734,33 @@
         
         /* Ukrainian-styled promo code */
         .product-promo-code {
-            margin-top: 15px;
+            margin-top: 0;
+            align-self: center;
+        }
+        
+        /* Price and promo section */
+        .price-section {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .price-info-col {
+            flex-grow: 1;
+        }
+        
+        .price-tag {
+            font-size: 28px;
+            font-weight: 700;
+            color: #8B5CF6;
+            margin-bottom: 8px;
+        }
+        
+        .subscription {
+            font-size: 16px;
+            color: #4B5563;
         }
         
         .ua-promo-container {
@@ -2741,11 +2768,12 @@
             border-radius: 8px;
             padding: 2px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 350px;
-            margin: 0 auto;
+            max-width: 220px;
             position: relative;
             overflow: hidden;
             animation: pulse-ua-colors 3s infinite;
+            display: flex;
+            height: 36px;
         }
         
         @keyframes pulse-ua-colors {
@@ -2789,24 +2817,29 @@
             border-radius: 0 0 6px 6px;
         }
         
-        .ua-promo-input-group input {
+        .ua-promo-container input {
             flex-grow: 1;
-            border: 1px solid #d1d5db;
-            border-radius: 4px 0 0 4px;
-            padding: 8px 12px;
+            border: none;
+            border-radius: 0;
+            height: 100%;
+            padding: 0 10px;
             font-size: 14px;
+            background: white;
+            width: 120px;
+            border-radius: 6px 0 0 6px;
         }
         
         .ua-apply-promo-btn {
             background: linear-gradient(to right, #0057b7, #0057b7);
             color: white;
             border: none;
-            border-radius: 0 4px 4px 0;
-            padding: 8px 15px;
+            border-radius: 0 6px 6px 0;
+            padding: 0 12px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            font-size: 14px;
         }
         
         .ua-apply-promo-btn:hover {
