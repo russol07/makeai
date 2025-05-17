@@ -889,14 +889,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize enterprise card animated background
     initEnterpriseCardAnimation();
+    
+    // Initialize automation process section animation
+    initAutomationProcessAnimation();
 });
 
 // Enterprise Card Animation
 function initEnterpriseCardAnimation() {
     const enterpriseCard = document.querySelector('.enterprise-card');
-    const particlesContainer = document.querySelector('.enterprise-card .particles-container');
     
-    if (!enterpriseCard || !particlesContainer) return;
+    if (!enterpriseCard) return;
+    // Keep the card but without particles container
+    // Visual effect handled by ::before pseudoelement
+}
+
+// Automation Process Animation
+function initAutomationProcessAnimation() {
+    const processSection = document.querySelector('.process-diagram');
+    const particlesContainer = document.querySelector('.process-diagram .particles-container');
+    
+    if (!processSection || !particlesContainer) return;
     
     // Create particles
     function createParticles() {
