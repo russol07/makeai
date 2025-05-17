@@ -868,4 +868,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Видаляємо знижки з місячної підтримки при загрузці сторінки
     removeDiscountFromSubscription();
+});
+
+// Mobile collapsible sections functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize mobile collapsible sections
+    const mobileToggles = document.querySelectorAll('.mobile-toggle');
+    
+    mobileToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const parent = this.closest('.mobile-collapsible');
+            
+            // Toggle active class on parent
+            parent.classList.toggle('active');
+            
+            // Toggle active class on toggle
+            this.classList.toggle('active');
+        });
+    });
 }); 

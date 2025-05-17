@@ -484,15 +484,25 @@ body {
     animation: fadeIn 2s;
 }
 @media (max-width: 700px) {
+    .modern-hero {
+        padding: 4rem 0;
+    }
+    
     .modern-hero h1 {
         font-size: 2.1rem;
     }
+    
     .modern-hero .subheading {
         font-size: 1.05rem;
     }
+    
     .modern-hero .cta-buttons {
         flex-direction: column;
         gap: 1rem;
+    }
+    
+    .dual-systems-container {
+        display: none;
     }
 }
 
@@ -2684,5 +2694,176 @@ body {
     
     .feature-cards-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile Collapsible Sections */
+.mobile-collapsible {
+    display: block;
+}
+
+.mobile-toggle {
+    display: none;
+    width: 100%;
+    text-align: left;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(145deg, #f9fafb 0%, #f3f4f6 100%);
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    position: relative;
+    cursor: pointer;
+}
+
+.mobile-toggle::after {
+    content: '+';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+}
+
+.mobile-toggle.active::after {
+    content: '−';
+}
+
+.mobile-collapsible-content {
+    display: block;
+    padding: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+    .mobile-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .mobile-collapsible-content {
+        display: none;
+        padding: 1rem;
+    }
+    
+    .mobile-collapsible.active .mobile-collapsible-content {
+        display: block;
+    }
+    
+    .mobile-collapsible.active .mobile-toggle {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0;
+    }
+    
+    .mobile-collapsible-content {
+        border: 1px solid #e5e7eb;
+        border-top: none;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    /* Special styles for benefit cards */
+    .benefit-card.mobile-collapsible .mobile-toggle {
+        background: transparent;
+        border: none;
+        text-align: center;
+        padding: 0;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    
+    .benefit-card.mobile-collapsible .mobile-toggle::after {
+        display: none;
+    }
+    
+    .benefit-card.mobile-collapsible .mobile-collapsible-content {
+        border: none;
+        padding: 0.5rem 0 0 0;
+    }
+    
+    /* Blog cards styling */
+    .blog-card.mobile-collapsible .mobile-toggle {
+        background: transparent;
+        border: none;
+        text-align: left;
+        padding: 0;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+    }
+    
+    .blog-card.mobile-collapsible .mobile-toggle::after {
+        display: none;
+    }
+    
+    .blog-card.mobile-collapsible .mobile-collapsible-content {
+        border: none;
+        padding: 0;
+    }
+    
+    /* About section styling */
+    .team-info .mobile-toggle {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0.5rem 0;
+        text-align: center;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .team-info .mobile-collapsible-content {
+        border: none;
+        padding-top: 1rem;
+    }
+}
+
+/* Product Details Mobile Optimization */
+@media (max-width: 768px) {
+    .product-overview {
+        gap: 1.5rem;
+        flex-direction: column;
+    }
+    
+    .product-image {
+        min-width: 100%;
+        max-height: 350px;
+    }
+    
+    .product-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .product-description {
+        font-size: 1rem;
+        margin: 1rem 0;
+        padding: 0;
+    }
+    
+    .pricing-info {
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    .product-accordion-sections {
+        margin-bottom: 1.5rem;
+    }
+    
+    .accordion-header h4 {
+        font-size: 1.1rem;
+    }
+    
+    .primary-button.questionnaire-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+        margin-top: 0.5rem;
     }
 } 
