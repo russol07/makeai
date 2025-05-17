@@ -137,6 +137,64 @@ function initializeAllGalleries() {
     }
 }
 
+// Automation Process Diagram Interactivity
+function initializeProcessDiagram() {
+    const processNodes = document.querySelectorAll('.process-node');
+    const processSteps = document.querySelectorAll('.process-step');
+    
+    // Add interaction for process nodes
+    processNodes.forEach(node => {
+        node.addEventListener('mouseenter', () => {
+            const nodeId = node.id;
+            
+            // Highlight corresponding process step
+            processSteps.forEach(step => {
+                if (step.dataset.node === nodeId) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+        });
+        
+        node.addEventListener('mouseleave', () => {
+            // Remove highlight from all steps
+            processSteps.forEach(step => {
+                step.classList.remove('active');
+            });
+        });
+    });
+    
+    // Add interaction for process steps
+    processSteps.forEach(step => {
+        step.addEventListener('mouseenter', () => {
+            const nodeId = step.dataset.node;
+            const node = document.getElementById(nodeId);
+            
+            if (node) {
+                // Add highlight class to the step
+                step.classList.add('active');
+                
+                // Animate the corresponding node
+                node.style.transform = 'scale(1.1)';
+            }
+        });
+        
+        step.addEventListener('mouseleave', () => {
+            const nodeId = step.dataset.node;
+            const node = document.getElementById(nodeId);
+            
+            if (node) {
+                // Remove highlight class from the step
+                step.classList.remove('active');
+                
+                // Reset node animation
+                node.style.transform = 'scale(1)';
+            }
+        });
+    });
+}
+
 // Questionnaire Modal
 const modal = document.getElementById('questionnaire-modal');
 const questionnaireBtns = document.querySelectorAll('.questionnaire-btn');
@@ -282,13 +340,22 @@ function setupFAQ() {
     });
 }
 
-// Initialize everything when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    // Setup existing functionality
+// Document Ready Event
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all galleries
     initializeAllGalleries();
-    setupAccordions();
+    
+    // Initialize template buttons
     setupTemplateButtons();
+    
+    // Initialize card hover effects
     setupCardHoverEffects();
+    
+    // Initialize accordions
+    setupAccordions();
+    
+    // Initialize automation process diagram
+    initializeProcessDiagram();
     
     // Setup FAQ functionality
     setupFAQ();
