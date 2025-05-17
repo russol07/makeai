@@ -1311,10 +1311,20 @@
                     <p>Complete technical assistance and ongoing maintenance included</p>
                 </div>
             </div>
-            <svg class="benefits-flow-svg" width="400" height="100" style="position:absolute;z-index:1;left:50%;transform:translateX(-50%);">
-                <path id="cable" d="M20,50 C100,10 300,10 380,50" stroke="#8B5CF6" stroke-width="4" fill="none"/>
-                <circle id="flow" r="8" fill="#38BDF8">
-                    <animateMotion repeatCount="indefinite" dur="2s" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+            <svg class="benefits-flow-svg" width="1000" height="60" style="display:block;margin:0 auto;position:relative;z-index:1;">
+                <path id="cable" d="M60,40 Q180,10 300,40 T540,40 T780,40 T940,40" stroke="#8B5CF6" stroke-width="5" fill="none"/>
+                <circle r="9" fill="#38BDF8" opacity="0.85">
+                    <animateMotion repeatCount="indefinite" dur="2s">
+                        <mpath href="#cable"/>
+                    </animateMotion>
+                </circle>
+                <circle r="7" fill="#a5f3fc" opacity="0.7">
+                    <animateMotion repeatCount="indefinite" dur="2s" begin="0.5s">
+                        <mpath href="#cable"/>
+                    </animateMotion>
+                </circle>
+                <circle r="5" fill="#fff" opacity="0.6">
+                    <animateMotion repeatCount="indefinite" dur="2s" begin="1s">
                         <mpath href="#cable"/>
                     </animateMotion>
                 </circle>
