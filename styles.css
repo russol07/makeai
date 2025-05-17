@@ -2091,7 +2091,8 @@ body {
     }
 }
 
-.step-connector.active-connector::after {
+.step-connector.active-connector::after,
+.step-connector.has-animation::after {
     content: '';
     width: 10px;
     height: 10px;
@@ -2101,7 +2102,14 @@ body {
     top: 50%;
     left: 0;
     transform: translate(-50%, -50%);
+}
+
+.step-connector.active-connector::after {
     animation: movePoint 1.5s ease-in-out;
+}
+
+.step-connector.has-animation::after {
+    animation: movePoint 2s ease-in-out infinite;
 }
 
 .step-icon {
