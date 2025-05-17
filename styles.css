@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
 }
 
 :root {
@@ -18,12 +19,12 @@
     --nav-text: #fff;
     
     /* Responsive font sizing */
-    --h1-font-size: clamp(1.8rem, 5vw, 3.5rem);
-    --h2-font-size: clamp(1.5rem, 4vw, 2.5rem);
-    --h3-font-size: clamp(1.2rem, 3vw, 1.8rem);
+    --h1-font-size: clamp(1.75rem, 4.5vw, 3.5rem);
+    --h2-font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+    --h3-font-size: clamp(1.1rem, 2.8vw, 1.8rem);
     --h4-font-size: clamp(1rem, 2vw, 1.4rem);
-    --body-font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    --small-font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    --body-font-size: clamp(0.875rem, 1.3vw, 1.1rem);
+    --small-font-size: clamp(0.75rem, 1.1vw, 0.95rem);
     
     /* Responsive spacing */
     --section-padding: clamp(2rem, 5vw, 6rem) 0;
@@ -416,111 +417,125 @@ body {
 
 /* Modern Hero Section */
 .modern-hero {
-    min-height: 65vh;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+    min-height: 100vh;
+    background: linear-gradient(125deg, #7c3aed 0%, #8b5cf6 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-    position: relative;
-    background: linear-gradient(120deg, #4f378b 0%, #7c3aed 100%);
-    overflow: hidden;
-    padding-top: clamp(80px, 15vh, 120px);
-    padding-bottom: clamp(40px, 10vh, 80px);
 }
+
 .modern-hero .hero-overlay {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(120deg, rgba(36,16,61,0.85) 0%, rgba(124,58,237,0.7) 100%);
-    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.15);
 }
+
 .modern-hero .container {
     position: relative;
     z-index: 2;
 }
+
 .modern-hero h1 {
+    color: white;
     font-size: var(--h1-font-size);
     font-weight: 800;
-    color: #fff;
-    text-shadow: 0 4px 32px rgba(36,16,61,0.25), 0 1px 0 #0002;
-    margin-bottom: 1.5rem;
-    letter-spacing: -1px;
-    line-height: 1.15;
-    animation: fadeIn 1.2s;
+    margin-bottom: 1.2rem;
+    max-width: 800px;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
+
 .modern-hero .subheading {
-    font-size: 1.35rem;
-    color: #e0e7ff;
-    text-shadow: 0 2px 8px rgba(36,16,61,0.18);
-    margin-bottom: 2.5rem;
-    animation: fadeIn 1.5s;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
+
 .modern-hero .cta-buttons {
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 1rem;
 }
+
 .modern-hero .primary-button, .modern-hero .secondary-button {
-    font-size: 1.15rem;
-    padding: 1.1rem 2.2rem;
-    border-radius: 2rem;
-    box-shadow: 0 4px 24px rgba(124,58,237,0.18);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-.modern-hero .primary-button {
-    background: linear-gradient(90deg, #a78bfa 0%, #7c3aed 100%);
-    color: #fff;
-    border: none;
-}
-.modern-hero .primary-button:hover {
-    background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
-    box-shadow: 0 8px 32px rgba(124,58,237,0.25);
-}
-.modern-hero .secondary-button {
-    background: rgba(255,255,255,0.08);
-    color: #fff;
-    border: 2px solid #a78bfa;
-}
-.modern-hero .secondary-button:hover {
-    background: #a78bfa;
-    color: #fff;
-    border-color: #7c3aed;
-}
-.modern-hero .dynamic-examples {
-    margin: 2.5rem auto 0;
-    background: rgba(255,255,255,0.10);
-    border-radius: 1.2rem;
-    padding: 1.3rem 2.2rem;
-    color: #fff;
     font-weight: 600;
-    font-size: 1.18rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
     display: inline-block;
-    box-shadow: 0 2px 16px rgba(124,58,237,0.10);
-    backdrop-filter: blur(2px);
-    border: 1.5px solid rgba(255,255,255,0.12);
-    animation: fadeIn 2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
+
+.modern-hero .primary-button {
+    background: white;
+    color: var(--primary-color);
+}
+
+.modern-hero .primary-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.modern-hero .secondary-button {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+}
+
+.modern-hero .secondary-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.modern-hero .dynamic-examples {
+    position: relative;
+    margin-top: 3rem;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
 @media (max-width: 700px) {
     .modern-hero {
-        padding: 4rem 0;
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+        min-height: 85vh;
     }
     
     .modern-hero h1 {
-        font-size: 2.1rem;
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        margin-bottom: 1rem;
     }
     
     .modern-hero .subheading {
-        font-size: 1.05rem;
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        margin-bottom: 1.5rem;
     }
     
     .modern-hero .cta-buttons {
         flex-direction: column;
-        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
     }
     
     .dual-systems-container {
-        display: none;
+        margin-top: 2rem;
     }
 }
 
@@ -2819,4 +2834,88 @@ select {
 .mini-template-card .description-container:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 576px) {
+    /* Typography and base elements */
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
+    .card, 
+    .benefit-card,
+    .team-card,
+    .blog-card,
+    .faq-item,
+    .contact-form,
+    .product-accordion-sections,
+    .accordion-item,
+    .feature-card,
+    .package-card {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .cta-buttons,
+    .benefits-grid,
+    .team-grid,
+    .blog-grid,
+    .feature-cards-grid {
+        gap: 12px;
+    }
+    
+    button, 
+    .primary-button, 
+    .secondary-button,
+    .template-button,
+    .tab-btn,
+    .filter-btn,
+    .gallery-prev, 
+    .gallery-next {
+        padding: 10px 16px;
+        font-size: 14px;
+        width: auto;
+        height: auto;
+        min-height: 44px; /* For touch targets */
+    }
+    
+    p, li, .description, .package-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Fix content overflow */
+    img, video, iframe, object {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Make elements larger touch targets on touch devices */
+@media (pointer: coarse) {
+    * {
+        touch-action: manipulation;
+    }
+    
+    .scrollable-element {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Increase size of interactive elements for touch */
+    button, a, input, select, textarea, .tab-btn, .accordion-header, .mobile-toggle {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Add extra space for interactive elements */
+    .interactive-container {
+        padding: 12px;
+    }
+    
+    /* Make header text in hero section wrap properly */
+    .modern-hero h1 {
+        word-break: break-word;
+    }
 }
