@@ -1336,141 +1336,58 @@
     <!-- Automation Process Section -->
     <section id="automation-process" class="automation-process">
         <div class="container">
-            <h2>How Automation Works</h2>
-            <p class="process-description">Experience our seamless automation workflow that transforms your business operations</p>
+            <h2>Автоматизований робочий процес</h2>
+            <p class="process-description">Побачте, як працює автоматизація в реальному часі. Жодних ручних дій не потрібно!</p>
             
             <div class="process-diagram">
-                <!-- Interactive SVG Diagram -->
-                <svg id="automation-diagram" viewBox="0 0 1000 500" width="100%" height="500">
-                    <!-- Background Grid -->
-                    <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
-                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
-                    </pattern>
-                    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
-                        <rect width="100" height="100" fill="url(#smallGrid)"/>
-                        <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#e4e4e4" stroke-width="1"/>
-                    </pattern>
-                    <rect width="100%" height="100%" fill="url(#grid)" opacity="0.3"/>
-                    
-                    <!-- Process Nodes -->
-                    <g class="process-node" id="node-input" transform="translate(100, 250)">
-                        <circle r="50" fill="#8B5CF6" opacity="0.9"/>
-                        <circle r="45" fill="#fff" opacity="0.1"/>
-                        <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold">Input</text>
-                        <text x="0" y="25" text-anchor="middle" fill="white" font-size="12">Your Business Data</text>
-                    </g>
-                    
-                    <g class="process-node" id="node-processing" transform="translate(350, 150)">
-                        <circle r="50" fill="#3B82F6" opacity="0.9"/>
-                        <circle r="45" fill="#fff" opacity="0.1"/>
-                        <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold">Processing</text>
-                        <text x="0" y="25" text-anchor="middle" fill="white" font-size="12">AI Analysis</text>
-                    </g>
-                    
-                    <g class="process-node" id="node-automation" transform="translate(650, 150)">
-                        <circle r="50" fill="#10B981" opacity="0.9"/>
-                        <circle r="45" fill="#fff" opacity="0.1"/>
-                        <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold">Automation</text>
-                        <text x="0" y="25" text-anchor="middle" fill="white" font-size="12">Task Execution</text>
-                    </g>
-                    
-                    <g class="process-node" id="node-output" transform="translate(900, 250)">
-                        <circle r="50" fill="#F59E0B" opacity="0.9"/>
-                        <circle r="45" fill="#fff" opacity="0.1"/>
-                        <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold">Output</text>
-                        <text x="0" y="25" text-anchor="middle" fill="white" font-size="12">Business Results</text>
-                    </g>
-                    
-                    <g class="process-node" id="node-feedback" transform="translate(500, 350)">
-                        <circle r="50" fill="#EC4899" opacity="0.9"/>
-                        <circle r="45" fill="#fff" opacity="0.1"/>
-                        <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold">Feedback</text>
-                        <text x="0" y="25" text-anchor="middle" fill="white" font-size="12">Continuous Learning</text>
-                    </g>
-                    
-                    <!-- Connection Paths -->
-                    <path id="path1" d="M150,250 C200,250 250,150 300,150" stroke="#8B5CF6" stroke-width="3" fill="none"/>
-                    <path id="path2" d="M400,150 L600,150" stroke="#3B82F6" stroke-width="3" fill="none"/>
-                    <path id="path3" d="M700,150 C750,150 800,250 850,250" stroke="#10B981" stroke-width="3" fill="none"/>
-                    <path id="path4" d="M850,250 C800,350 700,350 550,350" stroke="#F59E0B" stroke-width="3" fill="none"/>
-                    <path id="path5" d="M450,350 C250,350 150,300 150,250" stroke="#EC4899" stroke-width="3" fill="none"/>
-                    
-                    <!-- Animated Pulses -->
-                    <circle r="6" fill="#fff">
-                        <animateMotion repeatCount="indefinite" dur="6s">
-                            <mpath href="#path1"/>
-                        </animateMotion>
-                    </circle>
-                    <circle r="6" fill="#fff">
-                        <animateMotion repeatCount="indefinite" dur="3s">
-                            <mpath href="#path2"/>
-                        </animateMotion>
-                    </circle>
-                    <circle r="6" fill="#fff">
-                        <animateMotion repeatCount="indefinite" dur="5s">
-                            <mpath href="#path3"/>
-                        </animateMotion>
-                    </circle>
-                    <circle r="6" fill="#fff">
-                        <animateMotion repeatCount="indefinite" dur="7s">
-                            <mpath href="#path4"/>
-                        </animateMotion>
-                    </circle>
-                    <circle r="6" fill="#fff">
-                        <animateMotion repeatCount="indefinite" dur="8s">
-                            <mpath href="#path5"/>
-                        </animateMotion>
-                    </circle>
-                    
-                    <!-- Secondary Pulses -->
-                    <circle r="4" fill="#fff" opacity="0.7">
-                        <animateMotion repeatCount="indefinite" dur="6s" begin="1s">
-                            <mpath href="#path1"/>
-                        </animateMotion>
-                    </circle>
-                    <circle r="4" fill="#fff" opacity="0.7">
-                        <animateMotion repeatCount="indefinite" dur="3s" begin="1s">
-                            <mpath href="#path2"/>
-                        </animateMotion>
-                    </circle>
-                    <circle r="4" fill="#fff" opacity="0.7">
-                        <animateMotion repeatCount="indefinite" dur="5s" begin="1s">
-                            <mpath href="#path3"/>
-                        </animateMotion>
-                    </circle>
-                    <circle r="4" fill="#fff" opacity="0.7">
-                        <animateMotion repeatCount="indefinite" dur="7s" begin="1s">
-                            <mpath href="#path4"/>
-                        </animateMotion>
-                    </circle>
-                    <circle r="4" fill="#fff" opacity="0.7">
-                        <animateMotion repeatCount="indefinite" dur="8s" begin="1s">
-                            <mpath href="#path5"/>
-                        </animateMotion>
-                    </circle>
-                </svg>
-            </div>
-            
-            <div class="process-details">
-                <div class="process-step" data-node="node-input">
-                    <h3><i class="fas fa-database"></i> Data Input</h3>
-                    <p>Your business data is collected from various sources (CRM, inventory, sales platforms) into a centralized system.</p>
+                <div class="linear-process">
+                    <div class="process-step-linear">
+                        <div class="step-icon trigger-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="step-label">Trigger</div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="process-step-linear">
+                        <div class="step-icon process-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="step-label">Process</div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="process-step-linear">
+                        <div class="step-icon action-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="step-label">Action</div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="process-step-linear">
+                        <div class="step-icon notification-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="step-label">Notification</div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="process-step-linear">
+                        <div class="step-icon database-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="step-label">Database</div>
+                    </div>
                 </div>
-                <div class="process-step" data-node="node-processing">
-                    <h3><i class="fas fa-cogs"></i> AI Processing</h3>
-                    <p>Our intelligent algorithms analyze the data, identify patterns, and determine the optimal actions to take.</p>
+                
+                <div class="trigger-detail">
+                    <h3>Trigger</h3>
+                    <p>Новий замовлення отримано</p>
                 </div>
-                <div class="process-step" data-node="node-automation">
-                    <h3><i class="fas fa-robot"></i> Automated Execution</h3>
-                    <p>The system automatically executes tasks based on AI recommendations, eliminating manual work.</p>
+                
+                <div class="automation-action">
+                    <button class="start-automation-btn">Запустити автоматизацію</button>
                 </div>
-                <div class="process-step" data-node="node-output">
-                    <h3><i class="fas fa-chart-line"></i> Business Results</h3>
-                    <p>See tangible outcomes including time savings, increased efficiency, and improved customer satisfaction.</p>
-                </div>
-                <div class="process-step" data-node="node-feedback">
-                    <h3><i class="fas fa-sync"></i> Continuous Improvement</h3>
-                    <p>The system learns from results and feedback, constantly improving its performance over time.</p>
+                
+                <div class="automation-note">
+                    <p>Ця демонстрація показує спрощену версію автоматизації в Make.com.<br>Реальні сценарії можуть складатися з десятків кроків і сотень варіантів.</p>
                 </div>
             </div>
         </div>

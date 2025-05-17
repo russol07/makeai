@@ -139,57 +139,77 @@ function initializeAllGalleries() {
 
 // Automation Process Diagram Interactivity
 function initializeProcessDiagram() {
-    const processNodes = document.querySelectorAll('.process-node');
-    const processSteps = document.querySelectorAll('.process-step');
+    const startAutomationBtn = document.querySelector('.start-automation-btn');
+    const processStepsLinear = document.querySelectorAll('.process-step-linear');
+    const stepConnectors = document.querySelectorAll('.step-connector');
     
-    // Add interaction for process nodes
-    processNodes.forEach(node => {
-        node.addEventListener('mouseenter', () => {
-            const nodeId = node.id;
-            
-            // Highlight corresponding process step
-            processSteps.forEach(step => {
-                if (step.dataset.node === nodeId) {
-                    step.classList.add('active');
-                } else {
-                    step.classList.remove('active');
-                }
-            });
+    if (!startAutomationBtn) return;
+    
+    // Функція для анімації процесу
+    function animateProcess() {
+        // Спочатку скинемо всі активні стани
+        processStepsLinear.forEach(step => {
+            step.classList.remove('active');
+            step.querySelector('.step-icon').style.transform = '';
         });
         
-        node.addEventListener('mouseleave', () => {
-            // Remove highlight from all steps
-            processSteps.forEach(step => {
-                step.classList.remove('active');
-            });
+        stepConnectors.forEach(connector => {
+            connector.classList.remove('active-connector');
         });
+        
+        // Анімація виконання кроків
+        let stepIndex = 0;
+        const animateStep = () => {
+            if (stepIndex < processStepsLinear.length) {
+                // Активація кроку
+                processStepsLinear[stepIndex].classList.add('active');
+                processStepsLinear[stepIndex].querySelector('.step-icon').style.transform = 'translateY(-5px)';
+                
+                // Активація конектора після кроку
+                if (stepIndex < stepConnectors.length) {
+                    setTimeout(() => {
+                        stepConnectors[stepIndex].classList.add('active-connector');
+                    }, 300);
+                }
+                
+                // Перехід до наступного кроку
+                stepIndex++;
+                setTimeout(animateStep, 800);
+            }
+        };
+        
+        // Початок анімації
+        animateStep();
+    }
+    
+    // Додаємо подію до кнопки
+    startAutomationBtn.addEventListener('click', function() {
+        this.disabled = true;
+        this.textContent = 'Автоматизація запущена...';
+        this.style.backgroundColor = '#4338ca';
+        
+        // Запуск анімації
+        animateProcess();
+        
+        // Повернення кнопки до початкового стану
+        setTimeout(() => {
+            this.disabled = false;
+            this.textContent = 'Запустити автоматизацію';
+            this.style.backgroundColor = '';
+        }, 5000); // Час повного циклу анімації
     });
     
-    // Add interaction for process steps
-    processSteps.forEach(step => {
+    // Ефект наведення для кроків
+    processStepsLinear.forEach(step => {
         step.addEventListener('mouseenter', () => {
-            const nodeId = step.dataset.node;
-            const node = document.getElementById(nodeId);
-            
-            if (node) {
-                // Add highlight class to the step
-                step.classList.add('active');
-                
-                // Animate the corresponding node
-                node.style.transform = 'scale(1.1)';
+            if (!step.classList.contains('active')) {
+                step.querySelector('.step-icon').style.transform = 'translateY(-5px)';
             }
         });
         
         step.addEventListener('mouseleave', () => {
-            const nodeId = step.dataset.node;
-            const node = document.getElementById(nodeId);
-            
-            if (node) {
-                // Remove highlight class from the step
-                step.classList.remove('active');
-                
-                // Reset node animation
-                node.style.transform = 'scale(1)';
+            if (!step.classList.contains('active')) {
+                step.querySelector('.step-icon').style.transform = '';
             }
         });
     });
