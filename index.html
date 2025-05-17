@@ -63,63 +63,54 @@
             <div class="orbit orbit-1">
                 <div class="service-icon instagram">
                     <i class="fab fa-instagram"></i>
-                    <div class="connector"></div>
                 </div>
             </div>
             
             <div class="orbit orbit-2">
                 <div class="service-icon facebook">
                     <i class="fab fa-facebook"></i>
-                    <div class="connector"></div>
                 </div>
             </div>
             
             <div class="orbit orbit-3">
                 <div class="service-icon twitter">
                     <i class="fab fa-twitter"></i>
-                    <div class="connector"></div>
                 </div>
             </div>
             
             <div class="orbit orbit-4">
                 <div class="service-icon shopify">
                     <i class="fab fa-shopify"></i>
-                    <div class="connector"></div>
                 </div>
             </div>
             
             <div class="orbit orbit-5">
                 <div class="service-icon etsy">
                     <img src="https://cdn.cdnlogo.com/logos/e/18/etsy.svg" alt="Etsy">
-                    <div class="connector"></div>
                 </div>
             </div>
             
             <div class="orbit orbit-6">
                 <div class="service-icon gmail">
                     <i class="far fa-envelope"></i>
-                    <div class="connector"></div>
                 </div>
             </div>
             
             <div class="orbit orbit-7">
                 <div class="service-icon telegram">
                     <i class="fab fa-telegram"></i>
-                    <div class="connector"></div>
                 </div>
             </div>
             
             <div class="orbit orbit-8">
                 <div class="service-icon whatsapp">
                     <i class="fab fa-whatsapp"></i>
-                    <div class="connector"></div>
                 </div>
             </div>
             
             <div class="orbit orbit-9">
                 <div class="service-icon sheets">
                     <i class="fas fa-table"></i>
-                    <div class="connector"></div>
                 </div>
             </div>
         </div>
@@ -217,64 +208,101 @@
             .orbit-1 {
                 width: 120px;
                 height: 120px;
-                animation: rotate 15s linear infinite;
+                animation: rotate1 15s linear infinite;
             }
             
             .orbit-2 {
                 width: 160px;
                 height: 160px;
-                animation: rotate 18s linear infinite reverse;
+                animation: rotate2 18s linear infinite;
             }
             
             .orbit-3 {
                 width: 200px;
                 height: 200px;
-                animation: rotate 20s linear infinite;
+                animation: rotate3 20s linear infinite;
             }
             
             .orbit-4 {
                 width: 240px;
                 height: 240px;
-                animation: rotate 22s linear infinite reverse;
+                animation: rotate4 22s linear infinite;
             }
             
             .orbit-5 {
                 width: 280px;
                 height: 280px;
-                animation: rotate 24s linear infinite;
+                animation: rotate5 24s linear infinite;
             }
             
             .orbit-6 {
                 width: 320px;
                 height: 320px;
-                animation: rotate 26s linear infinite reverse;
+                animation: rotate6 26s linear infinite;
             }
             
             .orbit-7 {
                 width: 360px;
                 height: 360px;
-                animation: rotate 28s linear infinite;
+                animation: rotate7 28s linear infinite;
             }
             
             .orbit-8 {
                 width: 400px;
                 height: 400px;
-                animation: rotate 30s linear infinite reverse;
+                animation: rotate8 30s linear infinite;
             }
             
             .orbit-9 {
                 width: 440px;
                 height: 440px;
-                animation: rotate 32s linear infinite;
+                animation: rotate9 32s linear infinite;
             }
             
-            @keyframes rotate {
-                from {
-                    transform: translate(-50%, -50%) rotate(0deg);
-                }
-                to {
-                    transform: translate(-50%, -50%) rotate(360deg);
-                }
+            /* Несинхронні анімації обертання для кожної орбіти */
+            @keyframes rotate1 {
+                from { transform: translate(-50%, -50%) rotate(45deg); }
+                to { transform: translate(-50%, -50%) rotate(405deg); }
+            }
+            
+            @keyframes rotate2 {
+                from { transform: translate(-50%, -50%) rotate(180deg); }
+                to { transform: translate(-50%, -50%) rotate(-180deg); }
+            }
+            
+            @keyframes rotate3 {
+                from { transform: translate(-50%, -50%) rotate(90deg); }
+                to { transform: translate(-50%, -50%) rotate(450deg); }
+            }
+            
+            @keyframes rotate4 {
+                from { transform: translate(-50%, -50%) rotate(270deg); }
+                to { transform: translate(-50%, -50%) rotate(-90deg); }
+            }
+            
+            @keyframes rotate5 {
+                from { transform: translate(-50%, -50%) rotate(120deg); }
+                to { transform: translate(-50%, -50%) rotate(480deg); }
+            }
+            
+            @keyframes rotate6 {
+                from { transform: translate(-50%, -50%) rotate(210deg); }
+                to { transform: translate(-50%, -50%) rotate(-150deg); }
+            }
+            
+            @keyframes rotate7 {
+                from { transform: translate(-50%, -50%) rotate(30deg); }
+                to { transform: translate(-50%, -50%) rotate(390deg); }
+            }
+            
+            @keyframes rotate8 {
+                from { transform: translate(-50%, -50%) rotate(300deg); }
+                to { transform: translate(-50%, -50%) rotate(-60deg); }
+            }
+            
+            @keyframes rotate9 {
+                from { transform: translate(-50%, -50%) rotate(150deg); }
+                to { transform: translate(-50%, -50%) rotate(510deg); }
             }
             
             .service-icon {
@@ -318,20 +346,7 @@
             .whatsapp i { color: #25D366; }
             .sheets i { color: #0F9D58; }
             
-            .connector {
-                position: absolute;
-                bottom: 50%;
-                left: 50%;
-                width: 2px;
-                height: 60px;
-                background: linear-gradient(to top, rgba(80, 70, 229, 0.9), rgba(255, 255, 255, 0.9));
-                transform-origin: bottom center;
-                transform: translate(-50%, 0) rotate(180deg);
-                z-index: 1;
-                box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-            }
-            
-            /* Additional floating particles */
+            /* Додаткові плаваючі частинки */
             .system-container::before,
             .system-container::after {
                 content: '';
@@ -434,10 +449,6 @@
                 
                 .service-icon i {
                     font-size: 16px;
-                }
-                
-                .connector {
-                    height: 40px;
                 }
             }
         </style>
