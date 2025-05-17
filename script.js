@@ -889,9 +889,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize enterprise card animated background
     initEnterpriseCardAnimation();
-    
-    // Initialize automation process section animation
-    initAutomationProcessAnimation();
 });
 
 // Enterprise Card Animation
@@ -899,67 +896,106 @@ function initEnterpriseCardAnimation() {
     const enterpriseCard = document.querySelector('.enterprise-card');
     
     if (!enterpriseCard) return;
-    // Keep the card but without particles container
-    // Visual effect handled by ::before pseudoelement
-}
-
-// Automation Process Animation
-function initAutomationProcessAnimation() {
-    const processSection = document.querySelector('.process-diagram');
-    const particlesContainer = document.querySelector('.process-diagram .particles-container');
     
-    if (!processSection || !particlesContainer) return;
+    // Create overlay with animated elements
+    const overlay = document.createElement('div');
+    overlay.className = 'animation-overlay';
+    overlay.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+        pointer-events: none;
+    `;
     
-    // Create particles
-    function createParticles() {
-        // Clear existing particles
-        particlesContainer.innerHTML = '';
+    enterpriseCard.appendChild(overlay);
+    
+    // Create floating elements
+    for (let i = 0; i < 15; i++) {
+        const floater = document.createElement('div');
+        floater.className = 'background-floater';
         
-        // Create new particles
-        const particleCount = window.innerWidth < 768 ? 10 : 20;
+        // Random size (larger for better visibility)
+        const size = Math.random() * 15 + 10;
         
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Random size between 3px and 10px
-            const size = Math.random() * 7 + 3;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            // Random position
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            
-            // Random animation
-            const duration = Math.random() * 20 + 10;
-            particle.style.animation = `gradientShift ${duration}s infinite`;
-            
-            particlesContainer.appendChild(particle);
-        }
+        // Random position
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
         
-        // Create flow lines
-        const flowLineCount = window.innerWidth < 768 ? 5 : 10;
+        // Random opacity
+        const opacity = Math.random() * 0.3 + 0.1;
         
-        for (let i = 0; i < flowLineCount; i++) {
-            const flowLine = document.createElement('div');
-            flowLine.classList.add('flow-line');
-            
-            // Random position and size
-            flowLine.style.top = `${Math.random() * 100}%`;
-            flowLine.style.width = `${Math.random() * 30 + 20}%`;
-            
-            // Random animation delay
-            const delay = Math.random() * 8;
-            flowLine.style.animationDelay = `${delay}s`;
-            
-            particlesContainer.appendChild(flowLine);
-        }
+        // Random animation duration
+        const duration = Math.random() * 25 + 15;
+        
+        // Random animation delay
+        const delay = Math.random() * 10;
+        
+        // Random shape
+        const shapes = ['circle', 'square', 'triangle'];
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        
+        floater.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${posX}%;
+            top: ${posY}%;
+            background: linear-gradient(45deg, rgba(124, 58, 237, ${opacity}), rgba(139, 92, 246, ${opacity}));
+            border-radius: ${shape === 'circle' ? '50%' : shape === 'square' ? '2px' : '0'};
+            ${shape === 'triangle' ? 'clip-path: polygon(50% 0%, 0% 100%, 100% 100%);' : ''}
+            opacity: ${opacity};
+            animation: float ${duration}s infinite alternate ease-in-out;
+            animation-delay: ${delay}s;
+        `;
+        
+        overlay.appendChild(floater);
     }
     
-    // Create initial particles
-    createParticles();
+    // Add flow lines
+    for (let i = 0; i < 10; i++) {
+        const flowLine = document.createElement('div');
+        flowLine.className = 'flow-line';
+        
+        // Random position
+        const posY = Math.random() * 100;
+        
+        // Random width
+        const width = Math.random() * 40 + 20;
+        
+        // Random animation delay
+        const delay = Math.random() * 8;
+        
+        flowLine.style.cssText = `
+            position: absolute;
+            height: 1px;
+            width: ${width}%;
+            top: ${posY}%;
+            left: -${width}%;
+            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.6), transparent);
+            opacity: 0;
+            transform-origin: left center;
+            animation: flowLineAnimation 8s ease-in-out infinite;
+            animation-delay: ${delay}s;
+        `;
+        
+        overlay.appendChild(flowLine);
+    }
     
-    // Recreate particles on window resize
-    window.addEventListener('resize', createParticles);
+    // Add keyframes to head if not already present
+    if (!document.getElementById('floater-animation')) {
+        const styleSheet = document.createElement('style');
+        styleSheet.id = 'floater-animation';
+        styleSheet.textContent = `
+            @keyframes float {
+                0% { transform: translate(0, 0) rotate(0deg); }
+                50% { transform: translate(10px, 10px) rotate(5deg); }
+                100% { transform: translate(-10px, -10px) rotate(-5deg); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    }
 } 

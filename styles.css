@@ -2103,11 +2103,28 @@ h4, .h4 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(125deg, rgba(124, 58, 237, 0.05) 0%, rgba(139, 92, 246, 0.08) 50%, rgba(167, 139, 250, 0.05) 100%);
+    background: linear-gradient(125deg, 
+        rgba(124, 58, 237, 0.15) 0%, 
+        rgba(139, 92, 246, 0.2) 25%, 
+        rgba(167, 139, 250, 0.15) 50%,
+        rgba(139, 92, 246, 0.2) 75%,
+        rgba(124, 58, 237, 0.15) 100%);
     background-size: 400% 400%;
     z-index: -1;
-    opacity: 0.7;
-    animation: gradientShift 8s ease infinite;
+    opacity: 0.9;
+    animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Animated particles */
@@ -2138,33 +2155,21 @@ h4, .h4 {
     animation: flowLineAnimation 4s ease-in-out infinite;
 }
 
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 @keyframes flowLineAnimation {
     0% {
         transform: translateX(-100%) scaleX(0);
         opacity: 0;
     }
     20% {
-        opacity: 0.5;
+        opacity: 0.8;
     }
     40% {
         transform: translateX(0%) scaleX(1);
-        opacity: 0.8;
+        opacity: 1;
     }
     60% {
-        transform: translateX(0%) scaleX(1);
-        opacity: 0.8;
+        transform: translateX(50%) scaleX(1);
+        opacity: 1;
     }
     100% {
         transform: translateX(100%) scaleX(0);
