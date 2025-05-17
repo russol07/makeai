@@ -49,6 +49,7 @@
 
     <!-- Integration Solar System Animation -->
     <section class="integration-solar-system">
+        <div class="system-overlay"></div>
         <div class="system-container">
             <!-- Center Make.com hub -->
             <div class="make-hub">
@@ -62,64 +63,64 @@
             <div class="orbit orbit-1">
                 <div class="service-icon instagram">
                     <i class="fab fa-instagram"></i>
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
             
             <div class="orbit orbit-2">
                 <div class="service-icon facebook">
                     <i class="fab fa-facebook"></i>
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
             
             <div class="orbit orbit-3">
                 <div class="service-icon twitter">
                     <i class="fab fa-twitter"></i>
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
             
             <div class="orbit orbit-4">
                 <div class="service-icon shopify">
                     <i class="fab fa-shopify"></i>
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
             
             <div class="orbit orbit-5">
                 <div class="service-icon etsy">
                     <img src="https://cdn.cdnlogo.com/logos/e/18/etsy.svg" alt="Etsy">
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
             
             <div class="orbit orbit-6">
                 <div class="service-icon gmail">
                     <i class="far fa-envelope"></i>
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
             
             <div class="orbit orbit-7">
                 <div class="service-icon telegram">
                     <i class="fab fa-telegram"></i>
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
             
             <div class="orbit orbit-8">
                 <div class="service-icon whatsapp">
                     <i class="fab fa-whatsapp"></i>
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
             
             <div class="orbit orbit-9">
                 <div class="service-icon sheets">
                     <i class="fas fa-table"></i>
+                    <div class="connector"></div>
                 </div>
-                <div class="connector"></div>
             </div>
         </div>
         
@@ -127,10 +128,22 @@
             .integration-solar-system {
                 margin: 0;
                 padding: 40px 0;
-                background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(240,240,250,1) 100%);
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('images/hero-bg.jpg');
+                background-size: cover;
+                background-position: center;
                 overflow: hidden;
                 position: relative;
                 height: 400px;
+            }
+            
+            .system-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3);
+                z-index: 1;
             }
             
             .system-container {
@@ -139,6 +152,7 @@
                 height: 100%;
                 max-width: 1000px;
                 margin: 0 auto;
+                z-index: 2;
             }
             
             .make-hub {
@@ -154,7 +168,7 @@
                 align-items: center;
                 justify-content: center;
                 z-index: 10;
-                box-shadow: 0 0 30px rgba(80, 70, 229, 0.5);
+                box-shadow: 0 0 30px rgba(80, 70, 229, 0.8);
             }
             
             .make-logo {
@@ -196,7 +210,7 @@
                 top: 50%;
                 left: 50%;
                 border-radius: 50%;
-                border: 1px dashed rgba(100, 100, 100, 0.2);
+                border: 1px dashed rgba(255, 255, 255, 0.3);
                 transform: translate(-50%, -50%);
             }
             
@@ -275,14 +289,14 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 z-index: 5;
                 transition: all 0.3s ease;
             }
             
             .service-icon:hover {
                 transform: translate(-50%, -50%) scale(1.2);
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
             }
             
             .service-icon i {
@@ -306,14 +320,15 @@
             
             .connector {
                 position: absolute;
-                top: 0;
+                bottom: 50%;
                 left: 50%;
-                width: 1px;
-                height: 50%;
-                background: linear-gradient(to bottom, rgba(80, 70, 229, 0.7), rgba(80, 70, 229, 0));
+                width: 2px;
+                height: 60px;
+                background: linear-gradient(to top, rgba(80, 70, 229, 0.9), rgba(255, 255, 255, 0.9));
                 transform-origin: bottom center;
-                transform: rotate(-90deg);
+                transform: translate(-50%, 0) rotate(180deg);
                 z-index: 1;
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
             }
             
             /* Additional floating particles */
@@ -323,10 +338,11 @@
                 position: absolute;
                 width: 5px;
                 height: 5px;
-                background: rgba(80, 70, 229, 0.5);
+                background: rgba(255, 255, 255, 0.7);
                 border-radius: 50%;
                 z-index: 1;
                 animation: float 15s infinite linear;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
             }
             
             .system-container::before {
@@ -418,6 +434,10 @@
                 
                 .service-icon i {
                     font-size: 16px;
+                }
+                
+                .connector {
+                    height: 40px;
                 }
             }
         </style>
