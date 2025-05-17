@@ -391,12 +391,12 @@ window.addEventListener('load', () => {
 
 // Основні дані пакетів
 const packages = [
-    { id: 1, name: 'Etsy Ultimate', basePrice: 3999, icon: '🛍️', description: 'Повна автоматизація вашого Etsy магазину з AI-генерацією описів і аналітикою продажів.' },
-    { id: 2, name: 'Shopify Ultimate', basePrice: 4999, icon: '🏪', description: 'Комплексна автоматизація Shopify з багатоканальними інтеграціями та маркетинговими інструментами.' },
-    { id: 3, name: 'QuickBooks Ultimate', basePrice: 3799, icon: '📊', description: 'Фінансова автоматизація з розпізнаванням чеків та автоматичним виставленням рахунків.' },
-    { id: 4, name: 'AI Chatbot Ultimate', basePrice: 4799, icon: '🤖', description: 'Омніканальний AI-чатбот для сайту, WhatsApp, та Instagram з навчанням на власних даних.' },
-    { id: 5, name: 'Email Ultimate', basePrice: 2999, icon: '📧', description: 'Автоматизація email-маркетингу з сегментацією, персоналізацією та A/B тестуванням.' },
-    { id: 6, name: 'Social Media Ultimate', basePrice: 3699, icon: '📱', description: 'Автоматизація всіх соцмереж з AI-контентом, аналітикою та планувальником.' },
+    { id: 1, name: 'Etsy Ultimate', basePrice: 3999, icon: '🛍️', description: 'Complete automation of your Etsy store with AI-generated descriptions and sales analytics.' },
+    { id: 2, name: 'Shopify Ultimate', basePrice: 4999, icon: '🏪', description: 'Comprehensive Shopify automation with multichannel integrations and marketing tools.' },
+    { id: 3, name: 'QuickBooks Ultimate', basePrice: 3799, icon: '📊', description: 'Financial automation with receipt recognition and automatic invoice generation.' },
+    { id: 4, name: 'AI Chatbot Ultimate', basePrice: 4799, icon: '🤖', description: 'Omnichannel AI chatbot for website, WhatsApp, and Instagram trained on your own data.' },
+    { id: 5, name: 'Email Ultimate', basePrice: 2999, icon: '📧', description: 'Email marketing automation with segmentation, personalization, and A/B testing.' },
+    { id: 6, name: 'Social Media Ultimate', basePrice: 3699, icon: '📱', description: 'Automation of all social networks with AI content, analytics, and scheduling.' },
 ];
 
 // Таблиця знижок
@@ -528,7 +528,7 @@ function initializePackageSelector() {
         // Price calculation HTML
         let priceCalculationHTML = `
             <div class="price-item">
-                <span>Базова вартість:</span>
+                <span>Base price:</span>
                 <span>$${baseTotal}</span>
             </div>
         `;
@@ -540,7 +540,7 @@ function initializePackageSelector() {
         if (packageCount > 1) {
             priceCalculationHTML += `
                 <div class="price-item discount">
-                    <span>Знижка за кількість пакетів (${discountInfo.baseDiscount}%):</span>
+                    <span>Package bundle discount (${discountInfo.baseDiscount}%):</span>
                     <span>-$${baseDiscountAmount}</span>
                 </div>
             `;
@@ -554,7 +554,7 @@ function initializePackageSelector() {
             
             priceCalculationHTML += `
                 <div class="price-item discount">
-                    <span>Знижка для української спільноти (${discountInfo.communityDiscount}%):</span>
+                    <span>Ukrainian business community discount (${discountInfo.communityDiscount}%):</span>
                     <span>-$${communityDiscountAmount}</span>
                 </div>
             `;
@@ -576,8 +576,8 @@ function initializePackageSelector() {
             nextDiscountAlert.style.display = 'block';
             nextDiscountAlert.innerHTML = `
                 <p>
-                    <strong>Додайте ще один пакет</strong> для отримання знижки ${nextDiscount.baseDiscount}% + 
-                    ${isUkrainianCommunity ? `${nextDiscount.communityDiscount}%` : ''}!
+                    <strong>Add one more package</strong> to get a ${nextDiscount.baseDiscount}% discount 
+                    ${isUkrainianCommunity ? `+ ${nextDiscount.communityDiscount}%` : ''}!
                 </p>
             `;
         } else {

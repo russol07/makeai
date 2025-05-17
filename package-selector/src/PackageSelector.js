@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './PackageSelector.css';
 
 const PackageSelector = () => {
-  // Основні дані пакетів
+  // Package data
   const packages = [
-    { id: 1, name: 'Etsy Ultimate', basePrice: 3999, icon: '🛍️', description: 'Повна автоматизація вашого Etsy магазину з AI-генерацією описів і аналітикою продажів.' },
-    { id: 2, name: 'Shopify Ultimate', basePrice: 4999, icon: '🏪', description: 'Комплексна автоматизація Shopify з багатоканальними інтеграціями та маркетинговими інструментами.' },
-    { id: 3, name: 'QuickBooks Ultimate', basePrice: 3799, icon: '📊', description: 'Фінансова автоматизація з розпізнаванням чеків та автоматичним виставленням рахунків.' },
-    { id: 4, name: 'AI Chatbot Ultimate', basePrice: 4799, icon: '🤖', description: 'Омніканальний AI-чатбот для сайту, WhatsApp, та Instagram з навчанням на власних даних.' },
-    { id: 5, name: 'Email Ultimate', basePrice: 2999, icon: '📧', description: 'Автоматизація email-маркетингу з сегментацією, персоналізацією та A/B тестуванням.' },
-    { id: 6, name: 'Social Media Ultimate', basePrice: 3699, icon: '📱', description: 'Автоматизація всіх соцмереж з AI-контентом, аналітикою та планувальником.' },
+    { id: 1, name: 'Etsy Ultimate', basePrice: 3999, icon: '🛍️', description: 'Complete automation of your Etsy store with AI-generated descriptions and sales analytics.' },
+    { id: 2, name: 'Shopify Ultimate', basePrice: 4999, icon: '🏪', description: 'Comprehensive Shopify automation with multichannel integrations and marketing tools.' },
+    { id: 3, name: 'QuickBooks Ultimate', basePrice: 3799, icon: '📊', description: 'Financial automation with receipt recognition and automatic invoice generation.' },
+    { id: 4, name: 'AI Chatbot Ultimate', basePrice: 4799, icon: '🤖', description: 'Omnichannel AI chatbot for website, WhatsApp, and Instagram trained on your own data.' },
+    { id: 5, name: 'Email Ultimate', basePrice: 2999, icon: '📧', description: 'Email marketing automation with segmentation, personalization, and A/B testing.' },
+    { id: 6, name: 'Social Media Ultimate', basePrice: 3699, icon: '📱', description: 'Automation of all social networks with AI content, analytics, and scheduling.' },
   ];
 
-  // Таблиця знижок
+  // Discount table
   const discountTable = [
     { packages: 1, baseDiscount: 0, communityDiscount: 30 },
     { packages: 2, baseDiscount: 15, communityDiscount: 25 },
@@ -22,7 +22,7 @@ const PackageSelector = () => {
     { packages: 6, baseDiscount: 35, communityDiscount: 20 },
   ];
 
-  // Стан
+  // State
   const [selectedPackages, setSelectedPackages] = useState([]);
   const [isUkrainianCommunity, setIsUkrainianCommunity] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -30,7 +30,7 @@ const PackageSelector = () => {
   const [effectiveDiscount, setEffectiveDiscount] = useState(0);
   const [nextDiscount, setNextDiscount] = useState(null);
 
-  // Обробка вибору пакету
+  // Handle package selection
   const togglePackage = (packageId) => {
     if (selectedPackages.includes(packageId)) {
       setSelectedPackages(selectedPackages.filter(id => id !== packageId));
@@ -39,7 +39,7 @@ const PackageSelector = () => {
     }
   };
 
-  // Розрахунок цін при зміні вибраних пакетів
+  // Calculate prices when selected packages change
   useEffect(() => {
     if (selectedPackages.length === 0) {
       setTotalPrice(0);
@@ -49,32 +49,32 @@ const PackageSelector = () => {
       return;
     }
 
-    // Базова вартість всіх вибраних пакетів
+    // Base total of all selected packages
     const baseTotal = selectedPackages.reduce((sum, id) => {
       const pkg = packages.find(p => p.id === id);
       return sum + pkg.basePrice;
     }, 0);
 
-    // Застосування знижок
+    // Apply discounts
     const packageCount = selectedPackages.length;
     const discountInfo = discountTable[packageCount - 1];
     
-    // Проміжна ціна після базової знижки
+    // Intermediate price after base discount
     const afterBaseDiscount = baseTotal * (1 - discountInfo.baseDiscount / 100);
     
-    // Кінцева ціна після знижки для спільноти
+    // Final price after community discount
     const finalPrice = isUkrainianCommunity 
       ? afterBaseDiscount * (1 - discountInfo.communityDiscount / 100) 
       : afterBaseDiscount;
     
-    // Загальна ефективна знижка
+    // Total effective discount
     const totalDiscount = ((baseTotal - finalPrice) / baseTotal) * 100;
     
     setTotalPrice(Math.round(finalPrice));
     setSavings(Math.round(baseTotal - finalPrice));
     setEffectiveDiscount(Math.round(totalDiscount * 10) / 10);
     
-    // Інформація про наступний рівень знижки
+    // Information about next discount level
     if (packageCount < 6) {
       setNextDiscount(discountTable[packageCount]);
     } else {
@@ -84,12 +84,12 @@ const PackageSelector = () => {
 
   return (
     <div className="package-selector">
-      <h2>Виберіть пакети автоматизації</h2>
+      <h2>Select Automation Packages</h2>
       
-      {/* Перемикач української спільноти */}
+      {/* Ukrainian community toggle */}
       <div className="community-toggle">
         <label className="toggle-label">
-          <span>Українська бізнес-спільнота</span>
+          <span>Ukrainian Business Community</span>
           <div className="toggle-switch">
             <input 
               type="checkbox" 
@@ -101,7 +101,7 @@ const PackageSelector = () => {
         </label>
       </div>
       
-      {/* Картки пакетів */}
+      {/* Package cards */}
       <div className="packages-grid">
         {packages.map((pkg) => (
           <div 
@@ -128,12 +128,12 @@ const PackageSelector = () => {
         ))}
       </div>
       
-      {/* Інформаційна панель */}
+      {/* Summary panel */}
       <div className={`summary-panel ${selectedPackages.length > 0 ? 'visible' : ''}`}>
         <div className="summary-content">
           <div className="summary-grid">
             <div className="selected-packages">
-              <h3>Ваш вибір</h3>
+              <h3>Your Selection</h3>
               <ul>
                 {selectedPackages.map(id => {
                   const pkg = packages.find(p => p.id === id);
@@ -148,8 +148,8 @@ const PackageSelector = () => {
               {nextDiscount && (
                 <div className="next-discount-alert">
                   <p>
-                    <strong>Додайте ще один пакет</strong> для отримання знижки {nextDiscount.baseDiscount}% + 
-                    {isUkrainianCommunity ? ` ${nextDiscount.communityDiscount}%` : ''}!
+                    <strong>Add one more package</strong> to get a {nextDiscount.baseDiscount}% discount
+                    {isUkrainianCommunity ? ` + ${nextDiscount.communityDiscount}%` : ''}!
                   </p>
                 </div>
               )}
@@ -158,7 +158,7 @@ const PackageSelector = () => {
             <div className="price-calculation">
               <div className="price-items">
                 <div className="price-item">
-                  <span>Базова вартість:</span>
+                  <span>Base price:</span>
                   <span>${selectedPackages.reduce((sum, id) => {
                     const pkg = packages.find(p => p.id === id);
                     return sum + pkg.basePrice;
@@ -167,7 +167,7 @@ const PackageSelector = () => {
                 
                 {selectedPackages.length > 1 && (
                   <div className="price-item discount">
-                    <span>Знижка за кількість пакетів ({discountTable[selectedPackages.length-1].baseDiscount}%):</span>
+                    <span>Package bundle discount ({discountTable[selectedPackages.length-1].baseDiscount}%):</span>
                     <span>-${Math.round(selectedPackages.reduce((sum, id) => {
                       const pkg = packages.find(p => p.id === id);
                       return sum + pkg.basePrice;
@@ -177,7 +177,7 @@ const PackageSelector = () => {
                 
                 {isUkrainianCommunity && (
                   <div className="price-item discount">
-                    <span>Знижка для української спільноти ({discountTable[selectedPackages.length-1].communityDiscount}%):</span>
+                    <span>Ukrainian business community discount ({discountTable[selectedPackages.length-1].communityDiscount}%):</span>
                     <span>-${Math.round(selectedPackages.reduce((sum, id) => {
                       const pkg = packages.find(p => p.id === id);
                       return sum + pkg.basePrice;
@@ -188,28 +188,28 @@ const PackageSelector = () => {
               
               <div className="total-price">
                 <div className="final-price">
-                  <span>Фінальна ціна:</span>
+                  <span>Final price:</span>
                   <span>${totalPrice}</span>
                 </div>
                 <div className="savings">
-                  <span>Ви економите:</span>
+                  <span>You save:</span>
                   <span>${savings} ({effectiveDiscount}%)</span>
                 </div>
               </div>
               
               <button className="order-button">
-                Оформити замовлення
+                Place Order
               </button>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Пуста корзина */}
+      {/* Empty cart */}
       {selectedPackages.length === 0 && (
         <div className="empty-cart">
           <div className="cart-icon">🛒</div>
-          <p>Виберіть пакети автоматизації, щоб побачити ціну зі знижкою</p>
+          <p>Select automation packages to see discounted price</p>
         </div>
       )}
     </div>
