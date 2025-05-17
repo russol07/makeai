@@ -886,4 +886,68 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.toggle('active');
         });
     });
-}); 
+    
+    // Initialize enterprise card animated background
+    initEnterpriseCardAnimation();
+});
+
+// Enterprise Card Animation
+function initEnterpriseCardAnimation() {
+    const enterpriseCard = document.querySelector('.enterprise-card');
+    const particlesContainer = document.querySelector('.enterprise-card .particles-container');
+    
+    if (!enterpriseCard || !particlesContainer) return;
+    
+    // Create particles
+    function createParticles() {
+        // Clear existing particles
+        particlesContainer.innerHTML = '';
+        
+        // Create new particles
+        const particleCount = window.innerWidth < 768 ? 10 : 20;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size between 3px and 10px
+            const size = Math.random() * 7 + 3;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random position
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Random animation
+            const duration = Math.random() * 20 + 10;
+            particle.style.animation = `gradientShift ${duration}s infinite`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Create flow lines
+        const flowLineCount = window.innerWidth < 768 ? 5 : 10;
+        
+        for (let i = 0; i < flowLineCount; i++) {
+            const flowLine = document.createElement('div');
+            flowLine.classList.add('flow-line');
+            
+            // Random position and size
+            flowLine.style.top = `${Math.random() * 100}%`;
+            flowLine.style.width = `${Math.random() * 30 + 20}%`;
+            
+            // Random animation delay
+            const delay = Math.random() * 8;
+            flowLine.style.animationDelay = `${delay}s`;
+            
+            particlesContainer.appendChild(flowLine);
+        }
+    }
+    
+    // Create initial particles
+    createParticles();
+    
+    // Recreate particles on window resize
+    window.addEventListener('resize', createParticles);
+} 
