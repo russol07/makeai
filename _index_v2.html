@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Hub - Business Process Automation Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Automation Hub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#catalog">Automations</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero modern-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1>Automate Your Business — Save Time and Money</h1>
+            <p class="subheading">Ready-made automations for your business needs</p>
+            <div class="cta-buttons">
+                <a href="#catalog" class="primary-button">Start Automating</a>
+                <a href="#learn-more" class="secondary-button">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:80px;display:block;"><path d="M0 60C180 120 360 0 720 60C1080 120 1260 0 1440 60V120H0V60Z" fill="#fff" fill-opacity="0.9"/></svg>
+        </div>
+    </section>
+
+    <!-- Automation Catalog -->
+    <section id="catalog" class="catalog modern-catalog">
+        <div class="container">
+            <h2>Automation Solutions</h2>
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="etsy">Etsy</button>
+                <button class="tab-btn" data-category="shopify">Shopify</button>
+                <button class="tab-btn" data-category="chatbots">Chat Bots</button>
+                <button class="tab-btn" data-category="email">Email Services</button>
+                <button class="tab-btn" data-category="quickbooks">QuickBooks</button>
+                <button class="tab-btn" data-category="social">Social Media</button>
+            </div>
+
+            <!-- Category Content Sections -->
+            <div class="category-content active" id="etsy-content">
+                <div class="category-card">
+                    <div class="product-overview">
+                        <div class="product-image">
+                            <div class="gallery-slider">
+                                <img src="images/scenario1.png" alt="Etsy Automation">
+                                <img src="images/scenario2.png" alt="Etsy Automation">
+                                <img src="images/scenario1.png" alt="Etsy Automation">
+                            </div>
+                            <div class="gallery-nav">
+                                <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                                <div class="gallery-dots"></div>
+                                <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="product-details">
+                            <h1 class="product-title">Etsy Automation PRO — Complete Etsy Store Automation Package</h1>
+                            <div class="pricing-info">
+                                <div class="price-tag">$1999 <span>(one-time setup)</span></div>
+                                <div class="subscription">Ongoing support & updates — $149/month</div>
+                            </div>
+                            
+                            <div class="product-description">
+                                <p>Take your Etsy store to the next level with our complete automation package. This solution automates listing creation, updates, and order management to save you time and increase your efficiency.</p>
+                            </div>
+                            
+                            <button class="primary-button questionnaire-btn" data-category="etsy">Book a Consultation or Request a Demo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-accordion-sections">
+                        <div class="accordion-section">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <h4>What's Included</h4>
+                                    <span class="accordion-icon">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <div class="package-feature">
+                                        <h5>1. Automated Listing Creation with AI & Image Recognition</h5>
+                                        <ul>
+                                            <li>The system analyzes your product photos to prepare data for specialized AI agents.</li>
+                                            <li>AI agents, guided by your photos and instructions, generate product titles, descriptions, variants, and all necessary Etsy listing fields.</li>
+                                            <li>Product photos are uploaded automatically, with AI-generated ALT texts for accessibility.</li>
+                                            <li>Keywords/tags are populated from your Google Sheets — you can easily update them (e.g., with data from eRank); separate tables for each category.</li>
+                                            <li>Titles and descriptions are generated based on the product image and relevant keywords for each category.</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="package-feature">
+                                        <h5>2. Listing Updates for Low-Traffic/Low-Sales Products</h5>
+                                        <ul>
+                                            <li>Your manager identifies listings that need updating (e.g., low sales/traffic) and submits their IDs via a Telegram bot.</li>
+                                            <li>The system automatically updates titles, descriptions, and keywords for these listings, using the latest data from your Google Sheets.</li>
+                                            <li>No manual editing of each listing is required.</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="package-feature">
+                                        <h5>3. Order Export to Google Sheets / Telegram / CRM</h5>
+                                        <ul>
+                                            <li>Automatic export of new and historical Etsy orders to:</li>
+                                            <li>Google Sheets (for analytics, bookkeeping, or calculations)</li>
+                                            <li>Telegram (for instant manager notifications)</li>
+                                            <li>Any modern CRM (Notion, Monday, Pipedrive, HubSpot, and more)</li>
+                                            <li>Data format and integrations are fully customized to your needs.</li>
+                                            <li>Integration with one CRM is included in the setup.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-section">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <h4>Support & Updates</h4>
+                                    <span class="accordion-icon">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <h5>Ongoing Support — $149/month</h5>
+                                    <ul class="support-list">
+                                        <li>3 hours of technical support per month</li>
+                                        <li>Free updates to modules whenever Etsy, Google, Shopify, or other APIs/policies change</li>
+                                        <li>Scenario monitoring and prompt troubleshooting</li>
+                                        <li>Updates to documentation and user guides</li>
+                                        <li>Priority support line (Telegram, email)</li>
+                                        <li>Additional hours — $79/hour</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-section">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <h4>Why is this a smart investment?</h4>
+                                    <span class="accordion-icon">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Real savings in time and money for your business:</p>
+                                    <ul>
+                                        <li>Manual creation of 100 listings: 20–30 min × 100 = 33–50 hours</li>
+                                        <li>Updating 200 listings manually: 10–15 min × 200 = 33–50 hours</li>
+                                        <li>Exporting 300 orders manually: 2–3 min × 300 = 10–15 hours</li>
+                                    </ul>
+                                    <p class="highlight">Total: 76–115 hours per month!</p>
+                                    <p>Average US admin wage: $20–$25/hour</p>
+                                    <p class="highlight">Monthly savings: $1520–$2875!</p>
+                                    <p>With automation, these tasks take only 2–2.5 hours a month instead of 100+.</p>
+                                    <p>If your business has more listings and sales, the savings scale even higher!</p>
+                                    <div class="cta-message">
+                                        <p>Your automation pays for itself in the very first month.</p>
+                                        <p>All ongoing updates and support are included for just $149/month.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-section">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <h4>Frequently Asked Questions</h4>
+                                    <span class="accordion-icon">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <div class="faq-item">
+                                        <h5>How long does setup take?</h5>
+                                        <p>Most automations can be set up within 1-2 weeks, depending on complexity and your existing systems.</p>
+                                    </div>
+                                    <div class="faq-item">
+                                        <h5>Do I need technical knowledge?</h5>
+                                        <p>No technical knowledge is required. We handle all the setup and provide full training for your team.</p>
+                                    </div>
+                                    <div class="faq-item">
+                                        <h5>Will this work with my existing systems?</h5>
+                                        <p>Yes, our automations are designed to integrate with your existing workflows and tools. We'll customize the solution to fit your specific needs.</p>
+                                    </div>
+                                    <div class="faq-item">
+                                        <h5>What happens if Etsy changes their API?</h5>
+                                        <p>Don't worry! All updates due to API changes are included in your monthly support fee. We monitor platforms and update your automations promptly.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mini Automation Templates Section -->
+                <div class="mini-templates-container">
+                    <div class="mini-templates-section">
+                        <h4 class="mini-templates-title">Need a quick solution? Try our Mini Automation Templates</h4>
+                        <div class="mini-templates-grid">
+                            <div class="mini-template-card">
+                                <div class="template-image">
+                                    <img src="https://via.placeholder.com/400x250" alt="Order Export Template">
+                                </div>
+                                <h5>Order Export Pro</h5>
+                                <p>Automatically export all your Etsy orders to Google Sheets, with status tracking and notifications.</p>
+                                <div class="template-price">$59</div>
+                                <button class="template-button">Get Template</button>
+                            </div>
+                            
+                            <div class="mini-template-card">
+                                <div class="template-image">
+                                    <img src="https://via.placeholder.com/400x250" alt="Inventory Sync Template">
+                                </div>
+                                <h5>Inventory Sync</h5>
+                                <p>Keep your inventory in sync between Etsy and your spreadsheet or other marketplace.</p>
+                                <div class="template-price">$79</div>
+                                <button class="template-button">Get Template</button>
+                            </div>
+                            
+                            <div class="mini-template-card">
+                                <div class="template-image">
+                                    <img src="https://via.placeholder.com/400x250" alt="Telegram Notifier Template">
+                                </div>
+                                <h5>Telegram Notifier</h5>
+                                <p>Get instant notifications for new orders, messages, and reviews right in your Telegram.</p>
+                                <div class="template-price">$49</div>
+                                <button class="template-button">Get Template</button>
+                            </div>
+                            
+                            <div class="mini-template-card">
+                                <div class="template-image">
+                                    <img src="https://via.placeholder.com/400x250" alt="Keywords Updater Template">
+                                </div>
+                                <h5>Keywords Updater</h5>
+                                <p>Update your listing tags and keywords from a spreadsheet with one click.</p>
+                                <div class="template-price">$69</div>
+                                <button class="template-button">Get Template</button>
+                            </div>
+                        </div>
+                        <div class="template-note">
+                            <i class="fas fa-info-circle"></i> Each template includes setup assistance. Need customization? Contact us for a quote.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-content" id="shopify-content">
+                <div class="category-card">
+                    <div class="category-gallery">
+                        <div class="gallery-slider">
+                            <img src="images/scenario1.png" alt="Shopify Automation">
+                            <img src="images/scenario2.png" alt="Shopify Automation">
+                            <img src="images/scenario1.png" alt="Shopify Automation">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                            <div class="gallery-dots"></div>
+                            <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="category-info">
+                        <h3>Shopify Store Automation</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Product management automation</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Order processing workflows</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Inventory control</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Customer data management</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Marketing automation</p>
+                            </div>
+                        </div>
+                        <p class="category-description">
+                            Take your Shopify store to the next level with powerful automation tools. 
+                            Streamline product management, order processing, inventory control, and marketing 
+                            activities to save time and increase efficiency.
+                        </p>
+                        <button class="primary-button questionnaire-btn" data-category="shopify">Get Started</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-content" id="chatbots-content">
+                <div class="category-card">
+                    <div class="category-gallery">
+                        <div class="gallery-slider">
+                            <img src="images/scenario1.png" alt="Chatbot Solution">
+                            <img src="images/scenario2.png" alt="Chatbot Solution">
+                            <img src="images/scenario1.png" alt="Chatbot Solution">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                            <div class="gallery-dots"></div>
+                            <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="category-info">
+                        <h3>Intelligent Chat Bots</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>24/7 customer support</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Lead generation and qualification</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Appointment scheduling</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Product recommendations</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>CRM integration</p>
+                            </div>
+                        </div>
+                        <p class="category-description">
+                            Enhance customer engagement with AI-powered chatbots. Provide 24/7 support, 
+                            generate and qualify leads, schedule appointments, and offer personalized 
+                            product recommendations automatically.
+                        </p>
+                        <button class="primary-button questionnaire-btn" data-category="chatbots">Get Started</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-content" id="email-content">
+                <div class="category-card">
+                    <div class="category-gallery">
+                        <div class="gallery-slider">
+                            <img src="images/scenario1.png" alt="Email Automation">
+                            <img src="images/scenario2.png" alt="Email Automation">
+                            <img src="images/scenario1.png" alt="Email Automation">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                            <div class="gallery-dots"></div>
+                            <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="category-info">
+                        <h3>Email Service Automation</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Automated email responses</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Email sequence automation</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Smart email categorization</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Follow-up reminders</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Email analytics</p>
+                            </div>
+                        </div>
+                        <p class="category-description">
+                            Transform your email communication with intelligent automation. Set up 
+                            automated responses, create follow-up sequences, categorize incoming messages, 
+                            and track performance with detailed analytics.
+                        </p>
+                        <button class="primary-button questionnaire-btn" data-category="email">Get Started</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-content" id="quickbooks-content">
+                <div class="category-card">
+                    <div class="category-gallery">
+                        <div class="gallery-slider">
+                            <img src="images/scenario1.png" alt="QuickBooks Automation">
+                            <img src="images/scenario2.png" alt="QuickBooks Automation">
+                            <img src="images/scenario1.png" alt="QuickBooks Automation">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                            <div class="gallery-dots"></div>
+                            <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="category-info">
+                        <h3>QuickBooks Automation</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Automated invoice generation</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Expense tracking</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Financial report automation</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Tax preparation assistance</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Integration with e-commerce platforms</p>
+                            </div>
+                        </div>
+                        <p class="category-description">
+                            Simplify your accounting processes with QuickBooks automation. Automatically 
+                            generate invoices, track expenses, create financial reports, and integrate 
+                            with your e-commerce platforms for seamless financial management.
+                        </p>
+                        <button class="primary-button questionnaire-btn" data-category="quickbooks">Get Started</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-content" id="social-content">
+                <div class="category-card">
+                    <div class="category-gallery">
+                        <div class="gallery-slider">
+                            <img src="images/scenario1.png" alt="Social Media Automation">
+                            <img src="images/scenario2.png" alt="Social Media Automation">
+                            <img src="images/scenario1.png" alt="Social Media Automation">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                            <div class="gallery-dots"></div>
+                            <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="category-info">
+                        <h3>Social Media Automation</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Content scheduling</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Multi-platform posting</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Analytics and reporting</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Audience engagement</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <p>Social media monitoring</p>
+                            </div>
+                        </div>
+                        <p class="category-description">
+                            Maximize your social media presence with powerful automation tools. Schedule 
+                            content, post across multiple platforms, track performance, engage with your 
+                            audience, and monitor your brand mentions automatically.
+                        </p>
+                        <button class="primary-button questionnaire-btn" data-category="social">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits modern-benefits">
+        <div class="container">
+            <h2>Automation Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Quick Setup</h3>
+                    <p>Get started in minutes with our pre-configured automation templates</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Reduced Costs</h3>
+                    <p>Save on operational expenses by automating repetitive tasks</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Increased Efficiency</h3>
+                    <p>Focus on growth while automation handles routine processes</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Full Support</h3>
+                    <p>Complete technical assistance and ongoing maintenance included</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about modern-about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p class="about-desc">We're a team of automation experts passionate about helping businesses streamline their operations. Our mission is to make advanced automation accessible to everyone.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo">👩‍💻</div>
+                    <div class="team-info">
+                        <h4>John Smith</h4>
+                        <p>CEO & Automation Expert<br>15+ years in business automation and process optimization</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">👩‍💻</div>
+                    <div class="team-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Technical Lead<br>Specialist in e-commerce integrations and API development</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">👨‍💻</div>
+                    <div class="team-info">
+                        <h4>Mike Davis</h4>
+                        <p>Customer Success Manager<br>Dedicated to ensuring client satisfaction and success</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact modern-contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div style="display:flex;justify-content:center;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScowz2CrFyolW8ZdW3ej38AzU9UN78IMES9kZEoNLidmLc6pQ/viewform?usp=header" target="_blank" class="primary-button" style="font-size:1.2rem;padding:1.2rem 2.5rem;">Contact Us</a>
+            </div>
+            <div class="contact-info">
+                <div class="info-item"><i class="fas fa-envelope"></i> sales@makebox.ai</div>
+                <div class="info-item"><i class="fab fa-telegram"></i> <a href="https://t.me/makeboxai" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">@makeboxai</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog modern-blog">
+        <div class="container">
+            <h2>Latest Articles</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://source.unsplash.com/600x300/?automation" alt="Automation Trends" class="blog-img" style="width:100%;height:160px;object-fit:cover;border-radius:0.7rem 0.7rem 0 0;margin-bottom:1rem;">
+                    <h4>Top 5 Automation Trends in 2025</h4>
+                    <p>Discover the latest developments in business automation and how they can benefit your company...</p>
+                    <a href="article1.html" class="primary-button">Read More</a>
+                </div>
+                <div class="blog-card">
+                    <img src="https://source.unsplash.com/600x300/?business" alt="Case Study" class="blog-img" style="width:100%;height:160px;object-fit:cover;border-radius:0.7rem 0.7rem 0 0;margin-bottom:1rem;">
+                    <h4>Case Study: How XYZ Company Saved 40% on Operations</h4>
+                    <p>Learn how our client achieved significant cost savings through strategic automation implementation...</p>
+                    <a href="article2.html" class="primary-button">Read More</a>
+                </div>
+                <div class="blog-card">
+                    <img src="https://source.unsplash.com/600x300/?ecommerce" alt="E-commerce Automation" class="blog-img" style="width:100%;height:160px;object-fit:cover;border-radius:0.7rem 0.7rem 0 0;margin-bottom:1rem;">
+                    <h4>Beginner's Guide to E-commerce Automation</h4>
+                    <p>Everything you need to know about automating your online store operations from A to Z....</p>
+                    <a href="article3.html" class="primary-button">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials modern-testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"Automation Hub saved us 20+ hours per week on order processing. The ROI was immediate!"</p>
+                    <span>- Irina K., E-commerce Owner</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Their Telegram integration system keeps our entire team updated in real-time. Game changer!"</p>
+                    <span>- Michael P., Retail Manager</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"We went from manual data entry nightmare to fully automated workflows in just one week."</p>
+                    <span>- Lisa D., Office Head</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq modern-faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">How long does setup take? <span>+</span></div>
+                    <div class="faq-answer">Most automations can be set up within 24-48 hours. Complex custom solutions may take 1-2 weeks.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer custom automations? <span>+</span></div>
+                    <div class="faq-answer">Yes! In addition to our pre-built solutions, we create custom automations tailored to your specific business needs.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What platforms do you support? <span>+</span></div>
+                    <div class="faq-answer">We support Shopify, Etsy, Make.com, Monday.com, Telegram, and many more. Contact us for specific platform requests.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is there ongoing support? <span>+</span></div>
+                    <div class="faq-answer">Absolutely! All packages include technical support, maintenance, and updates to ensure your automations run smoothly.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Automation Hub</h3>
+                    <p>Making automation simple and accessible</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#catalog">Automations</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Automation Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Questionnaire Modal -->
+    <div class="modal" id="questionnaire-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Tell us about your project</h3>
+            <p>Please fill out this quick questionnaire to help us understand your needs better.</p>
+            <iframe id="questionnaire-frame" src="" width="100%" height="500" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
