@@ -379,9 +379,212 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Setup FAQ functionality
     setupFAQ();
+    
+    // Initialize package selector
+    initializePackageSelector();
 });
 
 // Also call setupFAQ on window load as a fallback
 window.addEventListener('load', () => {
     setupFAQ();
-}); 
+});
+
+// Основні дані пакетів
+const packages = [
+    { id: 1, name: 'Etsy Ultimate', basePrice: 3999, icon: '🛍️', description: 'Повна автоматизація вашого Etsy магазину з AI-генерацією описів і аналітикою продажів.' },
+    { id: 2, name: 'Shopify Ultimate', basePrice: 4999, icon: '🏪', description: 'Комплексна автоматизація Shopify з багатоканальними інтеграціями та маркетинговими інструментами.' },
+    { id: 3, name: 'QuickBooks Ultimate', basePrice: 3799, icon: '📊', description: 'Фінансова автоматизація з розпізнаванням чеків та автоматичним виставленням рахунків.' },
+    { id: 4, name: 'AI Chatbot Ultimate', basePrice: 4799, icon: '🤖', description: 'Омніканальний AI-чатбот для сайту, WhatsApp, та Instagram з навчанням на власних даних.' },
+    { id: 5, name: 'Email Ultimate', basePrice: 2999, icon: '📧', description: 'Автоматизація email-маркетингу з сегментацією, персоналізацією та A/B тестуванням.' },
+    { id: 6, name: 'Social Media Ultimate', basePrice: 3699, icon: '📱', description: 'Автоматизація всіх соцмереж з AI-контентом, аналітикою та планувальником.' },
+];
+
+// Таблиця знижок
+const discountTable = [
+    { packages: 1, baseDiscount: 0, communityDiscount: 30 },
+    { packages: 2, baseDiscount: 15, communityDiscount: 25 },
+    { packages: 3, baseDiscount: 20, communityDiscount: 25 },
+    { packages: 4, baseDiscount: 25, communityDiscount: 22 },
+    { packages: 5, baseDiscount: 30, communityDiscount: 20 },
+    { packages: 6, baseDiscount: 35, communityDiscount: 20 },
+];
+
+// Initialize Package Selector
+function initializePackageSelector() {
+    const packageGrid = document.getElementById('packages-grid');
+    const summaryPanel = document.getElementById('summary-panel');
+    const emptyCart = document.getElementById('empty-cart');
+    const communityToggle = document.getElementById('community-toggle');
+    const toggleSlider = document.getElementById('toggle-slider');
+    const selectedPackagesList = document.getElementById('selected-packages-list');
+    const priceItems = document.getElementById('price-items');
+    const nextDiscountAlert = document.getElementById('next-discount-alert');
+    const finalPriceElement = document.getElementById('final-price');
+    const savingsElement = document.getElementById('savings');
+    
+    if (!packageGrid) return;
+    
+    let selectedPackages = [];
+    let isUkrainianCommunity = false;
+    
+    // Render package cards
+    packages.forEach(pkg => {
+        const card = document.createElement('div');
+        card.className = 'package-card';
+        card.dataset.id = pkg.id;
+        
+        card.innerHTML = `
+            <div class="package-content">
+                <div class="package-icon">${pkg.icon}</div>
+                <h3>${pkg.name}</h3>
+                <div class="package-description">
+                    ${pkg.description}
+                </div>
+                <div class="package-price">
+                    $${pkg.basePrice}
+                </div>
+                <div class="package-selector-indicator">
+                    <span></span>
+                </div>
+            </div>
+        `;
+        
+        card.addEventListener('click', () => {
+            togglePackage(pkg.id);
+        });
+        
+        packageGrid.appendChild(card);
+    });
+    
+    // Community toggle functionality
+    communityToggle.addEventListener('change', () => {
+        isUkrainianCommunity = communityToggle.checked;
+        toggleSlider.classList.toggle('active', isUkrainianCommunity);
+        updateSummary();
+    });
+    
+    // Toggle package selection
+    function togglePackage(packageId) {
+        const index = selectedPackages.indexOf(packageId);
+        
+        if (index !== -1) {
+            selectedPackages.splice(index, 1);
+        } else {
+            selectedPackages.push(packageId);
+        }
+        
+        updateCardAppearance();
+        updateSummary();
+    }
+    
+    // Update card appearance
+    function updateCardAppearance() {
+        const cards = document.querySelectorAll('.package-card');
+        
+        cards.forEach(card => {
+            const packageId = parseInt(card.dataset.id);
+            const indicator = card.querySelector('.package-selector-indicator span');
+            
+            const isSelected = selectedPackages.includes(packageId);
+            card.classList.toggle('selected', isSelected);
+            indicator.classList.toggle('selected', isSelected);
+            indicator.textContent = isSelected ? '✓' : '';
+        });
+    }
+    
+    // Update summary panel
+    function updateSummary() {
+        if (selectedPackages.length === 0) {
+            summaryPanel.classList.remove('visible');
+            emptyCart.style.display = 'block';
+            return;
+        }
+        
+        // Show summary panel, hide empty cart
+        summaryPanel.classList.add('visible');
+        emptyCart.style.display = 'none';
+        
+        // Update selected packages list
+        selectedPackagesList.innerHTML = '';
+        
+        // Calculate base total
+        let baseTotal = 0;
+        selectedPackages.forEach(id => {
+            const pkg = packages.find(p => p.id === id);
+            baseTotal += pkg.basePrice;
+            
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <span>${pkg.icon} ${pkg.name}</span>
+                <span>$${pkg.basePrice}</span>
+            `;
+            selectedPackagesList.appendChild(listItem);
+        });
+        
+        // Apply discounts
+        const packageCount = selectedPackages.length;
+        const discountInfo = discountTable[packageCount - 1];
+        
+        // Price calculation HTML
+        let priceCalculationHTML = `
+            <div class="price-item">
+                <span>Базова вартість:</span>
+                <span>$${baseTotal}</span>
+            </div>
+        `;
+        
+        // Base discount calculation
+        const baseDiscountAmount = Math.round(baseTotal * discountInfo.baseDiscount / 100);
+        const afterBaseDiscount = baseTotal - baseDiscountAmount;
+        
+        if (packageCount > 1) {
+            priceCalculationHTML += `
+                <div class="price-item discount">
+                    <span>Знижка за кількість пакетів (${discountInfo.baseDiscount}%):</span>
+                    <span>-$${baseDiscountAmount}</span>
+                </div>
+            `;
+        }
+        
+        // Community discount calculation
+        let finalPrice = afterBaseDiscount;
+        if (isUkrainianCommunity) {
+            const communityDiscountAmount = Math.round(afterBaseDiscount * discountInfo.communityDiscount / 100);
+            finalPrice = afterBaseDiscount - communityDiscountAmount;
+            
+            priceCalculationHTML += `
+                <div class="price-item discount">
+                    <span>Знижка для української спільноти (${discountInfo.communityDiscount}%):</span>
+                    <span>-$${communityDiscountAmount}</span>
+                </div>
+            `;
+        }
+        
+        priceItems.innerHTML = priceCalculationHTML;
+        
+        // Calculate savings and discount percentage
+        const savings = baseTotal - finalPrice;
+        const discountPercentage = Math.round((savings / baseTotal) * 1000) / 10; // Round to 1 decimal
+        
+        // Update totals
+        finalPriceElement.textContent = `$${finalPrice}`;
+        savingsElement.textContent = `$${savings} (${discountPercentage}%)`;
+        
+        // Next discount alert
+        if (packageCount < 6) {
+            const nextDiscount = discountTable[packageCount];
+            nextDiscountAlert.style.display = 'block';
+            nextDiscountAlert.innerHTML = `
+                <p>
+                    <strong>Додайте ще один пакет</strong> для отримання знижки ${nextDiscount.baseDiscount}% + 
+                    ${isUkrainianCommunity ? `${nextDiscount.communityDiscount}%` : ''}!
+                </p>
+            `;
+        } else {
+            nextDiscountAlert.style.display = 'none';
+        }
+    }
+    
+    // Initial update
+    updateSummary();
+} 

@@ -17,7 +17,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#catalog">Automations</a></li>
                 <li><a href="#automation-process">How It Works</a></li>
-                <li><a href="packages.html">Package Builder</a></li>
+                <li><a href="#package-builder">Package Builder</a></li>
                 <li><a href="#benefits">Benefits</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -1287,6 +1287,74 @@
         </div>
     </section>
 
+    <!-- Package Builder Section -->
+    <section id="package-builder" class="package-builder">
+        <div class="container">
+            <h2>Конструктор пакетів автоматизації</h2>
+            <p class="section-description">Комбінуйте різні пакети автоматизації та отримуйте значні знижки. Чим більше рішень ви обираєте, тим вища ваша економія!</p>
+            
+            <!-- Community Toggle -->
+            <div class="community-toggle">
+                <label class="toggle-label">
+                    <span>Українська бізнес-спільнота</span>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="community-toggle">
+                        <div class="toggle-slider" id="toggle-slider"></div>
+                    </div>
+                </label>
+            </div>
+            
+            <!-- Packages Grid -->
+            <div class="packages-grid" id="packages-grid">
+                <!-- Картки будуть додані через JavaScript -->
+            </div>
+            
+            <!-- Summary Panel -->
+            <div class="summary-panel" id="summary-panel">
+                <div class="summary-content">
+                    <div class="summary-grid">
+                        <div class="selected-packages">
+                            <h3>Ваш вибір</h3>
+                            <ul id="selected-packages-list">
+                                <!-- Список вибраних пакетів буде додано через JavaScript -->
+                            </ul>
+                            <div class="next-discount-alert" id="next-discount-alert">
+                                <!-- Інформація про наступну знижку буде додана через JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="price-calculation">
+                            <div class="price-items" id="price-items">
+                                <!-- Розрахунок ціни буде додано через JavaScript -->
+                            </div>
+                            
+                            <div class="total-price">
+                                <div class="final-price">
+                                    <span>Фінальна ціна:</span>
+                                    <span id="final-price">$0</span>
+                                </div>
+                                <div class="savings">
+                                    <span>Ви економите:</span>
+                                    <span id="savings">$0 (0%)</span>
+                                </div>
+                            </div>
+                            
+                            <button class="order-button questionnaire-btn" data-category="etsy">
+                                Оформити замовлення
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Empty cart message -->
+            <div class="empty-cart" id="empty-cart">
+                <div class="cart-icon">🛒</div>
+                <p>Виберіть пакети автоматизації, щоб побачити ціну зі знижкою</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Benefits Section -->
     <section id="benefits" class="benefits modern-benefits">
         <div class="container">
@@ -1494,7 +1562,7 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#catalog">Automations</a></li>
                         <li><a href="#automation-process">How It Works</a></li>
-                        <li><a href="packages.html">Package Builder</a></li>
+                        <li><a href="#package-builder">Package Builder</a></li>
                         <li><a href="#benefits">Benefits</a></li>
                         <li><a href="#about">About</a></li>
                     </ul>
